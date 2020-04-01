@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import Signup from "./Components/Signup";
 
-class App extends React.Component{
-  render(){
-    return(
-      <div>
-        <h1>Hello PartyPanda</h1>
-      </div>
-    )
+class App extends React.Component {
+  render() {
+    return (
+      <Fragment>
+        <div>Party Panda</div>
+      </Fragment>
+    );
   }
 }
 
