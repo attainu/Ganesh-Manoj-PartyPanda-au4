@@ -1,7 +1,7 @@
 import React from "react";
 import Panda from "./Panda.png";
 
-class NavBar extends React.Component{
+class Navbar extends React.Component{
     render(){
         return(
             <div>
@@ -21,4 +21,4 @@ class NavBar extends React.Component{
     }
 }
 
-export default NavBar;
+export default Navbar;

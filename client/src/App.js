@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
-import NavBar from "./component/navBar";
+import Navbar from "./Components/Navbar"
 import Signup from "./Components/Signup";
 class App extends React.Component {
   render() {
     return (
       <Fragment>
         <div className="container-fluid-lg">
-          <NavBar />
+          <Navbar />
           <Signup />
         </div>
       </Fragment>
