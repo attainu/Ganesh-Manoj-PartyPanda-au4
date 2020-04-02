@@ -20,9 +20,7 @@
   border: 2px solid white;
   border-radius: 5px;
 }
-body {
-  overflow-y: hidden;
-}
+
 .blue {
   background-color: white;
 }
