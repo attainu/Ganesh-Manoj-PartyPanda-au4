@@ -17,8 +17,8 @@ class Navbar extends React.Component {
           </div>
           <img src={Panda} alt="" style={{ width: "65px" }} />
           <div className="d-flex justify-content-end">
+            <button class="btn">My Events</button>
             <button className="btn">Contact Us</button>
-
             <Link to="/signin" className="btn">
               Signin
             </Link>
