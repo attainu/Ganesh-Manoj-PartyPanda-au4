@@ -1,15 +1,23 @@
 import React, { Fragment } from "react";
-import Navbar from "./Components/Navbar"
-import Signup from "./Components/Signup";
-import Home from "./Components/Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Navbar from "./Components/Navbar";
+
+import Signin from "./Components/Signin";
 class App extends React.Component {
   render() {
     return (
       <Fragment>
         <div className="container-fluid-lg">
-          <Navbar />
-          <Home/>
-          <Signup />
+          <Router>
+            <Navbar />
+            <Route exact path="/">
+              <div>
+                <center>Hi Party Panda</center>
+              </div>
+            </Route>
+            <Route exact path="/signin" component={Signin} />
+          </Router>
         </div>
       </Fragment>
     );
