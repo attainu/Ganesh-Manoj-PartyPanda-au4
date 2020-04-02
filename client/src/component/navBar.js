@@ -5,7 +5,7 @@ class NavBar extends React.Component{
     render(){
         return(
             <div>
-                <nav class="navbar navbar-light bg-secondary py-0">
+                {/* <nav class="navbar navbar-light bg-secondary py-0">
                         <div className="d-flex justify-content-start ">
                             <button class="btn btn-secondary text-dark">Home</button>
                             <button class="btn btn-secondary text-dark">About Us</button>
@@ -15,7 +15,7 @@ class NavBar extends React.Component{
                             <button class="btn btn-secondary text-dark">Contact Us</button>
                             <button class="btn btn-secondary text-dark">SignIn</button>
                         </div>
-                </nav>
+                </nav> */}
             </div>
         )
     }
