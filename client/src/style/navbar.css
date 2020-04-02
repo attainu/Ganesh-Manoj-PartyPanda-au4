@@ -1,0 +1,12 @@
+.navbar {
+  background: linear-gradient(
+    140deg,
+    rgba(127, 56, 122, 0.92) 0,
+    rgba(64, 96, 148, 0.92)
+  );
+}
+
+.btn {
+  color: white;
+  font-weight: 500;
+}
