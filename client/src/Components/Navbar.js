@@ -1,5 +1,5 @@
 import React from "react";
-import Panda from "./Panda.png";
+import Panda from "../images/Panda.png";
 import { Link } from "react-router-dom";
 import "./../style/navbar.css";
 
@@ -14,8 +14,8 @@ class Navbar extends React.Component {
           </div>
           <img src={Panda} alt="" style={{ width: "50px" }} />
           <div className="d-flex justify-content-end">
+            <button class="btn">My Events</button>
             <button className="btn">Contact Us</button>
-
             <Link to="/signin" className="btn">
               Signin
             </Link>
