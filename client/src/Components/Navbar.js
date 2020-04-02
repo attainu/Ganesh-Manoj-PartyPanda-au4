@@ -1,5 +1,5 @@
 import React from "react";
-import Panda from "./Panda.png";
+import Panda from "../images/Panda.png";
 
 class Navbar extends React.Component{
     render(){
@@ -12,6 +12,7 @@ class Navbar extends React.Component{
                         </div>
                         <img src={Panda} alt="" style={{"width":"50px"}}/>
                         <div className="d-flex justify-content-end">
+                            <button className="btn">My Events</button>
                             <button class="btn">Contact Us</button>
                             <button class="btn">SignIn</button>
                         </div>
