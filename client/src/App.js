@@ -1,10 +1,11 @@
 import React from 'react';
+import NavBar from "./component/navBar";
 
 class App extends React.Component{
   render(){
     return(
-      <div>
-        <h1>Hello PartyPanda</h1>
+      <div className="container-fluid-lg">
+        <NavBar/>
       </div>
     )
   }
