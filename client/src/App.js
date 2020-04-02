@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Fragment } from "react";
 import NavBar from "./component/navBar";
-
-class App extends React.Component{
-  render(){
-    return(
-      <div className="container-fluid-lg">
-        <NavBar/>
-      </div>
-    )
+import Signup from "./Components/Signup";
+class App extends React.Component {
+  render() {
+    return (
+      <Fragment>
+        <div className="container-fluid-lg">
+          <NavBar />
+          <Signup />
+        </div>
+      </Fragment>
+    );
   }
 }
 
