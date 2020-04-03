@@ -1,6 +1,7 @@
 import React from "react";
 import "./../style/footer.css";
 import Animal from "./../images/animal.png";
+import { connect } from "react-redux";
 
 class Footer extends React.Component {
   render() {
@@ -60,4 +61,9 @@ class Footer extends React.Component {
   }
 }
 
-export default Footer;
+const fromStroe = state => {
+  return {
+    show: state.show
+  };
+};
+export default connect(fromStroe)(Footer);

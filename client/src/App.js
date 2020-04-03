@@ -1,11 +1,13 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import "./style/app.css";
 
 import Signin from "./Components/Signin";
+import { connect } from "react-redux";
 class App extends React.Component {
   render() {
     return (
@@ -28,4 +30,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const fromStore = state => {
+  return state;
+};
+
+export default connect(fromStore)(App);

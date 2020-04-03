@@ -2,6 +2,7 @@ import React from "react";
 import Panda from "./../images/animal.png";
 import { Link } from "react-router-dom";
 import "./../style/navbar.css";
+import { connect } from "react-redux";
 
 class Navbar extends React.Component {
   render() {
@@ -31,4 +32,9 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+const fromStroe = state => {
+  return {
+    show: state.show
+  };
+};
+export default connect(fromStroe)(Navbar);

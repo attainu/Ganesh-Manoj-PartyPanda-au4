@@ -8,9 +8,11 @@ import Soccer from "../images/soccer.png";
 import Motor from "../images/motorcycle.png";
 import Trekking from "../images/trekking.png";
 import "./../style/home.css";
+import { connect } from "react-redux";
 
 class Home extends React.Component {
   render() {
+    console.log(this.props.show);
     return (
       <Fragment>
         <div className="wrapper">
@@ -252,7 +254,7 @@ class Home extends React.Component {
               </div>
               <div className="col-md-6 d-flex justify-content-center">
                 <div
-                  class="card"
+                  class="card mem"
                   style={{ width: "20rem", "border-radius": "10px" }}
                 >
                   <img
@@ -305,4 +307,9 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const fromStroe = state => {
+  return {
+    show: state.show
+  };
+};
+export default connect(fromStroe)(Home);
