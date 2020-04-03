@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="container-fluid-lg" id="container">
+        <div className="container-fluid-lg mx-auto" id="container">
           <div id="wrapper">
             <Router>
               <Navbar />
@@ -20,10 +20,9 @@ class App extends React.Component {
             </Router>
           </div>
           <div id="footer">
-            <Footer/>
+            <Footer />
           </div>
         </div>
-        
       </Fragment>
     );
   }

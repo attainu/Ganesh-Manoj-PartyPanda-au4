@@ -97,6 +97,7 @@ class Signin extends React.Component {
           className="w-100 coverpic"
           src="https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/815/cached.offlinehbpl.hbpl.co.uk/news/OMC/DESPERADOS-SMALL-APARTMENT-20190729094133314.jpg"
         />
+
         <div className="container mx-auto text-center cont mt-5 pt-5 pb-5">
           <div id="buttons">
             <p

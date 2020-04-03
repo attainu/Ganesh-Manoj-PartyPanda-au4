@@ -10,3 +10,7 @@
   color: white;
   font-weight: 500;
 }
+
+.logo.btn {
+  margin-left: -20px;
+}
