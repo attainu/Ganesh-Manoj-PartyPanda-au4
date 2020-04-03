@@ -5,7 +5,7 @@ import Animal from "./../images/animal.png";
 class Footer extends React.Component {
   render() {
     return (
-      <div class="footer mt-4">
+      <div class="footer ">
         <div className="col-md-2" id="footer-left">
           <h4 className="text-center">Contact Us</h4>
           <form id="contact-form">
@@ -36,7 +36,7 @@ class Footer extends React.Component {
           <img src={Animal} id="footer-img" alt="" />
         </div>
         <div id="footer-center">
-          <h5>Social Media Links</h5>
+          <h5 style={{ paddingTop: "90px" }}>Social Media Links</h5>
           <div>
             <a href="#" className="text-dark">
               <i class="fa fa-github-square" aria-hidden="true"></i>
@@ -51,7 +51,7 @@ class Footer extends React.Component {
               <i class="fa fa-instagram" aria-hidden="true"></i>
             </a>
           </div>
-          <p className="text-warning" style={{ "margin-top": "80px" }}>
+          <p className="text-warning" style={{ "margin-top": "40px" }}>
             Copyright © 2020, PartyPanda Pvt. Ltd.
           </p>
         </div>

@@ -95,6 +95,7 @@ class Signin extends React.Component {
       <Fragment>
         <img
           className="w-100 coverpic"
+          alt="coverpic"
           src="https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/815/cached.offlinehbpl.hbpl.co.uk/news/OMC/DESPERADOS-SMALL-APARTMENT-20190729094133314.jpg"
         />
 

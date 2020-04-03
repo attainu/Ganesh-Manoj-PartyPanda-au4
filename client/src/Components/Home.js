@@ -198,7 +198,7 @@ class Home extends React.Component {
           </div>
           {/* team member container */}
           <div
-            className="container border border-light mt-5"
+            className="container border border-light mt-5 pb-5"
             style={{ "border-radius": "35px" }}
           >
             <h1 className="text-center theme">Team</h1>
