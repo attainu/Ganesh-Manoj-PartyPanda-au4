@@ -235,7 +235,7 @@ class Home extends React.Component {
                         ></i>
                       </a>
                       <a
-                        className="bg-primary text-white px-1"
+                        className=" text-dark px-1"
                         href="https://www.linkedin.com/in/manoj-kumar-119883193"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -282,7 +282,7 @@ class Home extends React.Component {
                         ></i>
                       </a>
                       <a
-                        className="bg-primary text-white px-1"
+                        className=" text-dark px-1"
                         href="https://www.linkedin.com/in/ganesh-dasari-786096172/"
                         rel="noopener noreferrer"
                         target="_blank"
