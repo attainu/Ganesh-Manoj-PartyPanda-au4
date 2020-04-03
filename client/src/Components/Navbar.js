@@ -12,7 +12,7 @@ class Navbar extends React.Component {
           style={{ minHeight: "3.5rem" }}
         >
           <div className="d-flex justify-content-start ">
-            <button className="btn">Home</button>
+            <Link to ="/" className="btn">Home</Link>
             <button className="btn">About Us</button>
           </div>
           <img src={Panda} alt="" style={{ width: "65px" }} />
