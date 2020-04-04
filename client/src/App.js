@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
+import Allparties from "./Components/Allparties";
 import Footer from "./Components/Footer";
 import "./style/app.css";
 
@@ -17,7 +18,7 @@ class App extends React.Component {
             <Router>
               <Navbar />
               <Route exact path="/" component={Home} />
-
+              <Route exact path="/allevents" component={Allparties} />
               <Route exact path="/signin" component={Signin} />
             </Router>
           </div>
@@ -30,7 +31,7 @@ class App extends React.Component {
   }
 }
 
-const fromStore = state => {
+const fromStore = (state) => {
   return state;
 };
 
