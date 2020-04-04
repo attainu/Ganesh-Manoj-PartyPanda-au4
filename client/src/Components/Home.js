@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Red from "../images/red.jpg";
+import Red from "../images/dome.jpg";
 import Shirt from "../images/standing.jpg";
 import Party from "../images/beer.png";
 import Screening from "../images/screening.png";
@@ -27,7 +27,7 @@ class Home extends React.Component {
                 "max-width": "100%",
                 border: "none",
                 padding: "50px",
-                "border-radius": "35px"
+                "border-radius": "35px",
               }}
             >
               <div class="row no-gutters">
@@ -39,7 +39,7 @@ class Home extends React.Component {
                     style={{
                       width: "320px",
                       height: "300px",
-                      "border-radius": "10px"
+                      "border-radius": "10px",
                     }}
                   />
                 </div>
@@ -50,7 +50,7 @@ class Home extends React.Component {
                       class="card-text  "
                       style={{
                         "padding-left": "70px",
-                        "padding-right": "70px"
+                        "padding-right": "70px",
                       }}
                     >
                       PartyPanda gives you the real socializing experience
@@ -64,7 +64,7 @@ class Home extends React.Component {
                         color: "blue",
                         "border-color": "blue",
                         "border-radius": "20px",
-                        width: "120px"
+                        width: "120px",
                       }}
                     >
                       {" "}
@@ -216,7 +216,7 @@ class Home extends React.Component {
                     alt=""
                     style={{
                       height: "250px",
-                      "border-radius": "10px 10px 0px 0px"
+                      "border-radius": "10px 10px 0px 0px",
                     }}
                   />
                   <div class="card-body">
@@ -263,7 +263,7 @@ class Home extends React.Component {
                     alt=""
                     style={{
                       height: "250px",
-                      "border-radius": "10px 10px 0px 0px"
+                      "border-radius": "10px 10px 0px 0px",
                     }}
                   />
                   <div class="card-body">
@@ -307,9 +307,9 @@ class Home extends React.Component {
   }
 }
 
-const fromStroe = state => {
+const fromStroe = (state) => {
   return {
-    show: state.show
+    show: state.show,
   };
 };
 export default connect(fromStroe)(Home);

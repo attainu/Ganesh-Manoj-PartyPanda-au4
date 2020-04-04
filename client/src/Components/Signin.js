@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Modal } from "react-bootstrap";
+import Login from "./Login";
 import { connect } from "react-redux";
 import "./../style/signin.css";
 
@@ -42,56 +42,11 @@ const Signup = () => {
   );
 };
 
-const Login = () => {
-  return (
-    <div className="text-center">
-      <form>
-        <div id="login ">
-          <input
-            className="form-control "
-            type="email"
-            id="email"
-            placeholder="Email"
-          />
-          <br />
-          <input
-            className="form-control "
-            type="password"
-            id="password"
-            placeholder="Password"
-          />
-          <br />
-          <p
-            className="float-left"
-            onClick={() => {
-              this.props.dispatch({ type: "show" });
-            }}
-            style={{ color: "white", cursor: "pointer", fontSize: "0.9rem" }}
-          >
-            Forgot password?
-          </p>
-          <br />
-          <center className="mr-5 pl-5 pt-3 pb-2">
-            <button id="send">Send</button>
-          </center>
-        </div>
-      </form>
-    </div>
-  );
-};
-
 class Signin extends React.Component {
   state = {
     signup: false,
-    login: true
+    login: true,
   };
-
-  handleShow() {
-    this.setState({ show: true });
-  }
-  handleClose() {
-    this.setState({ show: false });
-  }
 
   switch(word) {
     let signup, login;
@@ -145,38 +100,14 @@ class Signin extends React.Component {
             {this.state.login ? <Login /> : null}
           </div>
         </div>
-        <Modal
-          show={this.props.show}
-          onHide={this.props.dispatch({ type: "hide" })}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Please Enter Mobile number</Modal.Title>
-            <Modal.Body>
-              <div className="text-center">
-                <div id="login ">
-                  <input
-                    className="form-control "
-                    type="number"
-                    id="mobile"
-                    placeholder="Mobile"
-                  />
-                  <br />
-                </div>
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <button id="send">Submit</button>
-            </Modal.Footer>
-          </Modal.Header>
-        </Modal>
       </Fragment>
     );
   }
 }
 
-const fromStroe = state => {
+const fromStroe = (state) => {
   return {
-    show: state.show
+    show: state.show,
   };
 };
 export default connect(fromStroe)(Signin);
