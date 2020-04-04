@@ -21,7 +21,9 @@ class Navbar extends React.Component {
 
           <div className="d-flex justify-content-end">
             <button class="btn">My Events</button>
-            <button className="btn">Contact Us</button>
+            <Link to="/allevents" className="btn">
+              All Events
+            </Link>
             <Link to="/signin" className="btn">
               Signin
             </Link>
@@ -32,9 +34,9 @@ class Navbar extends React.Component {
   }
 }
 
-const fromStroe = state => {
+const fromStroe = (state) => {
   return {
-    show: state.show
+    show: state.show,
   };
 };
 export default connect(fromStroe)(Navbar);
