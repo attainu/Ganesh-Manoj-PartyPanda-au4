@@ -27,6 +27,13 @@
 .mem {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.event {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.event:hover {
+  border: 2px solid rgba(127, 56, 122, 0.92);
+}
+
 .card.idea {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

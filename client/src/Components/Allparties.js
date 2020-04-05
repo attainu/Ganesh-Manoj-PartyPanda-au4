@@ -15,7 +15,7 @@ class Allparties extends React.Component {
             <hr />
           </center>
           <div className="d-flex flex-row flex-wrap justify-content-around">
-            <div className="card mem mb-5" style={{ width: "35vw" }}>
+            <div className="card event mb-5" style={{ width: "35vw" }}>
               <img className="card-img-top" src={Dome} alt="Card image cap" />
               <div className="card-body ">
                 <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
@@ -30,7 +30,7 @@ class Allparties extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="card mem mb-5" style={{ width: "35vw" }}>
+            <div className="card event mb-5" style={{ width: "35vw" }}>
               <img className="card-img-top" src={Dome} alt="Card image cap" />
               <div className="card-body ">
                 <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
@@ -45,7 +45,7 @@ class Allparties extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="card mem mb-5" style={{ width: "35vw" }}>
+            <div className="card event mb-5" style={{ width: "35vw" }}>
               <img className="card-img-top" src={Dome} alt="Card image cap" />
               <div className="card-body ">
                 <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
