@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 import Dome from "./../images/dome.jpg";
 import "./../style/allparties.css";
 
-class Allparties extends React.Component {
+class Myparty extends React.Component {
   render() {
     return (
       <Fragment>
         <div className="d-flex flex-column flex-nowrap justify-content-center container-fluid pb-5 pl-5 pr-5 wrapper ">
           <center className="pb-4 pt-4 ">
-            <h4 className="pages">All Parties</h4>
+            <h4 className="pages">My Party</h4>
             <hr />
           </center>
           <div className="d-flex flex-row flex-wrap justify-content-around">
@@ -72,4 +72,4 @@ const fromStroe = (state) => {
     show: state.show,
   };
 };
-export default connect(fromStroe)(Allparties);
+export default connect(fromStroe)(Myparty);

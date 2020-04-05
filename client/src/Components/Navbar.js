@@ -20,9 +20,14 @@ class Navbar extends React.Component {
           </div>
 
           <div className="d-flex justify-content-end">
-            <button class="btn">My Events</button>
+            <Link to="/dashboard" className="btn">
+              Dashboard
+            </Link>
             <Link to="/allevents" className="btn">
               All Events
+            </Link>
+            <Link to="/create-event" className="btn">
+              Create Event
             </Link>
             <Link to="/signin" className="btn">
               Signin
