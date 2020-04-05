@@ -3,93 +3,106 @@ import React from "react";
 class CreateEvent extends React.Component{
     render(){
         return(
-            <div className="container-fluid bg-light">
-                <div className="card text-center bg-light mt-0" style={{"border":"none"}} >
-                    <h2 className="text-center text-dark mt-3 ">Create Event</h2>
-                    <div className="card-body d-flex justify-content-center">
-                        <form className="form-group col-md-5 d-flex text-dark justify-content-center bg-white text-left border border-light   py-3" style={{"border-radius":"35px"}} >
-                            <div style={{"width":"300px"}}>
-                            <div className="mb-3" >
-                                <label >Theme:</label>   
-                                <input type="text" className="form-control" required/>
-                            </div>
-                            <div className="mb-3">
-                                <label >City:</label>  
-                                <input type="text" className="form-control" required/>
-                            </div>
-                            <div className="mb-3">
-                            <label  >Location Of Event:</label>  
-                                <input type="text" className="form-control" required/>
-                            </div>
-                            <div className="mb-3" >
+            <div className="container-fluid d-flex flex-column flex-nowrap bg-light ">
+                <div className="d-flex  justify-content-center"> 
+                    <h2 className="text-center text-dark  py-3">Create Event</h2>
+                </div>
+                <div className=" container  d-flex flex-row flex-wrap justify-content-around bg-white  py-5" style={{"borderRadius":"35px"}}>
+                    <div >
+                        <div class="dropdown">
+                            <label>Theme:</label><br/>
+                            <select className="from-control text-muted border border-dark rounded" style={{"width":"200px", "height":"40px"}} >
+                                <option>Game Night</option>
+                                <option>Laughter Party</option>
+                                <option>Musical Night</option>
+                                <option>Movie Night</option>
+                                <option>Quarantine & Chill</option>
+                                <option>Weekand Trip</option>
+                                <option>House Party</option>
+                                <option>Pool Party</option>
+                                <option>Halloween Party</option>
+                                <option>RoadTrip</option>
+                                <option>Trekking</option>
+                                <option>Gataway</option>
+                            </select>
+                        </div>
+                        <div >
+                            <label >Event Location:</label>  
+                            <input type="text" className="form-control border border-dark" required/>
+                        </div>
+                        <div >
+                            <label  >Exact Address:</label>  
+                            <input type="text" className="form-control border border-dark" required/>
+                        </div>
+                        <div >
                             <label  >Event Timing:</label>   
-                                <div className="text-center">
-                                    <input type="time" className="form-control" required/>
-                                    <label >To:</label>
-                                    <input type="time" className="form-control" required/>
-                                </div>
+                            <div className="text-center">
+                                <input type="time" className="form-control border border-dark" required/>
+                                <label >To:</label>
+                                <input type="time" className="form-control border border-dark" required/>
                             </div>
-                            <div className="mb-3">
+                        </div>
+                        <div >
                             <label  >Event Date</label>   
-                                <input type="date" className="form-control" required/>
-                            </div>
-                            <div className="mb-3">
-                            <label  >Strength of Event:</label>   
-                                <input type="number" className="form-control" required/>
-                            </div>
-                            <div className="mb-3" >
-                            <label  >Charges per person:</label>   
-                                <input type="number" className="form-control" required/>
-                            </div>
-                            <div className="mb-3">
-                                <label  >Parking Availablity:</label>   
-                                <div >
-                                    <div>
-                                        <input type="radio" name="parking"/>
-                                        <label>Yes</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="parking"/>
-                                        <label>no</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mb-3" >
-                                <label  >StayOver:</label>   
-                                <div>
-                                    <div>
-                                        <input type="radio" name="StayOver"/>
-                                        <label>Yes</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="StayOver" />
-                                        <label>no</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mb-3">
-                                <label  >Smoking and Drinking</label>   
-                                <div>
-                                    <div>
-                                        <input type="radio" name="drunk" />
-                                        <label>Yes</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="drunk" />
-                                        <label>no</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-3 text-center" >
-                            <button className="btn btn-success" style={{"border-radius":"20px"}}>Create Event</button>
-                            </div>
-                            </div>
-                            
-                        </form>
-                        
+                            <input type="date" className="form-control border border-dark" required/>
+                        </div>
+                        <div >
+                            <label  >No Of People Inviting:</label>   
+                            <input type="number" className="form-control border border-dark" required/>
+                        </div>
                     </div>
+                    <div >
+                        <div >
+                            <label  >No Of People Inviting:</label>   
+                            <input type="number" className="form-control border border-dark" required/>
+                        </div>
+                        <div  >
+                            <label  >Event charges:</label>   
+                            <input type="number" className="form-control border border-dark" required/>
+                        </div>
+                        <div >
+                            <label>Parking Available:</label><br/>
+                            <select className="from-control text-muted border border-dark rounded" style={{"width":"200px", "height":"40px"}}>
+                                <option>Yes</option>
+                                <option>No</option>
+                                <option>OnRoad</option>
+                            </select>
+                        </div>
+                        <div  >
+                            <label  >StayOver:</label><br/>   
+                            <select className="from-control text-muted border border-dark rounded" style={{"width":"200px", "height":"40px"}}>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div >
+                            <label  >Smoking Allowed:</label><br/>   
+                            <select className="from-control text-muted border border-dark rounded" style={{"width":"200px", "height":"40px"}}>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div >
+                            <label  >Beverages:</label><br/>   
+                            <select className="from-control border border-dark rounded text-muted" style={{"width":"200px", "height":"40px"}}>
+                                <option>BYOB</option>
+                                <option>Not Allowed</option>
+                                <option>On the House</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Event Description:</label><br/>
+                            <textarea className="border border-dark" style={{"width":"200px"}}/>
+                        </div>
+                    </div>    
+                </div>
+                <div className="d-flex justify-content-center py-3" >
+                    <button className="btn btn-success" style={{"border-radius":"20px"}}>Create Event</button>
                 </div>
             </div>
+                            
+                   
+               
         )
     }
 }
