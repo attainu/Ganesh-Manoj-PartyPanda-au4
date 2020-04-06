@@ -7,34 +7,41 @@ import { connect } from "react-redux";
 class Navbar extends React.Component {
   render() {
     return (
-      <div>
-        <nav
-          className="navbar navbar-light bg-light py-0"
-          style={{ minHeight: "3.5rem" }}
-        >
-          <div className="d-flex justify-content-start ">
-            <Link to="/" className="logo btn">
-              <img src={Panda} alt="" style={{ width: "65px" }} />
-              PartyPanda
-            </Link>
-          </div>
-
-          <div className="d-flex justify-content-end">
-            <Link to="/dashboard" className="btn">
-              Dashboard
-            </Link>
-            <Link to="/allevents" className="btn">
-              All Events
-            </Link>
-            <Link to="/create-event" className="btn">
-              Create Event
-            </Link>
-            <Link to="/signin" className="btn">
-              Signin
-            </Link>
-          </div>
-        </nav>
-      </div>
+          <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light py-0" >
+            <div className=" navbar-brand d-flex justify-content-start ">
+              <Link to="/" className="logo btn">
+                <img src={Panda} alt="" style={{ width: "65px" }} />
+                PartyPanda
+              </Link>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                  <Link to="/dashboard" className="nav-link btn">
+                  Dashboard
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <Link to="/allevents" className="nav-link btn">
+                  All Events
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <Link to="/create-event" className="nav-link btn">
+                  Create Event
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signin" className="nav-link btn">
+                  Signin
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
     );
   }
 }
