@@ -67,37 +67,40 @@ class Signin extends React.Component {
     console.log(show);
     return (
       <Fragment>
-        <img
-          className="w-100 coverpic"
-          alt="coverpic"
-          src="https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/815/cached.offlinehbpl.hbpl.co.uk/news/OMC/DESPERADOS-SMALL-APARTMENT-20190729094133314.jpg"
-        />
+        <div class="card sig">
+          <img
+            class="card-img sigimg"
+            src="https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/815/cached.offlinehbpl.hbpl.co.uk/news/OMC/DESPERADOS-SMALL-APARTMENT-20190729094133314.jpg"
+            alt="Card image"
+          />
+          <div class="card-img-overlay">
+            <div className="container mx-auto text-center cont mt-5 pt-5 pb-5">
+              <div id="buttons">
+                <p
+                  id="signupButton"
+                  onClick={() => {
+                    this.switch("signup");
+                  }}
+                  className={this.state.signup ? "yellow" : "blue"}
+                >
+                  Sign In
+                </p>
+                <p
+                  id="loginButton"
+                  onClick={() => {
+                    this.switch("login");
+                  }}
+                  className={this.state.login ? "yellow" : "blue"}
+                >
+                  Login
+                </p>
+              </div>
 
-        <div className="container mx-auto text-center cont mt-5 pt-5 pb-5">
-          <div id="buttons">
-            <p
-              id="signupButton"
-              onClick={() => {
-                this.switch("signup");
-              }}
-              className={this.state.signup ? "yellow" : "blue"}
-            >
-              Sign In
-            </p>
-            <p
-              id="loginButton"
-              onClick={() => {
-                this.switch("login");
-              }}
-              className={this.state.login ? "yellow" : "blue"}
-            >
-              Login
-            </p>
-          </div>
-
-          <div className="content mt-3 border border-dark p-3">
-            {this.state.signup ? <Signup /> : null}
-            {this.state.login ? <Login /> : null}
+              <div className="content mt-3 border border-dark p-3">
+                {this.state.signup ? <Signup /> : null}
+                {this.state.login ? <Login /> : null}
+              </div>
+            </div>
           </div>
         </div>
       </Fragment>
