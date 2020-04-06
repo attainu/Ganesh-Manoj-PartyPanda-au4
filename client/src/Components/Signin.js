@@ -71,7 +71,7 @@ class Signin extends React.Component {
           <img
             class="card-img sigimg"
             src="https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/815/cached.offlinehbpl.hbpl.co.uk/news/OMC/DESPERADOS-SMALL-APARTMENT-20190729094133314.jpg"
-            alt="Card image"
+            alt="Cover"
           />
           <div class="card-img-overlay">
             <div className="container mx-auto text-center cont mt-5 pt-5 pb-5">
