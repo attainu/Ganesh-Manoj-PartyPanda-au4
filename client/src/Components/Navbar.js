@@ -18,24 +18,24 @@ class Navbar extends React.Component {
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav ml-auto">
                 <li class="nav-item ">
-                  <Link to="/dashboard" className="nav-link btn">
+                  <Link to="/dashboard" className="nav-link btn text-white">
                   Dashboard
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link to="/allevents" className="nav-link btn">
+                  <Link to="/allevents" className="nav-link btn text-white">
                   All Events
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link to="/create-event" className="nav-link btn">
+                  <Link to="/create-event" className="nav-link btn text-white">
                   Create Event
                   </Link>
                 </li>
                 <li>
-                  <Link to="/signin" className="nav-link btn">
+                  <Link to="/signin" className="nav-link btn text-white">
                   Signin
                   </Link>
                 </li>
