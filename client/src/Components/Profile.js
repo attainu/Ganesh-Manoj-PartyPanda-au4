@@ -81,7 +81,7 @@ class Profile extends React.Component {
                   </center>
                 </div>
               </div>
-              <div className="d-flex flex-row justify-content-between flex-wrap pb-3">
+              <div className="d-flex flex-row justify-content-between flex-wrap ">
                 <div className="float-left">
                   <h4 className="theme ">Profession</h4>
 
@@ -98,6 +98,9 @@ class Profile extends React.Component {
                   </h6>
                 </div>
               </div>
+              <center className="pt-5">
+                <button id="send">Update</button>
+              </center>
             </div>
           </div>
         </div>
