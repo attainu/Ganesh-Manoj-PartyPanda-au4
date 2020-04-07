@@ -26,11 +26,18 @@
 }
 .cont {
   width: 20rem;
-  position: absolute;
-  top: 15vh;
-  right: 37.8vw;
+
   display: flex;
   flex-direction: column;
+}
+
+.sig {
+  border: 0;
+  border-radius: 0;
+}
+.sigimg {
+  border-radius: 0;
+  height: 90vh;
 }
 
 .form-control {
@@ -85,8 +92,4 @@ body {
   border: 2px solid rgba(127, 56, 122, 0.92) !important;
   border-radius: 5px;
   background-color: #000000a6;
-}
-
-.coverpic {
-  height: 100vh;
 }
