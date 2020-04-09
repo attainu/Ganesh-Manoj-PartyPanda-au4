@@ -1,19 +1,19 @@
-const express = require("express");
+const http = require("http");
+const app = require("./app");
+const db = require("./database");
 
-const app = express();
+let server = http.createServer(app);
 
-const PORT = process.env.PORT || 9090;
-
-app.use(express.json());
-app.use(express.urlencoded());
-app.use("/public", express.static("public"));
-
-//listening port
-
-app
-  .listen(PORT, function() {
-    console.log("Application has started and running on port: ", PORT);
+db.connect()
+  .then(() => {
+    server
+      .listen(3010, function () {
+        console.log("Connection is ready");
+      })
+      .on("error", (error) => {
+        console.log("Unable to start app , Error>>>>>>", error);
+      });
   })
-  .on("error", function(error) {
-    console.log("Unable to start app. Error >>>>", error);
+  .catch((error) => {
+    console.log("Unable to connect with database , Error>>>>>>", error);
   });
