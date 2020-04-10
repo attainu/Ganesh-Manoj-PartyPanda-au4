@@ -3,7 +3,7 @@ import React from "react";
 class ProfileForm extends React.Component {
   render() {
     return (
-        <div className="container-fluid d-flex flex-column flex-nowrap bg-light pb-5">
+      <div className="container-fluid d-flex flex-column flex-nowrap bg-light pb-5">
         <center className="pb-4 pt-4 ">
           <h4 className="pages">Profile Form</h4>
           <hr />
@@ -12,13 +12,14 @@ class ProfileForm extends React.Component {
           className="container  d-flex flex-row flex-wrap justify-content-around bg-white py-4 mem"
           style={{ borderRadius: "35px" }}
         >
-        <div>
+          <div>
             <div className="pb-2">
               <label>FullName:</label>
               <input
                 type="text"
                 className="form-control border border-dark"
-                required placeholder="Full Name..."
+                required
+                placeholder="Full Name..."
               />
             </div>
             <div className="pb-2">
@@ -26,7 +27,8 @@ class ProfileForm extends React.Component {
               <input
                 type="email"
                 className="form-control border border-dark"
-                required placeholder="Email..."
+                required
+                placeholder="Email..."
               />
             </div>
             <div className="pb-2">
@@ -35,15 +37,18 @@ class ProfileForm extends React.Component {
               <input
                 type="password"
                 className="form-control border border-dark"
-                required placeholder="Password..."
+                required
+                placeholder="Password..."
               />
             </div>
             <div className="pb-2">
               <label>Date Of Birth:</label>
               <br />
-              <input type="date"
+              <input
+                type="date"
                 className="form-control border border-dark"
-                required placeholder="DOB..."
+                required
+                placeholder="DOB..."
               />
             </div>
             <div className="pb-2">
@@ -51,17 +56,19 @@ class ProfileForm extends React.Component {
               <input
                 type="file"
                 className="form-control-file border rounded py-1 border-dark"
-                required style={{"width":"200px"}}
+                required
+                style={{ width: "200px" }}
               />
             </div>
           </div>
           <div>
-          <div className="pb-2">
+            <div className="pb-2">
               <label>Mobile No:</label>
               <input
                 type="number"
                 className="form-control border border-dark"
-                required placeholder="Mobile Number..."
+                required
+                placeholder="Mobile Number..."
               />
             </div>
             <div className="pb-2">
@@ -69,7 +76,8 @@ class ProfileForm extends React.Component {
               <input
                 type="Text"
                 className="form-control border border-dark"
-                required placeholder="Profession..."
+                required
+                placeholder="Profession..."
               />
             </div>
             <div className="pb-2">
@@ -78,15 +86,29 @@ class ProfileForm extends React.Component {
               <input
                 type="text"
                 className="form-control border border-dark"
-                required placeholder="Office/Institute..."
+                required
+                placeholder="Office/Institute..."
               />
             </div>
             <div className="pb-2">
+              <label>Interest:</label>
+              <br />
+              <input
+                type="text"
+                className="form-control border border-dark"
+                required
+                placeholder="Introvert"
+              />
+            </div>
+
+            <div className="pb-2">
               <label>Bio:</label>
               <br />
-              <textarea type="date"
+              <textarea
+                type="date"
                 className="form-control border border-dark"
-                required placeholder="Write something about yourself..."
+                required
+                placeholder="Write something about yourself..."
               />
             </div>
           </div>
@@ -97,7 +119,7 @@ class ProfileForm extends React.Component {
           </button>
         </div>
       </div>
-    )
+    );
   }
 }
 

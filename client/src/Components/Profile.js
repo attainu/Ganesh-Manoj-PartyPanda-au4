@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import React, { Fragment } from "react";
 import "./../style/profile.css";
+import { Link } from "react-router-dom";
 
 class Profile extends React.Component {
   render() {
@@ -25,7 +26,36 @@ class Profile extends React.Component {
               alt="profile"
               className="propimg "
             />
-
+            {/* <form
+              class="md-form"
+              action="/profile"
+              enctype="multipart/form-data"
+              method="POST"
+            >
+              <div id="profile">
+                <div class="d-flex btn-mdb-color btn-rounded justify-content-center">
+                  <div class="upload-btn-wrapper">
+                    <button class="btn update">Add photo</button>
+                    <input
+                      type="file"
+                      name="avatar"
+                      onchange="this.form.submit()"
+                    />
+                  </div>
+                </div>
+                <Link
+                  to="/profile"
+                  id="removeProfile"
+                  style={{ backgroundColor: "#afafaf;" }}
+                  class="btn"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Remove the profile pic"
+                >
+                  Remove
+                </Link>
+              </div>
+            </form> */}
             <h3 className="propname">Veronica Dsouza</h3>
             <h6 className="card-text">+918652374607</h6>
             <div className="d-flex flex-row flex-wrap justify-content-center pb-5 card-text">

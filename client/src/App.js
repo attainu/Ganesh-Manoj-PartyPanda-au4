@@ -8,7 +8,7 @@ import Footer from "./Components/Footer";
 import CreateEvent from "./Components/CreateEvent";
 import Dashboard from "./Components/Dashboard";
 import Profile from "./Components/Profile";
-
+import ProfileCreation from "./Components/ProfileForm";
 import "./style/app.css";
 
 import Signin from "./Components/Signin";
@@ -27,6 +27,7 @@ class App extends React.Component {
               <Route exact path="/create-event" component={CreateEvent} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/create-profile" component={ProfileCreation} />
             </Router>
           </div>
           <div id="footer">
