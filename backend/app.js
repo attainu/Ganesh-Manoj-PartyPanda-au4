@@ -28,11 +28,25 @@ const User = require("./Model/User");
 const controller = require("./controllers/index.js");
 
 //Routes
+
+//Signup
 app.post("/signup", controller.UserController.create);
 
 app.get("/show", controller.UserController.list);
 
-app.post("/profile", upload.single("avatar"), controller.ProfileController.add);
+//Profile
+app.post("/profile", controller.ProfileController.add);
+
+//Avatar
+app.post("/avatar", upload.single("avatar"), controller.AvatarController.add);
+
+//Create event
+app.post(
+  "/create-event/:mobile",
+  upload.single("cover"),
+  controller.EventController.create
+);
+//Get events
 
 // app.post("/login", async (req, res) => {
 //   try {
