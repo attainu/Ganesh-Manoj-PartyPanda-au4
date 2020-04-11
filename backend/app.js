@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const db = require("./database")
 const multer = require("multer");
 
 //multer config
@@ -34,6 +35,8 @@ app.post("/signup", controller.UserController.create);
 
 app.get("/show", controller.UserController.list);
 
+// login
+ app.post("/login", controller.LoginController.login);
 //Profile
 app.post(
   "/profile/:mobile",

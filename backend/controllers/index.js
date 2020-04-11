@@ -3,4 +3,5 @@ module.exports = {
   ProfileController: require("./profile"),
   EventController: require("./event"),
   AvatarController: require("./avatar"),
+  LoginController : require("./login")
 };

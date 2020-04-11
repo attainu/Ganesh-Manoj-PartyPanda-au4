@@ -3,17 +3,10 @@ const app = require("./app");
 const db = require("./Model/index.js");
 
 let server = http.createServer(app);
-
-db.connect()
-  .then(() => {
     server
       .listen(3010, function () {
-        console.log("Connection is ready");
+        console.log("Server has started at port number 3010!");
       })
       .on("error", (error) => {
         console.log("Unable to start app , Error>>>>>>", error);
       });
-  })
-  .catch((error) => {
-    console.log("Unable to connect with database , Error>>>>>>", error);
-  });
