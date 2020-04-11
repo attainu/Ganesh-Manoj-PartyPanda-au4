@@ -1,4 +1,5 @@
 const User = require("./../Model/User");
+const moment = require("moment");
 
 const ProfileController = {};
 
@@ -25,8 +26,17 @@ ProfileController.add = async (req, res) => {
     });
 
     await User.findOneAndUpdate(
-      { name: params.name },
-      { image: uploadedImg },
+      { mobile: params.mobile },
+      {
+        name: body.name,
+        email: body.email,
+        interest: body.interest,
+        bio: body.bio,
+        dob: moment(body.dob, "DD/MM/YYYY").format(),
+        profession: body.profession,
+        company: body.company,
+        image: uploadedImg,
+      },
       { new: true },
       (error, response) => {
         if (error) {

@@ -12,15 +12,15 @@ cloudinary.config({
 
 AvatarController.add = async (req, res) => {
   try {
-    const { query } = req;
+    const { params } = req;
 
-    console.log("query", query);
+    console.log("query", params);
     let image = req.file.path;
     let uploadedImg = await cloudinary.uploader.upload(image);
     console.log("Img", uploadedImg);
 
     let updated = await User.findOneAndUpdate(
-      { mobile: query.mobile },
+      { mobile: params.mobile },
       { image: uploadedImg.url },
       { new: true }
     );

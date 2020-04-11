@@ -35,10 +35,18 @@ app.post("/signup", controller.UserController.create);
 app.get("/show", controller.UserController.list);
 
 //Profile
-app.post("/profile", controller.ProfileController.add);
+app.post(
+  "/profile/:mobile",
+  upload.single("avatar"),
+  controller.ProfileController.add
+);
 
 //Avatar
-app.post("/avatar", upload.single("avatar"), controller.AvatarController.add);
+app.post(
+  "/avatar/:mobile",
+  upload.single("avatar"),
+  controller.AvatarController.add
+);
 
 //Create event
 app.post(
