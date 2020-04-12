@@ -25,10 +25,14 @@ class Signup extends React.Component{
        
       if(this.state.password != this.state.confirmPassword){
         alert("Password and Confirm password is not same");
+      }else if(this.state.mobile == 10){
+        alert("Mobile number should be of 10 digit");
       }else{
            axios.post("http://localhost:3010/signup", signupData).
            then((response) => {
-             alert("You have successfully Signup!");
+             e.preventDefault();
+             console.log(response)
+             alert(response.data);
              this.setState({
               mobile:"",
               password:"",
