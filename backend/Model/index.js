@@ -4,6 +4,7 @@
 
 const User = require("./User");
 const Event = require("./Event");
+const Guest = require("./Guest");
 
 // const connect = () => {
 //   return mongoose.connect("mongodb://localhost:27017/partpanda", {
@@ -16,6 +17,7 @@ module.exports = {
   models: {
     User: User,
     Event: Event,
-  }
+    Guest: Guest,
+  },
   // connect: connect,
 };
