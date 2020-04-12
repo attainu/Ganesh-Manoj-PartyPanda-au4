@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 const secret = "manojAndGanesh";
 const LoginController = {};
 
-LoginController.login = (req, res) => {
+LoginController.login = async (req, res) => {
   const { mobile } = req.body;
-  User.findOne({ mobile }, (err, user) => {
+  await User.findOne({ mobile }, (err, user) => {
     if (err) {
       console.log(err);
       res.json({

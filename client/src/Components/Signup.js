@@ -43,54 +43,52 @@ class Signup extends React.Component {
   render() {
     return (
       <div className="text-center">
-        <form>
-          <div id="signup ">
-            <input
-              className="form-control "
-              type="number"
-              id="mobile"
-              placeholder="Mobile"
-              name="mobile"
-              value={this.state.mobile}
-              minLength="8"
-              maxLength="10"
-              onChange={this.handleInput}
-              required
-            />
-            <br />
-            <input
-              className="form-control "
-              type="password"
-              id="password"
-              placeholder="Password"
-              name="password"
-              value={this.state.password}
-              minLength="5"
-              maxLength="10"
-              required
-              onChange={this.handleInput}
-            />
-            <br />
-            <input
-              className="form-control "
-              type="password"
-              id="confirm"
-              name="confirmPassword"
-              value={this.state.confirmPassword}
-              placeholder="Confirm Password"
-              required
-              onChange={this.handleInput}
-            />
-            <br />
-            {this.state.mobile === "" ||
-            this.state.password === "" ||
-            this.state.confirmPassword === "" ? null : (
-              <button id="send" className="pb-2" onClick={this.userData}>
-                Send
-              </button>
-            )}
-          </div>
-        </form>
+        <div id="signup ">
+          <input
+            className="form-control "
+            type="number"
+            id="mobile"
+            placeholder="Mobile"
+            name="mobile"
+            value={this.state.mobile}
+            minLength="8"
+            maxLength="10"
+            onChange={this.handleInput}
+            required
+          />
+          <br />
+          <input
+            className="form-control "
+            type="password"
+            id="password"
+            placeholder="Password"
+            name="password"
+            value={this.state.password}
+            minLength="5"
+            maxLength="10"
+            required
+            onChange={this.handleInput}
+          />
+          <br />
+          <input
+            className="form-control "
+            type="password"
+            id="confirm"
+            name="confirmPassword"
+            value={this.state.confirmPassword}
+            placeholder="Confirm Password"
+            required
+            onChange={this.handleInput}
+          />
+          <br />
+          {this.state.mobile === "" ||
+          this.state.password === "" ||
+          this.state.confirmPassword === "" ? null : (
+            <button id="send" className="pb-2" onClick={this.userData}>
+              Send
+            </button>
+          )}
+        </div>
       </div>
     );
   }

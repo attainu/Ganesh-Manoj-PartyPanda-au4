@@ -28,7 +28,7 @@ class Login extends React.Component {
     });
   };
 
-  getToken() {
+  async getToken() {
     let userData = {
       mobile: this.state.mobile,
       password: this.state.password,

@@ -1,18 +1,14 @@
 import React, { Fragment } from "react";
 import Login from "./Login";
-import Signup from "./Signup"
+import Signup from "./Signup";
 import { connect } from "react-redux";
 import "./../style/signin.css";
-
-
 
 class Signin extends React.Component {
   state = {
     signup: false,
     login: true,
   };
-
-  
 
   switch(word) {
     let signup, login;
@@ -33,13 +29,13 @@ class Signin extends React.Component {
     console.log(show);
     return (
       <Fragment>
-        <div class="card sig">
+        <div className="card sig">
           <img
-            class="card-img sigimg"
+            className="card-img sigimg"
             src="https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/815/cached.offlinehbpl.hbpl.co.uk/news/OMC/DESPERADOS-SMALL-APARTMENT-20190729094133314.jpg"
             alt="Cover"
           />
-          <div class="card-img-overlay">
+          <div className="card-img-overlay">
             <div className="container mx-auto text-center cont mt-5 pt-5 pb-5">
               <div id="buttons">
                 <p
