@@ -62,8 +62,9 @@ app.post(
 //Get all the events
 app.get("./events", controller.EventController.list);
 
-("Get one event");
+// Get one event;
 app.get("./event/:id", controller.EventController.one);
+
 // update event
 app.put(
   "./event/:id",
