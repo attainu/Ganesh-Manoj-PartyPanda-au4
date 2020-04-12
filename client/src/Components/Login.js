@@ -36,8 +36,13 @@ class Login extends React.Component {
 
   axios.post('http://localhost:3010/login', userData )
   .then( (res) => {
+    if(res.data.token){
       const { token } = res.data;
       localStorage.setItem("Token", token);
+      alert("successfully Login");
+    }else{
+      alert("Password or Mobile No incorrect");
+    } 
   })
   .catch(function (error) {
       console.log(error)
@@ -48,7 +53,7 @@ class Login extends React.Component {
     const token = localStorage.Token;
     if(token){
       console.log("token is available")
-      const user = jwt_decode(token,{header: true});
+      const user = jwt_decode(token);
       this.props.dispatch({type:"userData", payload: user})
     }
     else{
