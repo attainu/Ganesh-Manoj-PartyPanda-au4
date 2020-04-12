@@ -17,7 +17,7 @@ LoginController.login = (req, res) => {
         error: "Incorrect mobile or password!",
       });
     } else {
-      console.log(user);
+      console.log(typeof user._id);
       bcrypt.compare(req.body.password, user.password, function (err, isMatch) {
         if (err) {
           console.log(err);

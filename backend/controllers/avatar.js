@@ -20,7 +20,7 @@ AvatarController.add = async (req, res) => {
     console.log("Img", uploadedImg);
 
     let updated = await User.findOneAndUpdate(
-      { mobile: params.mobile },
+      { _id: params.user_id },
       { image: uploadedImg.url },
       { new: true }
     );

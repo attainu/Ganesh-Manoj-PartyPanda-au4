@@ -41,26 +41,39 @@ app.get("/show", controller.UserController.list);
 app.post("/login", controller.LoginController.login);
 //Profile
 app.post(
-  "/profile/:mobile",
+  "/profile/:user_id",
   upload.single("avatar"),
   controller.ProfileController.add
 );
 
 //Avatar
 app.post(
-  "/avatar/:mobile",
+  "/avatar/:user_id",
   upload.single("avatar"),
   controller.AvatarController.add
 );
 
 //Create event
 app.post(
-  "/create-event/:mobile",
+  "/create-event/:user_id",
   upload.single("cover"),
   controller.EventController.create
 );
-//Get events
+//Get all the events
+app.get("./events", controller.EventController.list);
 
+// Get one event;
+app.get("./event/:id", controller.EventController.one);
+
+// update event
+app.put(
+  "./event/:id",
+  upload.single("cover"),
+  controller.EventController.update
+);
+
+//Delete event
+app.delete("./event/:id", controller.EventController.delete);
 // app.post("/login", async (req, res) => {
 //   try {
 //     const { body } = req;

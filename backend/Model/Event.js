@@ -43,8 +43,8 @@ const eventSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    mobile: {
-      type: String,
+    user_id: {
+      type: Object,
     },
   },
   { collection: "events" }
