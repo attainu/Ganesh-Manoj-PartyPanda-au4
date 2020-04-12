@@ -13,8 +13,9 @@ UserController.create = async (req, res) => {
       mobile: body.mobile,
       password: hashed,
     });
-    res.send(user);
+    res.send("You have Successfully Signup!");
   } catch (error) {
+    res.send("This mobile Number is already use ! Try different Number.")
     console.log(error);
   }
 };
