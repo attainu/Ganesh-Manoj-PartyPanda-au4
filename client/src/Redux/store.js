@@ -1,7 +1,9 @@
 import { createStore } from "redux";
 
 let inState = {
-  show: false
+  show: false,
+  userData:[],
+  isLogin: false
 };
 
 const appReducer = (state = inState, action) => {
@@ -15,6 +17,10 @@ const appReducer = (state = inState, action) => {
     case "hide":
       copy.show = false;
       return copy;
+
+    case "userData":
+      copy.userData = action.payload;
+      return copy;  
 
     default:
       return copy;

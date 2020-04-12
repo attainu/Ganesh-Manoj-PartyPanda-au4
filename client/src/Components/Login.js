@@ -1,10 +1,14 @@
 import React, { Fragment } from "react";
 import { Modal } from "react-bootstrap";
 import { connect } from "react-redux";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 class Login extends React.Component {
   state = {
     jack: false,
+    mobile:"",
+    password:""
   };
 
   handleShow() {
@@ -18,44 +22,61 @@ class Login extends React.Component {
     });
   }
 
+  handleChange = (e) =>{
+    this.setState({
+      [e.target.name] : e.target.value
+    })
+  }
+
+  getToken =(e) =>{
+    let userData = {
+      mobile: this.state.mobile,
+      password: this.state.password
+  };
+
+  axios.post('http://localhost:3010/login', userData )
+  .then( (res) => {
+      const { token } = res.data;
+      localStorage.setItem("Token", token);
+  })
+  .catch(function (error) {
+      console.log(error)
+  });
+  }
+  
+  componentDidMount = () =>{
+    const token = localStorage.Token;
+    if(token){
+      console.log("token is available")
+      const user = jwt_decode(token,{header: true});
+      this.props.dispatch({type:"userData", payload: user})
+    }
+    else{
+      console.log("no token available");
+    }
+  }
+
   render() {
+    
     return (
       <Fragment>
         <div className="text-center">
           <form>
             <div id="login ">
-              <input
-                className="form-control "
-                type="email"
-                id="email"
-                placeholder="Email"
-              />
+              <input className="form-control" type="number" id="email" name="mobile" value={this.state.mobile} onChange={this.handleChange} placeholder="Mobile number" />
               <br />
-              <input
-                className="form-control "
-                type="password"
-                id="password"
-                placeholder="Password"
-              />
+              <input className="form-control" type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password"/>
               <br />
-              <p
-                className="float-left"
-                onClick={() => {
-                  console.log("clicked state", this.state.jack);
-
+              <p className="float-left" onClick={() => {
+                  // console.log("clicked state", this.state.jack);
                   this.handleShow();
                 }}
-                style={{
-                  color: "white",
-                  cursor: "pointer",
-                  fontSize: "0.9rem",
-                }}
-              >
+                style={{color: "white", cursor: "pointer", fontSize: "0.9rem",}}>
                 Forgot password?
               </p>
               <br />
               <center className="mr-5 pl-5 pt-3 pb-2">
-                <button id="send">Send</button>
+                <button id="send" onClick={this.getToken}>Send</button>
               </center>
             </div>
           </form>
@@ -92,7 +113,7 @@ class Login extends React.Component {
 }
 const fromStroe = (state) => {
   return {
-    show: state.show,
+    show: state.show
   };
 };
 export default connect(fromStroe)(Login);
