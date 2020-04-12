@@ -28,8 +28,8 @@ class Login extends React.Component {
     });
   };
 
-  getToken = (e) => {
-    e.preventDefault();
+  getToken = () => {
+    // e.preventDefault();
     let userData = {
       mobile: this.state.mobile,
       password: this.state.password,
