@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const db = require("./database");
 const multer = require("multer");
+const cors = require("cors");
 
 //multer config
 var filestorage = multer.diskStorage({
@@ -21,6 +22,7 @@ var upload = multer({
 
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(cors());
 app.use("/public", express.static("public"));
 
 const User = require("./Model/User");

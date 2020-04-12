@@ -1,52 +1,18 @@
 import React, { Fragment } from "react";
 import Login from "./Login";
+import Signup from "./Signup"
 import { connect } from "react-redux";
 import "./../style/signin.css";
 
-const Signup = () => {
-  return (
-    <div className="text-center">
-      <form>
-        <div id="signup ">
-          <input
-            className="form-control "
-            type="number"
-            id="mobile"
-            placeholder="Mobile"
-            minLength="8"
-            maxLength="10"
-          />
-          <br />
-          <input
-            className="form-control "
-            type="password"
-            id="password"
-            placeholder="Password"
-            minLength="5"
-            maxLength="10"
-          />
-          <br />
-          <input
-            className="form-control "
-            type="password"
-            id="confirm"
-            placeholder="Confirm Password"
-          />
-          <br />
-          <button id="send" className="pb-2">
-            Send
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-};
+
 
 class Signin extends React.Component {
   state = {
     signup: false,
     login: true,
   };
+
+  
 
   switch(word) {
     let signup, login;
