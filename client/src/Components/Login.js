@@ -29,6 +29,7 @@ class Login extends React.Component {
   }
 
   getToken =(e) =>{
+    e.preventDefault();
     let userData = {
       mobile: this.state.mobile,
       password: this.state.password
@@ -36,9 +37,12 @@ class Login extends React.Component {
 
   axios.post('http://localhost:3010/login', userData )
   .then( (res) => {
+
     if(res.data.token){
       const { token } = res.data;
       localStorage.setItem("Token", token);
+      // const user = jwt_decode(token);
+      // this.props.dispatch({type:"userData", payload: user})
       alert("successfully Login");
     }else{
       alert("Password or Mobile No incorrect");
@@ -48,6 +52,7 @@ class Login extends React.Component {
       console.log(error)
   });
   }
+  
   
   componentDidMount = () =>{
     const token = localStorage.Token;
@@ -66,7 +71,7 @@ class Login extends React.Component {
     return (
       <Fragment>
         <div className="text-center">
-          <form>
+          
             <div id="login ">
               <input className="form-control" type="number" id="email" name="mobile" value={this.state.mobile} onChange={this.handleChange} placeholder="Mobile number" />
               <br />
@@ -84,7 +89,7 @@ class Login extends React.Component {
                 <button id="send" onClick={this.getToken}>Send</button>
               </center>
             </div>
-          </form>
+          
         </div>
         <Modal
           show={this.state.jack}
