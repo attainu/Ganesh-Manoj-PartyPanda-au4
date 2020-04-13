@@ -45,7 +45,7 @@ class Signin extends React.Component {
                   }}
                   className={this.state.signup ? "yellow" : "blue"}
                 >
-                  Sign In
+                  Signup
                 </p>
                 <p
                   id="loginButton"
