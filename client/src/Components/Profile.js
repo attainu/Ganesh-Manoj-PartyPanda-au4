@@ -1,10 +1,13 @@
 import { connect } from "react-redux";
 import React, { Fragment } from "react";
 import "./../style/profile.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Profile extends React.Component {
   render() {
+    if(!this.props.isLogin){
+      return <Redirect to="/signin" />
+    }
     return (
       <Fragment>
         <div
@@ -142,6 +145,7 @@ class Profile extends React.Component {
 const fromStroe = (state) => {
   return {
     show: state.show,
+    isLogin : state.isLogin
   };
 };
 export default connect(fromStroe)(Profile);
