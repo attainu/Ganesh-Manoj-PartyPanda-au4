@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
@@ -38,14 +38,16 @@ class Login extends React.Component {
 
     axios
       .post("http://localhost:3010/login", userData)
-      .then((res) => {
+      .then(async (res) => {
         if (res.data.token) {
           const { token } = res.data;
           localStorage.setItem("Token", token);
           // const user = jwt_decode(token);
           // this.props.dispatch({type:"userData", payload: user})
+          await window.location.reload();
           alert("successfully Login");
-          window.location.reload();
+          // if (this.props.isLogin) return <Redirect to="/" />;
+          // window.location.replace("http://localhost:3000/");
         } else {
           alert("Password or Mobile No incorrect");
         }
@@ -61,13 +63,14 @@ class Login extends React.Component {
       console.log("token is available");
       const user = jwt_decode(token);
       this.props.dispatch({ type: "userData", payload: user });
-      this.props.dispatch({ type:"login"})
+      this.props.dispatch({ type: "login" });
     } else {
       console.log("no token available");
     }
   };
 
   render() {
+    if (this.props.isLogin) return <Redirect to="/" />;
     return (
       <Fragment>
         <div className="text-center">
@@ -108,7 +111,17 @@ class Login extends React.Component {
             </p>
             <br />
             <center className="mr-5 pl-5 pt-3 pb-2">
-              {this.state.mobile === "" || this.state.password === ""? null : <button id="send" onClick={() => {this.getToken(); }}> Send</button>}
+              {this.state.mobile === "" || this.state.password === "" ? null : (
+                <button
+                  id="send"
+                  onClick={() => {
+                    this.getToken();
+                  }}
+                >
+                  {" "}
+                  Send
+                </button>
+              )}
             </center>
           </div>
         </div>
@@ -145,7 +158,7 @@ class Login extends React.Component {
 const fromStroe = (state) => {
   return {
     show: state.show,
-    isLogin: state.isLogin
+    isLogin: state.isLogin,
   };
 };
 export default connect(fromStroe)(Login);
