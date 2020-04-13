@@ -1,7 +1,11 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 
 class EventDetail extends React.Component{
     render(){
+        if(!localStorage.Token){
+            return <Redirect to="/signin" />
+          }
         return(
             <div className="container-fluid d-flex bg-light flex-column ">
                 <h1 className="text-center text-dark">Avinash's Outdoor Party</h1>

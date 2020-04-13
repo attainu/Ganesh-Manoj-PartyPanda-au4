@@ -10,6 +10,8 @@ import Dashboard from "./Components/Dashboard";
 import Profile from "./Components/Profile";
 import ProfileCreation from "./Components/ProfileForm";
 import "./style/app.css";
+import EventDetail from "./Components/EventDetail";
+import MyEventDetail from "./Components/MyEventDetail"
 
 import Signin from "./Components/Signin";
 import { connect } from "react-redux";
@@ -28,6 +30,8 @@ class App extends React.Component {
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/create-profile" component={ProfileCreation} />
+              <Route exact path="/event-detail" component={EventDetail} />
+              <Route exact path="/myevent-detail" component={MyEventDetail} />
             </Router>
           </div>
           <div id="footer">
