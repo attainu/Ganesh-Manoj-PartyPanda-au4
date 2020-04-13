@@ -12,10 +12,23 @@ import ProfileCreation from "./Components/ProfileForm";
 import "./style/app.css";
 import EventDetail from "./Components/EventDetail";
 import MyEventDetail from "./Components/MyEventDetail"
-
+import jwt_decode from "jwt-decode";
 import Signin from "./Components/Signin";
 import { connect } from "react-redux";
 class App extends React.Component {
+
+  componentDidMount = () => {
+    const token = localStorage.Token;
+    if (token) {
+      console.log("token is available");
+      const user = jwt_decode(token);
+      this.props.dispatch({ type: "userData", payload: user });
+      this.props.dispatch({ type: "login" });
+    } else {
+      console.log("no token available");
+    }
+  };
+
   render() {
     return (
       <Fragment>

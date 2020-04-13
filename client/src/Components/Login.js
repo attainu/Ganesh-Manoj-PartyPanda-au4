@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
@@ -57,17 +56,7 @@ class Login extends React.Component {
       });
   };
 
-  componentDidMount = () => {
-    const token = localStorage.Token;
-    if (token) {
-      console.log("token is available");
-      const user = jwt_decode(token);
-      this.props.dispatch({ type: "userData", payload: user });
-      this.props.dispatch({ type: "login" });
-    } else {
-      console.log("no token available");
-    }
-  };
+  
 
   render() {
     if (this.props.isLogin) return <Redirect to="/" />;
