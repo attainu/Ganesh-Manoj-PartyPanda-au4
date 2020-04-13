@@ -45,6 +45,7 @@ class Login extends React.Component {
           // const user = jwt_decode(token);
           // this.props.dispatch({type:"userData", payload: user})
           alert("successfully Login");
+          window.location.reload();
         } else {
           alert("Password or Mobile No incorrect");
         }
@@ -107,14 +108,7 @@ class Login extends React.Component {
             </p>
             <br />
             <center className="mr-5 pl-5 pt-3 pb-2">
-              <button
-                id="send"
-                onClick={() => {
-                  this.getToken();
-                }}
-              >
-                Send
-              </button>
+              {this.state.mobile === "" || this.state.password === ""? null : <button id="send" onClick={() => {this.getToken(); }}> Send</button>}
             </center>
           </div>
         </div>
