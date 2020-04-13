@@ -77,6 +77,10 @@ app.put(
 
 //Delete event
 app.delete("/event/:id", controller.EventController.delete);
+
+// Guest
+app.post("/join", controller.GuestController.add);
+//
 // app.post("/login", async (req, res) => {
 //   try {
 //     const { body } = req;

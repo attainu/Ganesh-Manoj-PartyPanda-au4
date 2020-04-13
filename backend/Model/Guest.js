@@ -3,10 +3,13 @@ mongoose.set("useFindAndModify", false);
 
 const guestSchema = new mongoose.Schema(
   {
-    user_id: {
+    user: {
       type: Object,
     },
-    party_id: {
+    party_name: {
+      type: String,
+    },
+    host_id: {
       type: Object,
     },
     status: {

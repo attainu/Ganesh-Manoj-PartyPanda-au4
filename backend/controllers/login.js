@@ -32,7 +32,7 @@ LoginController.login = async (req, res) => {
             id: user._id,
             mobile: req.body.mobile,
           };
-          jwt.sign(payload, secret, { expiresIn: "5m" }, (err, token) => {
+          jwt.sign(payload, secret, { expiresIn: "30m" }, (err, token) => {
             if (token) {
               console.log(token);
               res.json({

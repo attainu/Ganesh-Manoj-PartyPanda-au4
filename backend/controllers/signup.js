@@ -15,7 +15,7 @@ UserController.create = async (req, res) => {
     });
     res.send("You have Successfully Signup!");
   } catch (error) {
-    res.send("This mobile Number is already use ! Try different Number.")
+    res.send("This mobile Number is already use ! Try different Number.");
     console.log(error);
   }
 };
