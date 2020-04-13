@@ -30,6 +30,10 @@ const appReducer = (state = inState, action) => {
     case "loginFalse":
       copy.isLogin = false;
       console.log("login", copy.isLogin);
+      return copy; 
+      
+    case "userDirect":
+      copy.userData = [];
       return copy;  
     default:
       return copy;

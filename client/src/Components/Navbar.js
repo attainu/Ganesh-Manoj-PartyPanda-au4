@@ -9,6 +9,7 @@ class Navbar extends React.Component {
   userLogout =(e) => {
     localStorage.removeItem("Token");
     this.props.dispatch({type:"loginFalse"})
+    this.props.dispatch({type:"userDirect"})
   }
 
   render() {
