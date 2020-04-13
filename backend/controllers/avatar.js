@@ -33,4 +33,23 @@ AvatarController.add = async (req, res) => {
   }
 };
 
+AvatarController.remove = async (req, res) => {
+  try {
+    let { params } = req;
+
+    let user = await User.findOneAndUpdate(
+      { _id: params.user_id },
+      { $unset: { image: 1 } },
+      { new: true },
+      (error, success) => {
+        if (error) {
+          return res.send("failed to delete");
+        }
+        res.send("Removed");
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
 module.exports = AvatarController;

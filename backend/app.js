@@ -47,11 +47,14 @@ app.post(
 );
 
 //Avatar
+//update
 app.post(
   "/avatar/:user_id",
   upload.single("avatar"),
   controller.AvatarController.add
 );
+//remove
+app.delete("/avatar/:user_id", controller.AvatarController.remove);
 
 //Create event
 app.post(
@@ -60,20 +63,20 @@ app.post(
   controller.EventController.create
 );
 //Get all the events
-app.get("./events", controller.EventController.list);
+app.get("/events", controller.EventController.list);
 
 // Get one event;
-app.get("./event/:id", controller.EventController.one);
+app.get("/event/:id", controller.EventController.one);
 
 // update event
 app.put(
-  "./event/:id",
+  "/event/:id",
   upload.single("cover"),
   controller.EventController.update
 );
 
 //Delete event
-app.delete("./event/:id", controller.EventController.delete);
+app.delete("/event/:id", controller.EventController.delete);
 // app.post("/login", async (req, res) => {
 //   try {
 //     const { body } = req;
