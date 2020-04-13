@@ -1,7 +1,11 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 
 class CreateEvent extends React.Component {
   render() {
+    if(!localStorage.Token){
+      return <Redirect to="/signin" />
+    }
     return (
       <div className="container-fluid d-flex flex-column flex-nowrap bg-light pb-5">
         <center className="pb-4 pt-4 ">

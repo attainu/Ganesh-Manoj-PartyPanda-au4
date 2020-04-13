@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Attending from "./Attending";
 import Myparty from "./Myparty";
 import { connect } from "react-redux";
+import {Redirect} from "react-router-dom";
 import "./../style/signin.css";
 
 class Dashboard extends React.Component {
@@ -27,6 +28,9 @@ class Dashboard extends React.Component {
   render() {
     let show = this.props.show;
     console.log(show);
+    if(!localStorage.Token){
+      return <Redirect to="/signin" />
+    }
     return (
       <Fragment>
         <div className="container-fluid d-flex flex-column text-center px-0  pt-5 ">
