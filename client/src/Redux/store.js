@@ -22,6 +22,15 @@ const appReducer = (state = inState, action) => {
       copy.userData = action.payload;
       return copy;  
 
+    case "login":
+      copy.isLogin = true;
+      console.log("login",copy.isLogin)
+      return copy;
+
+    case "loginFalse":
+      copy.isLogin = false;
+      console.log("login", copy.isLogin);
+      return copy;  
     default:
       return copy;
   }

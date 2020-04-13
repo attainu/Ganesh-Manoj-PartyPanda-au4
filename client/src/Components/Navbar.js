@@ -5,6 +5,12 @@ import "./../style/navbar.css";
 import { connect } from "react-redux";
 
 class Navbar extends React.Component {
+
+  userLogout =(e) => {
+    localStorage.removeItem("Token");
+    this.props.dispatch({type:"loginFalse"})
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light py-0">
@@ -46,9 +52,12 @@ class Navbar extends React.Component {
               </Link>
             </li>
             <li>
-              <Link to="/signin" className="nav-link btn text-white">
+              {this.props.isLogin ? <button className="nav-link btn text-white" onClick={this.userLogout}>Logout</button> : <Link to="/signin" className="nav-link btn text-white">
                 Signin
-              </Link>
+              </Link> }
+              {/* <Link to="/signin" className="nav-link btn text-white">
+                Signin
+              </Link> */}
             </li>
           </ul>
         </div>
@@ -60,6 +69,7 @@ class Navbar extends React.Component {
 const fromStroe = (state) => {
   return {
     show: state.show,
+    isLogin: state.isLogin
   };
 };
 export default connect(fromStroe)(Navbar);

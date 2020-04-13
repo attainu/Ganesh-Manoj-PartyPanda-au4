@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import {Redirect} from "react-router-dom";
 
 class Login extends React.Component {
   state = {
@@ -59,6 +60,7 @@ class Login extends React.Component {
       console.log("token is available");
       const user = jwt_decode(token);
       this.props.dispatch({ type: "userData", payload: user });
+      this.props.dispatch({ type:"login"})
     } else {
       console.log("no token available");
     }
@@ -149,6 +151,7 @@ class Login extends React.Component {
 const fromStroe = (state) => {
   return {
     show: state.show,
+    isLogin: state.isLogin
   };
 };
 export default connect(fromStroe)(Login);
