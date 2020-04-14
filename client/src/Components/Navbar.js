@@ -1,8 +1,10 @@
 import React from "react";
 import Panda from "./../images/animal.png";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import "./../style/navbar.css";
 import { connect } from "react-redux";
+import {Dropdown} from "react-bootstrap";
+import UserImg from "../images/red.jpg"
 
 class Navbar extends React.Component {
 
@@ -52,13 +54,21 @@ class Navbar extends React.Component {
                 Create Event
               </Link>
             </li>
-            <li>
-              {this.props.isLogin ? <button className="nav-link btn text-white" onClick={this.userLogout}>Logout</button> : <Link to="/signin" className="nav-link btn text-white">
+            <li className="nav-item">
+              {this.props.isLogin ? 
+                <Dropdown >
+                  <Dropdown.Toggle  id="dropdown-basic" >
+                  <img src={UserImg} className="rounded-circle" style={{"height":"35px", "width":"35px"}} />
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className="text-center px-0">
+                  <Dropdown.Item >Username</Dropdown.Item>
+                    <Link to="/profile"><option className="text-dark">Profile</option></Link>
+                    <Dropdown.Item onClick={this.userLogout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown> 
+                : <Link to="/signin" className="nav-link btn text-white">
                 Signin
-              </Link> }
-              {/* <Link to="/signin" className="nav-link btn text-white">
-                Signin
-              </Link> */}
+                </Link> }
             </li>
           </ul>
         </div>
