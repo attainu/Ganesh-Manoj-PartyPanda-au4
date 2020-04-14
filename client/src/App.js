@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Uploader from "./Components/Uploader";
+
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Allparties from "./Components/Allparties";
@@ -44,7 +44,6 @@ class App extends React.Component {
               <Route exact path="/create-profile" component={ProfileCreation} />
               <Route exact path="/event-detail" component={EventDetail} />
               <Route exact path="/myevent-detail" component={MyEventDetail} />
-              <Route exact path="/upload" component={Uploader} />
             </Router>
           </div>
           <div id="footer">
