@@ -3,16 +3,15 @@ import Panda from "./../images/animal.png";
 import { Link, Route } from "react-router-dom";
 import "./../style/navbar.css";
 import { connect } from "react-redux";
-import {Dropdown} from "react-bootstrap";
-import UserImg from "../images/red.jpg"
+import { Dropdown } from "react-bootstrap";
+import UserImg from "../images/red.jpg";
 
 class Navbar extends React.Component {
-
-  userLogout =(e) => {
+  userLogout = (e) => {
     localStorage.removeItem("Token");
-    this.props.dispatch({type:"loginFalse"})
-    this.props.dispatch({type:"userDirect"})
-  }
+    this.props.dispatch({ type: "loginFalse" });
+    this.props.dispatch({ type: "userDirect" });
+  };
 
   render() {
     return (
@@ -55,20 +54,30 @@ class Navbar extends React.Component {
               </Link>
             </li>
             <li className="nav-item">
-              {this.props.isLogin ? 
-                <Dropdown >
-                  <Dropdown.Toggle  id="dropdown-basic" >
-                  <img src={UserImg} className="rounded-circle" style={{"height":"35px", "width":"35px"}} />
+              {this.props.isLogin ? (
+                <Dropdown>
+                  <Dropdown.Toggle id="dropdown-basic">
+                    <img
+                      src={UserImg}
+                      className="rounded-circle mr-2"
+                      style={{ height: "35px", width: "35px" }}
+                    />
+                    <span className="pr-1">Username</span>
                   </Dropdown.Toggle>
                   <Dropdown.Menu className="text-center px-0">
-                  <Dropdown.Item >Username</Dropdown.Item>
-                    <Link to="/profile"><option className="text-dark">Profile</option></Link>
-                    <Dropdown.Item onClick={this.userLogout}>Logout</Dropdown.Item>
+                    <Link to="/profile">
+                      <option className="text-dark">Profile</option>
+                    </Link>
+                    <Dropdown.Item onClick={this.userLogout}>
+                      Logout
+                    </Dropdown.Item>
                   </Dropdown.Menu>
-                </Dropdown> 
-                : <Link to="/signin" className="nav-link btn text-white">
-                Signin
-                </Link> }
+                </Dropdown>
+              ) : (
+                <Link to="/signin" className="nav-link btn text-white">
+                  Signin
+                </Link>
+              )}
             </li>
           </ul>
         </div>
@@ -80,7 +89,7 @@ class Navbar extends React.Component {
 const fromStroe = (state) => {
   return {
     show: state.show,
-    isLogin: state.isLogin
+    isLogin: state.isLogin,
   };
 };
 export default connect(fromStroe)(Navbar);

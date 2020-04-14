@@ -8,6 +8,7 @@ import Soccer from "../images/soccer.png";
 import Motor from "../images/motorcycle.png";
 import Trekking from "../images/trekking.png";
 import "./../style/home.css";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Home extends React.Component {
@@ -67,8 +68,7 @@ class Home extends React.Component {
                         width: "120px",
                       }}
                     >
-                      {" "}
-                      Join Us
+                      <Link to="/allevents">Join the Party</Link>
                     </button>
                   </div>
                 </div>
