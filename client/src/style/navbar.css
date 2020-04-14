@@ -14,3 +14,14 @@
 .logo.btn {
   margin-left: -20px;
 }
+
+#dropdown-basic {
+  /* background: linear-gradient(
+    140deg,
+    rgba(127, 56, 122, 0.92) 0,
+    rgba(64, 96, 148, 0.92)
+  ); */
+   background-color:rgba(75, 110, 148, 0.92); 
+   border-color:rgba(75, 110, 148, 0.92) ;
+}
+
