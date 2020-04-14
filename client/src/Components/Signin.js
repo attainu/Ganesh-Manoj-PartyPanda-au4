@@ -71,8 +71,6 @@ class Signin extends React.Component {
 }
 
 const fromStroe = (state) => {
-  return {
-    show: state.show,
-  };
+  return state;
 };
 export default connect(fromStroe)(Signin);
