@@ -26,7 +26,7 @@ ProfileController.add = async (req, res) => {
     });
 
     await User.findOneAndUpdate(
-      { _id: params.user_id },
+      { _id: params.id },
       {
         name: body.name,
         email: body.email,

@@ -41,7 +41,7 @@ app.get("/show", controller.UserController.list);
 app.post("/login", controller.LoginController.login);
 //Profile
 app.post(
-  "/profile/:user_id",
+  "/profile/:id",
   upload.single("avatar"),
   controller.ProfileController.add
 );
@@ -58,7 +58,7 @@ app.delete("/avatar/:user_id", controller.AvatarController.remove);
 
 //Create event
 app.post(
-  "/create-event/:user_id",
+  "/create-event/:id",
   upload.single("cover"),
   controller.EventController.create
 );
@@ -80,6 +80,8 @@ app.delete("/event/:id", controller.EventController.delete);
 
 // Guest
 app.post("/join", controller.GuestController.add);
+app.update("/join", controller.GuestController.update);
+app.get("/join", controller.GuestController.list);
 //
 // app.post("/login", async (req, res) => {
 //   try {

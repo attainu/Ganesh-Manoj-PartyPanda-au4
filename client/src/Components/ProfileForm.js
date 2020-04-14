@@ -1,10 +1,28 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 class ProfileForm extends React.Component {
+  state = {
+    name: "",
+    email: "",
+    avatar: "",
+    interest: "",
+    bio: "",
+    dob: "",
+    profession: "",
+    company: "",
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
   render() {
-    if(!localStorage.Token){
-      return <Redirect to="/signin" />
+    if (!localStorage.Token) {
+      return <Redirect to="/signin" />;
     }
     return (
       <div className="container-fluid d-flex flex-column flex-nowrap bg-light pb-5">
@@ -18,41 +36,51 @@ class ProfileForm extends React.Component {
         >
           <div>
             <div className="pb-2">
-              <label>FullName:</label>
+              <label>Name:</label>
               <input
                 type="text"
+                name="name"
                 className="form-control border border-dark"
-                required
-                placeholder="Full Name..."
+                value={this.state.name}
+                onChange={this.handleChange}
+                placeholder="Name"
               />
             </div>
             <div className="pb-2">
               <label>Email:</label>
               <input
                 type="email"
+                name="email"
                 className="form-control border border-dark"
-                required
+                value={this.state.email}
+                onChange={this.handleChange}
                 placeholder="Email..."
               />
             </div>
-            <div className="pb-2">
+            {/* <div className="pb-2">
               <label>Password:</label>
               <br />
               <input
                 type="password"
                 className="form-control border border-dark"
-                required
+                value={this.state.pas}
+                onChange={(event)=>{
+                    this.setState({
+                      name:event.target.value
+                    })
+                }}
                 placeholder="Password..."
               />
-            </div>
+            </div> */}
             <div className="pb-2">
               <label>Date Of Birth:</label>
               <br />
               <input
                 type="date"
+                name="dob"
                 className="form-control border border-dark"
-                required
-                placeholder="DOB..."
+                value={this.state.dob}
+                onChange={this.handleChange}
               />
             </div>
             <div className="pb-2">
@@ -60,28 +88,32 @@ class ProfileForm extends React.Component {
               <input
                 type="file"
                 className="form-control-file border rounded py-1 border-dark"
-                required
+                name="avatar"
                 style={{ width: "200px" }}
+                value={this.state.avatar}
+                onChange={this.handleChange}
               />
             </div>
           </div>
           <div>
-            <div className="pb-2">
+            {/* <div className="pb-2">
               <label>Mobile No:</label>
               <input
                 type="number"
                 className="form-control border border-dark"
-                required
-                placeholder="Mobile Number..."
+                
+                placeholder="Mobile Number"
               />
-            </div>
+            </div> */}
             <div className="pb-2">
               <label>Profession:</label>
               <input
-                type="Text"
+                type="text"
+                name="profession"
                 className="form-control border border-dark"
-                required
-                placeholder="Profession..."
+                value={this.state.profession}
+                onChange={this.handleChange}
+                placeholder="Profession"
               />
             </div>
             <div className="pb-2">
@@ -89,8 +121,10 @@ class ProfileForm extends React.Component {
               <br />
               <input
                 type="text"
+                name="company"
                 className="form-control border border-dark"
-                required
+                value={this.state.company}
+                onChange={this.handleChange}
                 placeholder="Office/Institute..."
               />
             </div>
@@ -99,8 +133,10 @@ class ProfileForm extends React.Component {
               <br />
               <input
                 type="text"
+                name="interest"
                 className="form-control border border-dark"
-                required
+                value={this.state.interest}
+                onChange={this.handleChange}
                 placeholder="Introvert"
               />
             </div>
@@ -109,16 +145,25 @@ class ProfileForm extends React.Component {
               <label>Bio:</label>
               <br />
               <textarea
-                type="date"
+                type="text"
+                name="bio"
                 className="form-control border border-dark"
-                required
+                value={this.state.bio}
+                onChange={this.handleChange}
                 placeholder="Write something about yourself..."
               />
             </div>
           </div>
         </div>
         <div className="d-flex justify-content-center py-3">
-          <button className="btn" id="send" style={{ "border-radius": "20px" }}>
+          <button
+            className="btn"
+            id="send"
+            style={{ "border-radius": "20px" }}
+            onClick={() => {
+              console.log("State", this.state);
+            }}
+          >
             Submit
           </button>
         </div>
@@ -127,4 +172,8 @@ class ProfileForm extends React.Component {
   }
 }
 
-export default ProfileForm;
+const fromStore = (state) => {
+  return state;
+};
+
+export default connect(fromStore)(ProfileForm);

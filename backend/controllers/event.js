@@ -1,5 +1,5 @@
 const Event = require("../Model/Event");
-
+const User = require("./../Model/User");
 const EventController = {};
 
 let cloudinary = require("cloudinary").v2;
@@ -18,6 +18,8 @@ EventController.create = async (req, res) => {
     let uploadedImg = await cloudinary.uploader.upload(image);
     console.log("Img", uploadedImg);
 
+    let user = await User.findOne({ _id: params.id });
+
     let event = await Event.create({
       type: body.type,
       theme: body.theme,
@@ -35,7 +37,7 @@ EventController.create = async (req, res) => {
       stayover: body.stayover,
       details: body.details,
       image: uploadedImg,
-      user_id: params.user_id,
+      user: user,
     });
 
     res.send(event);
@@ -90,7 +92,6 @@ EventController.update = async (req, res) => {
         stayover: body.stayover,
         details: body.details,
         image: uploadedImg,
-        user_id: params.user_id,
       },
       { new: true }
     );

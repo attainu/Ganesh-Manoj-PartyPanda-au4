@@ -29,8 +29,7 @@ LoginController.login = async (req, res) => {
           });
         } else {
           const payload = {
-            id: user._id,
-            mobile: req.body.mobile,
+            user,
           };
           jwt.sign(payload, secret, { expiresIn: "30m" }, (err, token) => {
             if (token) {
