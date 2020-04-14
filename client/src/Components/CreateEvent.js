@@ -1,10 +1,14 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 class CreateEvent extends React.Component {
   render() {
-    if(!localStorage.Token){
-      return <Redirect to="/signin" />
+    if (!localStorage.Token) {
+      return <Redirect to="/signin" />;
+    }
+    if (!this.props.userData.name) {
+      return <Redirect to="/create-profile" />;
     }
     return (
       <div className="container-fluid d-flex flex-column flex-nowrap bg-light pb-5">
@@ -170,4 +174,10 @@ class CreateEvent extends React.Component {
   }
 }
 
-export default CreateEvent;
+const fromStore = (state) => {
+  return {
+    userData: state.userData,
+  };
+};
+
+export default connect(fromStore)(CreateEvent);

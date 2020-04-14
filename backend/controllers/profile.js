@@ -3,50 +3,32 @@ const moment = require("moment");
 
 const ProfileController = {};
 
-let cloudinary = require("cloudinary").v2;
-
-let uploadedImg;
-
-cloudinary.config({
-  cloud_name: "attainu-wanderlust",
-  api_key: "285695111156914",
-  api_secret: "6GsNv5XlGNm-oAXTiyAFa_yg5Ak",
-});
-
 ProfileController.add = async (req, res) => {
   try {
-    const { params } = req;
-    let image = req.file.path;
-    await cloudinary.uploader.upload(image, function (error, response) {
-      if (error) {
-        return callback({ status: false, message: error });
-      }
-      console.log(response);
-      uploadedImg = response.secure_url;
-    });
+    const { query, body } = req;
 
     await User.findOneAndUpdate(
-      { _id: params.id },
+      { _id: query.id },
       {
         name: body.name,
         email: body.email,
         interest: body.interest,
         bio: body.bio,
-        dob: moment(body.dob, "DD/MM/YYYY").format(),
+        dob: moment.utc(body.dob),
         profession: body.profession,
         company: body.company,
-        image: uploadedImg,
+        image: body.avatar,
       },
       { new: true },
       (error, response) => {
         if (error) {
           throw error;
         }
-        console.log("updated", response);
+        console.log("updated");
       }
     );
 
-    let user = await User.find({});
+    let user = await User.findOne({ _id: query.id });
     res.send(user);
   } catch (error) {
     throw error;

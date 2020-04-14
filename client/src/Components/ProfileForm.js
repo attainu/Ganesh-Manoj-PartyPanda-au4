@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import moment from "moment";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -6,17 +8,56 @@ class ProfileForm extends React.Component {
   state = {
     name: "",
     email: "",
-    avatar: "",
+    avatar: null,
     interest: "",
     bio: "",
-    dob: "",
+    dob: null,
     profession: "",
     company: "",
+  };
+
+  sendData = () => {
+    let id = this.props.userData.user._id;
+
+    axios
+      .post(`http://localhost:3010/profile?id=${id}`, this.state)
+      .then(async (res) => {
+        if (res) {
+          alert("Profile updated");
+          this.props.dispatch({ type: "replace", payload: res.data });
+          return <Redirect to="/" />;
+        } else {
+          alert("Failed to Update Profile");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
+    });
+  };
+
+  handleImage = async (e) => {
+    let image = e.target.files[0];
+    let avatar = undefined;
+    let fd = new FormData();
+
+    fd.append("avatar", image, image.name);
+    await axios
+      .post("http://localhost:3010/uploader", fd)
+      .then(async (res) => {
+        avatar = res.data;
+      })
+      .catch((error) => {
+        throw error;
+      });
+
+    this.setState({ avatar: avatar }, () => {
+      console.log(avatar);
     });
   };
 
@@ -30,6 +71,7 @@ class ProfileForm extends React.Component {
           <h4 className="pages">Profile Form</h4>
           <hr />
         </center>
+
         <div
           className="container  d-flex flex-row flex-wrap justify-content-around bg-white py-4 mem"
           style={{ borderRadius: "35px" }}
@@ -57,21 +99,7 @@ class ProfileForm extends React.Component {
                 placeholder="Email..."
               />
             </div>
-            {/* <div className="pb-2">
-              <label>Password:</label>
-              <br />
-              <input
-                type="password"
-                className="form-control border border-dark"
-                value={this.state.pas}
-                onChange={(event)=>{
-                    this.setState({
-                      name:event.target.value
-                    })
-                }}
-                placeholder="Password..."
-              />
-            </div> */}
+
             <div className="pb-2">
               <label>Date Of Birth:</label>
               <br />
@@ -79,7 +107,6 @@ class ProfileForm extends React.Component {
                 type="date"
                 name="dob"
                 className="form-control border border-dark"
-                value={this.state.dob}
                 onChange={this.handleChange}
               />
             </div>
@@ -90,21 +117,13 @@ class ProfileForm extends React.Component {
                 className="form-control-file border rounded py-1 border-dark"
                 name="avatar"
                 style={{ width: "200px" }}
-                value={this.state.avatar}
-                onChange={this.handleChange}
+                onChange={(event) => {
+                  this.handleImage(event);
+                }}
               />
             </div>
           </div>
           <div>
-            {/* <div className="pb-2">
-              <label>Mobile No:</label>
-              <input
-                type="number"
-                className="form-control border border-dark"
-                
-                placeholder="Mobile Number"
-              />
-            </div> */}
             <div className="pb-2">
               <label>Profession:</label>
               <input
@@ -161,8 +180,20 @@ class ProfileForm extends React.Component {
             id="send"
             style={{ "border-radius": "20px" }}
             onClick={() => {
-              console.log("State", this.state);
+              this.sendData();
             }}
+            disabled={
+              !this.state.name ||
+              !this.state.email ||
+              !this.state.interest ||
+              !this.state.profession ||
+              !this.state.company ||
+              !this.state.avatar ||
+              !this.state.bio ||
+              !this.state.dob
+                ? true
+                : false
+            }
           >
             Submit
           </button>
@@ -173,7 +204,9 @@ class ProfileForm extends React.Component {
 }
 
 const fromStore = (state) => {
-  return state;
+  return {
+    userData: state.userData,
+  };
 };
 
 export default connect(fromStore)(ProfileForm);

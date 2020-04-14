@@ -56,8 +56,6 @@ class Login extends React.Component {
       });
   };
 
-  
-
   render() {
     if (this.props.isLogin) return <Redirect to="/" />;
     return (

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import Uploader from "./Components/Uploader";
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Allparties from "./Components/Allparties";
@@ -11,12 +11,11 @@ import Profile from "./Components/Profile";
 import ProfileCreation from "./Components/ProfileForm";
 import "./style/app.css";
 import EventDetail from "./Components/EventDetail";
-import MyEventDetail from "./Components/MyEventDetail"
+import MyEventDetail from "./Components/MyEventDetail";
 import jwt_decode from "jwt-decode";
 import Signin from "./Components/Signin";
 import { connect } from "react-redux";
 class App extends React.Component {
-
   componentDidMount = () => {
     const token = localStorage.Token;
     if (token) {
@@ -45,6 +44,7 @@ class App extends React.Component {
               <Route exact path="/create-profile" component={ProfileCreation} />
               <Route exact path="/event-detail" component={EventDetail} />
               <Route exact path="/myevent-detail" component={MyEventDetail} />
+              <Route exact path="/upload" component={Uploader} />
             </Router>
           </div>
           <div id="footer">

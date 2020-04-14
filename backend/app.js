@@ -32,6 +32,13 @@ const controller = require("./controllers/index.js");
 
 //Routes
 
+//image uploader
+app.post(
+  "/uploader",
+  upload.single("avatar"),
+  controller.UploadController.upload
+);
+
 //Signup
 app.post("/signup", controller.UserController.create);
 
@@ -40,11 +47,7 @@ app.get("/show", controller.UserController.list);
 // login
 app.post("/login", controller.LoginController.login);
 //Profile
-app.post(
-  "/profile/:id",
-  upload.single("avatar"),
-  controller.ProfileController.add
-);
+app.post("/profile", upload.single("avatar"), controller.ProfileController.add);
 
 //Avatar
 //update
@@ -80,7 +83,7 @@ app.delete("/event/:id", controller.EventController.delete);
 
 // Guest
 app.post("/join", controller.GuestController.add);
-app.update("/join", controller.GuestController.update);
+app.put("/join", controller.GuestController.update);
 app.get("/join", controller.GuestController.list);
 //
 // app.post("/login", async (req, res) => {

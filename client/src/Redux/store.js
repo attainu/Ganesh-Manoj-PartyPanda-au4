@@ -26,6 +26,11 @@ const appReducer = (state = inState, action) => {
     case "userDirect":
       copy.userData = [];
       return copy;
+
+    case "replace":
+      copy.userData = action.payload;
+      return copy;
+
     default:
       return copy;
   }

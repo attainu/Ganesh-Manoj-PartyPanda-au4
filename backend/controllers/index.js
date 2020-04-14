@@ -5,4 +5,5 @@ module.exports = {
   AvatarController: require("./avatar"),
   LoginController: require("./login"),
   GuestController: require("./guest"),
+  UploadController: require("./uploader"),
 };
