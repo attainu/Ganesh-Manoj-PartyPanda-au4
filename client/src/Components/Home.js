@@ -59,17 +59,16 @@ class Home extends React.Component {
                       make sure you connect with right people and have a healthy
                       social life. Come. Explore.
                     </p>
-                    <button
-                      className="btn b-4"
-                      style={{
-                        color: "blue",
-                        "border-color": "blue",
-                        "border-radius": "20px",
-                        width: "120px",
-                      }}
-                    >
-                      <Link to="/allevents">Join the Party</Link>
-                    </button>
+
+                    <Link to="/allevents">
+                      <button
+                        id="send"
+                        className="flex-nowrap  my-4 "
+                        style={{ height: "3rem", width: "10rem" }}
+                      >
+                        Join the Party
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -62,7 +62,11 @@ class Navbar extends React.Component {
                       className="rounded-circle mr-2"
                       style={{ height: "35px", width: "35px" }}
                     />
-                    <span className="pr-1">Username</span>
+                    <span className="pr-1">
+                      {this.props.userData.name
+                        ? this.props.userData.name
+                        : null}
+                    </span>
                   </Dropdown.Toggle>
                   <Dropdown.Menu className="text-center px-0">
                     <Link to="/profile">
@@ -90,6 +94,7 @@ const fromStroe = (state) => {
   return {
     show: state.show,
     isLogin: state.isLogin,
+    userData: state.userData,
   };
 };
 export default connect(fromStroe)(Navbar);
