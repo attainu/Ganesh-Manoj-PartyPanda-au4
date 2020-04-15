@@ -15,6 +15,8 @@ ProfileController.add = async (req, res) => {
         name: body.name,
         email: body.email,
         interest: body.interest,
+        location: body.location,
+        gender: body.gender,
         bio: body.bio,
         dob: moment.utc(body.dob),
         profession: body.profession,

@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema(
     interest: {
       type: String,
     },
+    location: {
+      type: String,
+    },
+    gender: {
+      type: String,
+    },
     bio: {
       type: String,
     },
