@@ -23,6 +23,7 @@ class App extends React.Component {
       const user = jwt_decode(token);
       this.props.dispatch({ type: "userData", payload: user.user });
       this.props.dispatch({ type: "login" });
+      
     } else {
       console.log("no token available");
     }

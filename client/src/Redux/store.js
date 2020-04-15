@@ -3,6 +3,7 @@ import { createStore } from "redux";
 let inState = {
   userData: [],
   isLogin: false,
+  allEvent: []
 };
 
 const appReducer = (state = inState, action) => {
