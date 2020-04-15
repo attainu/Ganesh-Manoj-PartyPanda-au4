@@ -5,8 +5,14 @@ import { Link, Redirect } from "react-router-dom";
 
 class Profile extends React.Component {
   render() {
-    if(!localStorage.Token){
-      return <Redirect to="/signin" />
+    if (!localStorage.Token) {
+      return <Redirect to="/signin" />;
+    }
+    let birth = new Date(this.props.userData.dob);
+    let now = new Date();
+    let age = now.getFullYear() - birth.getFullYear();
+    if (now.getMonth() >= birth.getMonth() && now.getDate() > birth.getDate()) {
+      age--;
     }
     return (
       <Fragment>
@@ -24,11 +30,20 @@ class Profile extends React.Component {
             className="card col-md-5 prop1 d-flex flex-column  align-items-center"
             style={{ backgroundColor: "white" }}
           >
-            <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets.entrepreneur.com%2Fcontent%2F3x2%2F1300%2F20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg&f=1&nofb=1"
-              alt="profile"
-              className="propimg "
-            />
+            {this.props.userData.image ? (
+              <img
+                src={this.props.userData.image}
+                alt="profile"
+                className="propimg "
+              />
+            ) : (
+              <img
+                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets.entrepreneur.com%2Fcontent%2F3x2%2F1300%2F20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg&f=1&nofb=1"
+                alt="profile"
+                className="propimg "
+              />
+            )}
+
             {/* <form
               class="md-form"
               action="/profile"
@@ -59,13 +74,14 @@ class Profile extends React.Component {
                 </Link>
               </div>
             </form> */}
-            <h3 className="propname">Veronica Dsouza</h3>
-            <h6 className="card-text">+918652374607</h6>
+            <h3 className="propname">{this.props.userData.name}</h3>
+            <h6 className="card-text">{this.props.userData.mobile}</h6>
             <div className="d-flex flex-row flex-wrap justify-content-center pb-5 card-text">
-              <span>Student | </span>
-              <span> IES college of science | </span>
-              <span> Story-teller | </span>
-              <span> 18 years</span>
+              <span>{this.props.userData.profession} | </span>
+              <span> {this.props.userData.company} | </span>
+              <span> {this.props.userData.interest} | </span>
+
+              <span> {age} years</span>
             </div>
           </div>
 
@@ -79,25 +95,20 @@ class Profile extends React.Component {
                 style={{ marginTop: "30px" }}
               >
                 <h4 className="theme">Bio</h4>
-                <h6 className="card-text">
-                  Lorie has worked with reputable real estate agencies,
-                  including ReMax, Century 21, and Coldwell Banker, among
-                  others. Lorie helps homeowners and new buyers secure a loan
-                  that suits their budget and goals. You can expect 100%
-                  transparency, no horror stories, and nasty surprises when
-                  working with Lorie.
-                </h6>
+                <h6 className="card-text">{this.props.userData.bio}</h6>
               </div>
               <div className="d-flex flex-row justify-content-between flex-wrap">
                 <div className="float-left">
                   <h4 className="theme float-left">Email</h4>
 
-                  <h6 className="card-text">veronica@gmail.com</h6>
+                  <h6 className="card-text">{this.props.userData.email}</h6>
                 </div>
                 <div>
                   <h4 className="theme">Location</h4>
                   <center>
-                    <h6 className="card-text">Mumbai</h6>
+                    <h6 className="card-text">
+                      {this.props.userData.location}
+                    </h6>
                   </center>
                 </div>
               </div>
@@ -105,12 +116,12 @@ class Profile extends React.Component {
                 <div className="float-left">
                   <h4 className="theme">DOB</h4>
 
-                  <h6 className="card-text">02-01-1996</h6>
+                  <h6 className="card-text">{this.props.userData.dob}</h6>
                 </div>
                 <div>
                   <h4 className="theme">Gender</h4>
                   <center>
-                    <h6 className="card-text">Female</h6>
+                    <h6 className="card-text">{this.props.userData.gender}</h6>
                   </center>
                 </div>
               </div>
@@ -118,7 +129,9 @@ class Profile extends React.Component {
                 <div className="float-left">
                   <h4 className="theme ">Profession</h4>
 
-                  <h6 className="card-text">Student</h6>
+                  <h6 className="card-text">
+                    {this.props.userData.profession}
+                  </h6>
                 </div>
                 <div>
                   <h5 className="theme">Company/College</h5>
@@ -127,7 +140,7 @@ class Profile extends React.Component {
                     className="card-text float-right"
                     style={{ paddingRight: "27px" }}
                   >
-                    St Xavier's
+                    {this.props.userData.company}
                   </h6>
                 </div>
               </div>
@@ -144,8 +157,8 @@ class Profile extends React.Component {
 
 const fromStroe = (state) => {
   return {
-    show: state.show,
-    isLogin : state.isLogin
+    userData: state.userData,
+    isLogin: state.isLogin,
   };
 };
 export default connect(fromStroe)(Profile);
