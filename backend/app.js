@@ -44,6 +44,8 @@ app.post("/signup", controller.UserController.create);
 
 app.get("/show", controller.UserController.list);
 
+app.get("/one", controller.UserController.one);
+
 // login
 app.post("/login", controller.LoginController.login);
 //Profile

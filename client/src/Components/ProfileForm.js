@@ -8,7 +8,7 @@ class ProfileForm extends React.Component {
   state = {
     name: "",
     email: "",
-    image: null,
+    avatar: null,
     interest: "",
     bio: "",
     dob: null,
@@ -25,15 +25,8 @@ class ProfileForm extends React.Component {
       .post(`http://localhost:3010/profile?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          await this.props.dispatch(
-            {
-              type: "profilereplace",
-              payload: res.data,
-            },
-            () => {
-              console.log("redux data", this.props.userData);
-            }
-          );
+          alert("Profile updated");
+
           return <Redirect to="/" />;
         } else {
           alert("Failed to Update Profile");
@@ -65,8 +58,8 @@ class ProfileForm extends React.Component {
         throw error;
       });
 
-    this.setState({ image: avatar }, () => {
-      console.log(this.state.image);
+    this.setState({ avatar: avatar }, () => {
+      console.log(avatar);
     });
   };
 
@@ -80,7 +73,7 @@ class ProfileForm extends React.Component {
           <h4 className="pages">Profile Form</h4>
           <hr />
         </center>
-
+        ​
         <div
           className="container  d-flex flex-row flex-wrap justify-content-around bg-white py-4 mem"
           style={{ borderRadius: "35px" }}
@@ -108,7 +101,7 @@ class ProfileForm extends React.Component {
                 placeholder="Email..."
               />
             </div>
-
+            ​
             <div className="pb-2">
               <label>Date Of Birth:</label>
               <br />
@@ -142,17 +135,6 @@ class ProfileForm extends React.Component {
                   this.handleImage(event);
                 }}
               />
-            </div>
-            <div className="pb-2">
-              <label>Gender:</label>
-              <select
-                name="gender"
-                onChange={this.handleChange}
-                className="form-control-file border rounded py-1 border-dark"
-              >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
             </div>
           </div>
           <div>
@@ -202,7 +184,7 @@ class ProfileForm extends React.Component {
                 placeholder="Introvert"
               />
             </div>
-
+            ​
             <div className="pb-2">
               <label>Bio:</label>
               <br />
@@ -225,6 +207,18 @@ class ProfileForm extends React.Component {
             onClick={() => {
               this.sendData();
             }}
+            disabled={
+              !this.state.name ||
+              !this.state.email ||
+              !this.state.interest ||
+              !this.state.profession ||
+              !this.state.company ||
+              !this.state.avatar ||
+              !this.state.bio ||
+              !this.state.dob
+                ? true
+                : false
+            }
           >
             Submit
           </button>

@@ -13,17 +13,22 @@ import "./style/app.css";
 import EventDetail from "./Components/EventDetail";
 import MyEventDetail from "./Components/MyEventDetail";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 import Signin from "./Components/Signin";
 import { connect } from "react-redux";
 class App extends React.Component {
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const token = localStorage.Token;
     if (token) {
       console.log("token is available");
       const user = jwt_decode(token);
-      this.props.dispatch({ type: "userData", payload: user.user });
-      this.props.dispatch({ type: "login" });
-      
+
+      await this.props.dispatch({ type: "userData", payload: user.user });
+      await this.props.dispatch({ type: "login" });
+      let id = this.props.userData._id;
+      axios.get(`http://localhost:3010/one?id=${id}`).then(async (res) => {
+        await this.props.dispatch({ type: "replace", payload: res.data });
+      });
     } else {
       console.log("no token available");
     }
@@ -57,7 +62,9 @@ class App extends React.Component {
 }
 
 const fromStore = (state) => {
-  return state;
+  return {
+    userData: state.userData,
+  };
 };
 
 export default connect(fromStore)(App);

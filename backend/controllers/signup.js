@@ -29,4 +29,14 @@ UserController.list = async (req, res) => {
   }
 };
 
+UserController.one = async (req, res) => {
+  try {
+    let { query } = req;
+    let user = await User.findOne({ _id: query.id });
+    res.send(user);
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = UserController;
