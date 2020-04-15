@@ -15,6 +15,8 @@ import MyEventDetail from "./Components/MyEventDetail";
 import jwt_decode from "jwt-decode";
 import Signin from "./Components/Signin";
 import { connect } from "react-redux";
+import axios from "axios";
+
 class App extends React.Component {
   componentDidMount = () => {
     const token = localStorage.Token;
@@ -23,6 +25,18 @@ class App extends React.Component {
       const user = jwt_decode(token);
       this.props.dispatch({ type: "userData", payload: user.user });
       this.props.dispatch({ type: "login" });
+      axios.get(`http://localhost:3010/events`).then(
+      async (res) =>{
+        if(res){
+          await this.props.dispatch({ type: "allEvent", payload: res.data });
+          console.log(res);
+        }else{
+          console.log("error")
+        }
+      }
+    ).catch((err) =>{
+      console.log(err)
+    })
       
     } else {
       console.log("no token available");

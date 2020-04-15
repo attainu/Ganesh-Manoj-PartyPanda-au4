@@ -7,6 +7,7 @@ import "./../style/allparties.css";
 
 class Allparties extends React.Component {
   render() {
+    let allEvents = this.props.allEvents;
     return (
       <Fragment>
         <div className="d-flex flex-column flex-nowrap justify-content-center container-fluid pb-5 pl-5 pr-5 wrapper ">
