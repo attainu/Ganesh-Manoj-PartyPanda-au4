@@ -8,23 +8,33 @@ class ProfileForm extends React.Component {
   state = {
     name: "",
     email: "",
-    avatar: null,
+    image: null,
     interest: "",
     bio: "",
     dob: null,
     profession: "",
     company: "",
+    gender: "Male",
+    location: "",
   };
 
   sendData = () => {
-    let id = this.props.userData.user._id;
+    let id = this.props.userData._id;
+    console.log("State", this.state);
 
     axios
       .post(`http://localhost:3010/profile?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          alert("Profile updated");
-          this.props.dispatch({ type: "replace", payload: res.data });
+          await this.props.dispatch(
+            {
+              type: "profilereplace",
+              payload: res.data,
+            },
+            () => {
+              console.log("redux data", this.props.userData);
+            }
+          );
           return <Redirect to="/" />;
         } else {
           alert("Failed to Update Profile");
@@ -56,8 +66,8 @@ class ProfileForm extends React.Component {
         throw error;
       });
 
-    this.setState({ avatar: avatar }, () => {
-      console.log(avatar);
+    this.setState({ image: avatar }, () => {
+      console.log(this.state.image);
     });
   };
 
@@ -122,8 +132,30 @@ class ProfileForm extends React.Component {
                 }}
               />
             </div>
+            <div className="pb-2">
+              <label>Gender:</label>
+              <select
+                name="gender"
+                onChange={this.handleChange}
+                className="form-control-file border rounded py-1 border-dark"
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
           </div>
           <div>
+            <div className="pb-2">
+              <label>Location:</label>
+              <input
+                type="text"
+                name="location"
+                className="form-control border border-dark"
+                value={this.state.location}
+                onChange={this.handleChange}
+                placeholder="Mumbai"
+              />
+            </div>
             <div className="pb-2">
               <label>Profession:</label>
               <input
@@ -182,18 +214,6 @@ class ProfileForm extends React.Component {
             onClick={() => {
               this.sendData();
             }}
-            disabled={
-              !this.state.name ||
-              !this.state.email ||
-              !this.state.interest ||
-              !this.state.profession ||
-              !this.state.company ||
-              !this.state.avatar ||
-              !this.state.bio ||
-              !this.state.dob
-                ? true
-                : false
-            }
           >
             Submit
           </button>

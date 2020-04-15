@@ -14,6 +14,7 @@ class Profile extends React.Component {
     if (now.getMonth() >= birth.getMonth() && now.getDate() > birth.getDate()) {
       age--;
     }
+    let dob = `${birth.getDate()}-${birth.getMonth()}-${birth.getFullYear()}`;
     return (
       <Fragment>
         <div
@@ -95,7 +96,7 @@ class Profile extends React.Component {
                 style={{ marginTop: "30px" }}
               >
                 <h4 className="theme">Bio</h4>
-                <h6 className="card-text">{this.props.userData.bio}</h6>
+                <h6 className="card-text mx-auto">{this.props.userData.bio}</h6>
               </div>
               <div className="d-flex flex-row justify-content-between flex-wrap">
                 <div className="float-left">
@@ -116,7 +117,7 @@ class Profile extends React.Component {
                 <div className="float-left">
                   <h4 className="theme">DOB</h4>
 
-                  <h6 className="card-text">{this.props.userData.dob}</h6>
+                  <h6 className="card-text">{dob}</h6>
                 </div>
                 <div>
                   <h4 className="theme">Gender</h4>
