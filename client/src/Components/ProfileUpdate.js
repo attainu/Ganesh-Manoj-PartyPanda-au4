@@ -4,25 +4,30 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-class ProfileForm extends React.Component {
+class ProfileUpdate extends React.Component {
   state = {
-    name: "",
-    email: "",
+    name: this.props.userData.name,
+    email: this.props.userData.email,
     avatar: null,
-    interest: "",
-    bio: "",
+    interest: this.props.userData.interest,
+    bio: this.props.userData.bio,
     dob: null,
-    profession: "",
-    company: "",
+    mobile: this.props.userData.mobile,
+    password: "",
+    profession: this.props.userData.profession,
+    company: this.props.userData.company,
     gender: "Male",
-    location: "",
+    location: this.props.userData.location,
+    cnfpassword: "",
   };
 
   sendData = () => {
+    if (this.state.password !== this.state.cnfpassword)
+      return alert("Password and Confirm password doesn't match");
     let id = this.props.userData._id;
 
     axios
-      .post(`http://localhost:3010/profile?id=${id}`, this.state)
+      .post(`http://localhost:3010/update-profile?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
           alert("Profile updated");
@@ -136,8 +141,41 @@ class ProfileForm extends React.Component {
                 }}
               />
             </div>
+            <div className="pb-2">
+              <label>Password:</label>
+              <input
+                name="password"
+                type="password"
+                className="form-control-file border rounded py-1 border-dark"
+                value={this.state.password}
+                onChange={this.handleChange}
+                placeholder="Password"
+              />
+            </div>
+            <div className="pb-2">
+              <label>Confirm Password:</label>
+              <input
+                name="cnfpassword"
+                type="password"
+                className="form-control-file border rounded py-1 border-dark"
+                value={this.state.cnfpassword}
+                onChange={this.handleChange}
+                placeholder="Confirm Password"
+              />
+            </div>
           </div>
           <div>
+            <div className="pb-2">
+              <label>Mobile:</label>
+              <input
+                type="number"
+                placeholder="Mobile no."
+                className="form-control border border-dark"
+                name="mobile"
+                value={this.state.mobile}
+                onChange={this.handleChange}
+              />
+            </div>
             <div className="pb-2">
               <label>Location:</label>
               <input
@@ -215,7 +253,10 @@ class ProfileForm extends React.Component {
               !this.state.company ||
               !this.state.avatar ||
               !this.state.bio ||
-              !this.state.dob
+              !this.state.dob ||
+              !this.state.mobile ||
+              !this.state.password ||
+              !this.state.cnfpassword
                 ? true
                 : false
             }
@@ -227,11 +268,9 @@ class ProfileForm extends React.Component {
     );
   }
 }
-
 const fromStore = (state) => {
   return {
     userData: state.userData,
   };
 };
-
-export default connect(fromStore)(ProfileForm);
+export default connect(fromStore)(ProfileUpdate);

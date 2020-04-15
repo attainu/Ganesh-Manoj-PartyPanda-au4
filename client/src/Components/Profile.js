@@ -146,7 +146,9 @@ class Profile extends React.Component {
                 </div>
               </div>
               <center className="pt-5">
-                <button id="send">Update</button>
+                <Link to="/profile-update">
+                  <button id="send">Update </button>
+                </Link>
               </center>
             </div>
           </div>

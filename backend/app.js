@@ -51,6 +51,9 @@ app.post("/login", controller.LoginController.login);
 //Profile
 app.post("/profile", controller.ProfileController.add);
 
+//to update aal the fileds in profile
+app.post("/update-profile", controller.ProfileController.updateAll);
+
 //Avatar
 //update
 app.post(

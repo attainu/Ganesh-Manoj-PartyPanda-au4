@@ -12,11 +12,11 @@ import ProfileCreation from "./Components/ProfileForm";
 import "./style/app.css";
 import EventDetail from "./Components/EventDetail";
 import MyEventDetail from "./Components/MyEventDetail";
+import ProfileUpdate from "./Components/ProfileUpdate";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import Signin from "./Components/Signin";
 import { connect } from "react-redux";
-import axios from "axios";
 
 class App extends React.Component {
   componentDidMount = async () => {
@@ -66,6 +66,7 @@ class App extends React.Component {
               <Route exact path="/create-profile" component={ProfileCreation} />
               <Route exact path="/event-detail" component={EventDetail} />
               <Route exact path="/myevent-detail" component={MyEventDetail} />
+              <Route exact path="/profile-update" component={ProfileUpdate} />
             </Router>
           </div>
           <div id="footer">
