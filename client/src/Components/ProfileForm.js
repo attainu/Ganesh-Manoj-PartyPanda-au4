@@ -20,7 +20,6 @@ class ProfileForm extends React.Component {
 
   sendData = () => {
     let id = this.props.userData._id;
-    console.log("State", this.state);
 
     axios
       .post(`http://localhost:3010/profile?id=${id}`, this.state)
@@ -121,6 +120,18 @@ class ProfileForm extends React.Component {
               />
             </div>
             <div className="pb-2">
+              <label>Gender:</label>
+              <select
+                name="gender"
+                onClick={this.handleChange}
+                className="form-control border border-dark "
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+            <div className="pb-2">
               <label>User Image:</label>
               <input
                 type="file"
@@ -149,11 +160,11 @@ class ProfileForm extends React.Component {
               <label>Location:</label>
               <input
                 type="text"
-                name="location"
+                placeholder="Mumbai"
                 className="form-control border border-dark"
+                name="location"
                 value={this.state.location}
                 onChange={this.handleChange}
-                placeholder="Mumbai"
               />
             </div>
             <div className="pb-2">

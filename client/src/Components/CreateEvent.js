@@ -3,6 +3,25 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 class CreateEvent extends React.Component {
+
+  state={
+    theme:"",
+    music:"",
+    location:"",
+    exact_location:"",
+    date:null,
+    start_time:"",
+    end_timing:"",
+    strength:"",
+    charges:"",
+    beverages:"",
+    smoking:"",
+    parking:"",
+    stayover:"",
+    details:"",
+    avatar: null
+  }
+
   render() {
     if (!localStorage.Token) {
       return <Redirect to="/signin" />;
@@ -24,10 +43,7 @@ class CreateEvent extends React.Component {
             <div class="dropdown pb-2">
               <label>Theme:</label>
               <br />
-              <select
-                className="from-control text-muted border border-dark rounded"
-                style={{ width: "200px", height: "40px" }}
-              >
+              <select className="from-control text-muted border border-dark rounded" name="theme"  style={{ width: "200px", height: "40px" }} >
                 <option>Game Night</option>
                 <option>Laughter Party</option>
                 <option>Musical Night</option>
@@ -44,77 +60,54 @@ class CreateEvent extends React.Component {
             </div>
             <div className="pb-2">
               <label>Event Location:</label>
-              <input
-                type="text"
-                className="form-control border border-dark"
-                required
-              />
+              <input type="text" className="form-control border border-dark" name="location" required />
             </div>
             <div className="pb-2">
               <label>Exact Address:</label>
-              <input
-                type="text"
-                className="form-control border border-dark"
-                required
-              />
+              <input type="text" className="form-control border border-dark" name="exact_location" required/>
             </div>
             <div className="pb-2">
               <label>Event Timing:</label>
               <div className="text-center">
-                <input
-                  type="time"
-                  className="form-control border border-dark"
-                  required
-                />
+                <input type="time" className="form-control border border-dark" name="start_time" required/>
                 <label>To:</label>
-                <input
-                  type="time"
-                  className="form-control border border-dark"
-                  required
-                />
+                <input type="time" className="form-control border border-dark" name="end_timing" required/>
               </div>
             </div>
             <div className="pb-2">
               <label>Event Date</label>
-              <input
-                type="date"
-                className="form-control border border-dark"
-                required
-              />
+              <input type="date" className="form-control border border-dark" name="date" required />
             </div>
             <div>
-              <label>No Of People Inviting:</label>
+              <label>Music:</label>
+              <input type="text" className="form-control border border-dark" name="music" required/>
+            </div>
+            <div>
+            <label>Cover Image:</label>
               <input
-                type="number"
+                type="file"
                 className="form-control border border-dark"
-                required
+                name="avatar"
+                style={{ width: "200px" }}
+                onChange={(event) => {
+                  this.handleImage(event);
+                }}
               />
             </div>
           </div>
           <div>
             <div className="pb-2">
               <label>No Of People Inviting:</label>
-              <input
-                type="number"
-                className="form-control border border-dark"
-                required
-              />
+              <input type="number" className="form-control border border-dark" name="strength" required/>
             </div>
             <div className="pb-2">
               <label>Event charges:</label>
-              <input
-                type="number"
-                className="form-control border border-dark"
-                required
-              />
+              <input type="number" className="form-control border border-dark"name="charges" required/>
             </div>
             <div className="pb-2">
               <label>Parking Available:</label>
               <br />
-              <select
-                className="from-control text-muted border border-dark rounded"
-                style={{ width: "200px", height: "40px" }}
-              >
+              <select className="from-control text-muted border border-dark rounded" name="parking" style={{ width: "200px", height: "40px" }}>
                 <option>Yes</option>
                 <option>No</option>
                 <option>OnRoad</option>
@@ -123,10 +116,7 @@ class CreateEvent extends React.Component {
             <div className="pb-2">
               <label>StayOver:</label>
               <br />
-              <select
-                className="from-control text-muted border border-dark rounded"
-                style={{ width: "200px", height: "40px" }}
-              >
+              <select className="from-control text-muted border border-dark rounded" name="stayover" style={{ width: "200px", height: "40px" }}>
                 <option>Yes</option>
                 <option>No</option>
               </select>
@@ -134,10 +124,7 @@ class CreateEvent extends React.Component {
             <div className="pb-2">
               <label>Smoking Allowed:</label>
               <br />
-              <select
-                className="from-control text-muted border border-dark rounded"
-                style={{ width: "200px", height: "40px" }}
-              >
+              <select className="from-control text-muted border border-dark rounded" name="smoking" style={{ width: "200px", height: "40px" }} >
                 <option>Yes</option>
                 <option>No</option>
               </select>
@@ -145,10 +132,7 @@ class CreateEvent extends React.Component {
             <div className="pb-2">
               <label>Beverages:</label>
               <br />
-              <select
-                className="from-control border border-dark rounded text-muted"
-                style={{ width: "200px", height: "40px" }}
-              >
+              <select className="from-control border border-dark rounded text-muted" name="beverages" style={{ width: "200px", height: "40px" }}>
                 <option>BYOB</option>
                 <option>Not Allowed</option>
                 <option>On the House</option>
@@ -157,10 +141,7 @@ class CreateEvent extends React.Component {
             <div>
               <label>Event Description:</label>
               <br />
-              <textarea
-                className="border border-dark"
-                style={{ width: "200px" }}
-              />
+              <textarea className="border border-dark" name="details" style={{ width: "200px" }}/>
             </div>
           </div>
         </div>
