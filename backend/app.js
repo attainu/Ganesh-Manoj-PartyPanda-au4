@@ -60,26 +60,18 @@ app.post(
 app.delete("/avatar/:user_id", controller.AvatarController.remove);
 
 //Create event
-app.post(
-  "/create-event/:id",
-  upload.single("cover"),
-  controller.EventController.create
-);
+app.post("/create-event", controller.EventController.create);
 //Get all the events
 app.get("/events", controller.EventController.list);
 
 // Get one event;
-app.get("/event/:id", controller.EventController.one);
+app.get("/event", controller.EventController.one);
 
 // update event
-app.put(
-  "/event/:id",
-  upload.single("cover"),
-  controller.EventController.update
-);
+app.put("/event", controller.EventController.update);
 
 //Delete event
-app.delete("/event/:id", controller.EventController.delete);
+app.delete("/event", controller.EventController.delete);
 
 // Guest
 app.post("/join", controller.GuestController.add);

@@ -12,13 +12,9 @@ cloudinary.config({
 
 EventController.create = async (req, res) => {
   try {
-    const { body, params } = req;
+    const { body, query } = req;
 
-    let image = req.file.path;
-    let uploadedImg = await cloudinary.uploader.upload(image);
-    console.log("Img", uploadedImg);
-
-    let user = await User.findOne({ _id: params.id });
+    let user = await User.findOne({ _id: query.id });
 
     let event = await Event.create({
       type: body.type,
@@ -36,7 +32,7 @@ EventController.create = async (req, res) => {
       parking: body.parking,
       stayover: body.stayover,
       details: body.details,
-      image: uploadedImg,
+      image: body.avatar,
       user: user,
     });
 
@@ -57,8 +53,8 @@ EventController.list = async (req, res) => {
 
 EventController.one = async (req, res) => {
   try {
-    let { params } = req;
-    let event = await Event.findOne({ _id: params.id });
+    let { query } = req;
+    let event = await Event.findOne({ _id: query.id });
     res.send(event);
   } catch (error) {
     throw error;
@@ -67,14 +63,14 @@ EventController.one = async (req, res) => {
 
 EventController.update = async (req, res) => {
   try {
-    let { body, params } = req;
+    let { body, query } = req;
 
     let image = req.file.path;
     let uploadedImg = await cloudinary.uploader.upload(image);
     console.log("Img", uploadedImg);
 
     let event = await Event.findOneAndUpdate(
-      { _id: params.id },
+      { _id: query.id },
       {
         type: body.type,
         theme: body.theme,
@@ -104,9 +100,9 @@ EventController.update = async (req, res) => {
 
 EventController.delete = async (req, res) => {
   try {
-    let { params } = req;
+    let { query } = req;
 
-    let event = await Event.deleteOne({ _id: params.id });
+    let event = await Event.deleteOne({ _id: query.id });
     console.log("deleted", event);
     res.send("Deleted");
   } catch (error) {
