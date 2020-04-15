@@ -47,7 +47,7 @@ app.get("/show", controller.UserController.list);
 // login
 app.post("/login", controller.LoginController.login);
 //Profile
-app.post("/profile", upload.single("avatar"), controller.ProfileController.add);
+app.post("/profile", controller.ProfileController.add);
 
 //Avatar
 //update
