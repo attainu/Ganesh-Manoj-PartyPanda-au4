@@ -4,11 +4,11 @@ const EventController = {};
 
 let cloudinary = require("cloudinary").v2;
 
-cloudinary.config({
-  cloud_name: "attainu-wanderlust",
-  api_key: "285695111156914",
-  api_secret: "6GsNv5XlGNm-oAXTiyAFa_yg5Ak",
-});
+// cloudinary.config({
+//   cloud_name: "attainu-wanderlust",
+//   api_key: "285695111156914",
+//   api_secret: "6GsNv5XlGNm-oAXTiyAFa_yg5Ak",
+// });
 
 EventController.create = async (req, res) => {
   try {

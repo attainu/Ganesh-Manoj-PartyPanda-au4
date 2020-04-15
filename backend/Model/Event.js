@@ -17,8 +17,8 @@ const eventSchema = new mongoose.Schema(
     date: {
       type: Date,
     },
-    start_time: { type: Date },
-    end_timing: { type: Date },
+    start_time: { type: String },
+    end_timing: { type: String },
     strength: {
       type: Number,
     },
@@ -29,13 +29,13 @@ const eventSchema = new mongoose.Schema(
       type: String,
     },
     smoking: {
-      type: Boolean,
+      type: String,
     },
     parking: {
       type: String,
     },
     stayover: {
-      type: Boolean,
+      type: String,
     },
     details: {
       type: String,
@@ -43,11 +43,12 @@ const eventSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    user_id: {
+    user: {
       type: Object,
     },
   },
-  { collection: "events" }
+  { collection: "events",
+ }
 );
 
 const Event = mongoose.model("Event", eventSchema);
