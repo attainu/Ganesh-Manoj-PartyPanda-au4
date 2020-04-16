@@ -69,9 +69,7 @@ class CreateEvent extends React.Component {
     });
   };
 
-  componentDidMount = () => {
-    
-  }
+  
 
   render() {
     if (!localStorage.Token) {
