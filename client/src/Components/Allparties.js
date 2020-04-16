@@ -19,12 +19,12 @@ class Allparties extends React.Component {
             {allEvent.map(item =>{
               return(
                 <div className="card event mb-5" style={{ width: "35vw" }}>
-              <img className="card-img-top" src={item.image} alt="Card image cap" />
+              <img className="card-img-top" src={item.image} alt="Card image cap"  style={{"height":"300px","width":"100%"}}/>
               <div className="card-body ">
                 <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-title">{item.user.name}'s {item.theme}</h5>
+                  <h5 className="card-title">{item.host.name}'s {item.theme}</h5>
                   <p className="card-text align-self-center pt-3">
-                    Couple Party
+                    {item.type}
                   </p>
                 </div>
                 <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
