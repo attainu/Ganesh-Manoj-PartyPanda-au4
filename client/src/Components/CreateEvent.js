@@ -68,8 +68,6 @@ class CreateEvent extends React.Component {
     });
   };
 
-  componentDidMount = () => {};
-
   render() {
     if (!localStorage.Token) {
       return <Redirect to="/signin" />;

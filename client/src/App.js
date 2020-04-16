@@ -19,6 +19,7 @@ import Signin from "./Components/Signin";
 import { connect } from "react-redux";
 
 class App extends React.Component {
+
   componentDidMount = async () => {
     const token = localStorage.Token;
     if (token) {
@@ -28,23 +29,12 @@ class App extends React.Component {
       await this.props.dispatch({ type: "userData", payload: user.user });
       await this.props.dispatch({ type: "login" });
       let id = this.props.userData._id;
-      axios.get(`http://localhost:3010/one?id=${id}`).then(async (res) => {
-        await this.props.dispatch({ type: "replace", payload: res.data });
-      });
-
-      axios
-        .get(`http://localhost:3010/events`)
-        .then(async (res) => {
-          if (res) {
-            await this.props.dispatch({ type: "allEvent", payload: res.data });
-            console.log(res);
-          } else {
-            console.log("error");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      Promise.all([axios.get(`http://localhost:3010/one?id=${id}`), axios.get("http://localhost:3010/events")])
+      .then(([res1, res2]) =>{
+        this.props.dispatch({ type: "replace", payload: res1.data });
+        console.log(res2)
+        this.props.dispatch({ type: "allEvent", payload: res2.data });
+      })
     } else {
       console.log("no token available");
     }
@@ -81,6 +71,7 @@ class App extends React.Component {
 const fromStore = (state) => {
   return {
     userData: state.userData,
+    allEvent: state.allEvent
   };
 };
 
