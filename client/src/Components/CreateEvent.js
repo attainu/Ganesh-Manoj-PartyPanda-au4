@@ -5,6 +5,7 @@ import axios from "axios";
 
 class CreateEvent extends React.Component {
   state = {
+    type:"House Party",
     theme: "",
     music: "",
     location: "",
@@ -14,10 +15,10 @@ class CreateEvent extends React.Component {
     end_timing: "",
     strength: "",
     charges: "",
-    beverages: "",
-    smoking: "",
-    parking: "",
-    stayover: "",
+    beverages: "BYOB",
+    smoking: "No",
+    parking: "Yes",
+    stayover: "Yes",
     details: "",
     avatar: null,
   };
@@ -110,6 +111,16 @@ class CreateEvent extends React.Component {
                 <option>Gataway</option>
               </select>
             </div>
+            <div>
+              <label>Type:</label>
+              <select className="form-control border border-dark" name="type" value={this.state.type} onChange={this.handleChange}>
+                <option>House Party</option>
+                <option>Online Party</option>
+                <option>Outdoor Party</option>
+                <option>Pool Party</option>
+                <option>Others</option>
+              </select>
+            </div>
             <div className="pb-2">
               <label>Event Location:</label>
               <input
@@ -176,7 +187,10 @@ class CreateEvent extends React.Component {
                 required
               />
             </div>
-            <div>
+            
+          </div>
+          <div>
+          <div>
               <label>Cover Image:</label>
               <input
                 type="file"
@@ -188,8 +202,6 @@ class CreateEvent extends React.Component {
                 }}
               />
             </div>
-          </div>
-          <div>
             <div className="pb-2">
               <label>No Of People Inviting:</label>
               <input

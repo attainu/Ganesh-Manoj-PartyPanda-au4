@@ -3,9 +3,9 @@ mongoose.set("useFindAndModify", false);
 
 const eventSchema = new mongoose.Schema(
   {
-    // type: {
-    //   type: String,
-    // },
+    type: {
+      type: String,
+    },
     theme: {
       type: String,
     },
