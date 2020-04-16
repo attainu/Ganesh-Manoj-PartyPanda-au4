@@ -35,24 +35,6 @@ class App extends React.Component {
         console.log(res2)
         this.props.dispatch({ type: "allEvent", payload: res2.data });
       })
-      // let id = this.props.userData._id;
-      // axios.get(`http://localhost:3010/one?id=${id}`).then(async (res) => {
-        // await this.props.dispatch({ type: "replace", payload: res.data });
-      // });
-
-      // axios
-        // .get(`http://localhost:3010/events`)
-        // .then(async (res) => {
-        //   if (res) {
-        //     await this.props.dispatch({ type: "allEvent", payload: res.data });
-        //     console.log(res);
-        //   } else {
-        //     console.log("error");
-        //   }
-        // })
-        // .catch((err) => {
-        //   console.log(err);
-        // });
     } else {
       console.log("no token available");
     }
