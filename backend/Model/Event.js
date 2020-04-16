@@ -43,12 +43,18 @@ const eventSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    user: {
-      type: Object,
+    host: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
+    attendies: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
-  { collection: "events",
- }
+  { collection: "events" }
 );
 
 const Event = mongoose.model("Event", eventSchema);

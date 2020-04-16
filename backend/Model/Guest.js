@@ -6,10 +6,10 @@ const guestSchema = new mongoose.Schema(
     user: {
       type: Object,
     },
-    party_name: {
-      type: String,
+    party: {
+      type: Object,
     },
-    host_id: {
+    host: {
       type: Object,
     },
     status: {

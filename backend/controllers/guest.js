@@ -1,5 +1,6 @@
 const Guest = require("./../Model/Guest");
 const User = require("./../Model/User");
+const Event = require("./../Model/Guest");
 
 const GuestController = {};
 
@@ -8,12 +9,14 @@ GuestController.add = async (req, res) => {
 
   try {
     let user = await User.findOne({ _id: query.user_id });
+    let host = await User.findOne({ _id: query.host_id });
+    let party = await Event.findOne({ _id: query.party_id });
 
     let guest = await Guest.create(
       {
         user: user,
-        party_name: query.party_name,
-        host_id: query.host_id,
+        party: party,
+        host: host,
         status: false,
       },
       (error, success) => {
@@ -32,7 +35,7 @@ GuestController.add = async (req, res) => {
 GuestController.list = async (req, res) => {
   try {
     let { query } = req;
-    let guest = Guest.find({ host_id: query.host_id }, (error, success) => {
+    let guest = Guest.find({ host: query.host_id }, (error, success) => {
       if (error)
         return res.send(500, {
           status: false,
