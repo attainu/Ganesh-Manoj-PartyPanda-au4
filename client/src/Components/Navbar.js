@@ -58,7 +58,7 @@ class Navbar extends React.Component {
                 <Dropdown>
                   <Dropdown.Toggle id="dropdown-basic">
                     <img
-                      src={UserImg}
+                      src={this.props.userData.image}
                       className="rounded-circle mr-2"
                       style={{ height: "35px", width: "35px" }}
                     />

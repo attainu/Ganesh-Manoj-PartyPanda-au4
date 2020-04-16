@@ -171,7 +171,7 @@ class CreateEvent extends React.Component {
                 type="date"
                 className="form-control border border-dark"
                 name="date"
-                value={this.state.date}
+                
                 onChange={this.handleChange}
                 required
               />
