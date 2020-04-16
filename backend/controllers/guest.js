@@ -8,24 +8,11 @@ GuestController.add = async (req, res) => {
   const { query } = req;
 
   try {
-    let user = await User.findOne({ _id: query.user_id });
-    let host = await User.findOne({ _id: query.host_id });
-    let party = await Event.findOne({ _id: query.party_id });
-
-    let guest = await Guest.create(
-      {
-        user: user,
-        party: party,
-        host: host,
-        status: false,
-      },
-      (error, success) => {
-        if (error)
-          return res.send(500, {
-            message: "Failed to send request!!!",
-          });
-      }
-    );
+    let guest = await Guest.create({
+      user: query.user_id,
+      party: query.party_id,
+      status: false,
+    });
     res.send(guest);
   } catch (error) {
     throw error;
@@ -34,15 +21,20 @@ GuestController.add = async (req, res) => {
 
 GuestController.list = async (req, res) => {
   try {
-    let { query } = req;
-    let guest = Guest.find({ host: query.host_id }, (error, success) => {
-      if (error)
-        return res.send(500, {
-          status: false,
-          message: "failed to get the list",
-        });
-    });
-    res.send(guest);
+    let guest = Guest.find({})
+      .populate("user")
+      .populate({
+        path: "party",
+        modal: "Event",
+        populate: { path: "host", modal: "User" },
+      })
+      .exec(function (err, data) {
+        if (!err) {
+          res.json(data);
+        } else {
+          console.log("err err err", err);
+        }
+      });
   } catch (error) {
     throw error;
   }

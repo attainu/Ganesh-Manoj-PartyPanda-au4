@@ -4,13 +4,12 @@ mongoose.set("useFindAndModify", false);
 const guestSchema = new mongoose.Schema(
   {
     user: {
-      type: Object,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     party: {
-      type: Object,
-    },
-    host: {
-      type: Object,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Event",
     },
     status: {
       type: Boolean,
