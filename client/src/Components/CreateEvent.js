@@ -4,30 +4,29 @@ import { connect } from "react-redux";
 import axios from "axios";
 
 class CreateEvent extends React.Component {
+  state = {
+    theme: "",
+    music: "",
+    location: "",
+    exact_location: "",
+    date: null,
+    start_time: "",
+    end_timing: "",
+    strength: "",
+    charges: "",
+    beverages: "",
+    smoking: "",
+    parking: "",
+    stayover: "",
+    details: "",
+    avatar: null,
+  };
 
-  state={
-    theme:"",
-    music:"",
-    location:"",
-    exact_location:"",
-    date:null,
-    start_time:"",
-    end_timing:"",
-    strength:"",
-    charges:"",
-    beverages:"",
-    smoking:"",
-    parking:"",
-    stayover:"",
-    details:"",
-    avatar: null
-  }
-
-  handleChange = (e) =>{
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   sendData = () => {
     window.location.reload();
@@ -37,8 +36,8 @@ class CreateEvent extends React.Component {
       .post(`http://localhost:3010/create-event?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          alert("Profile updated");
-          console.log(res)
+          alert("Event Created");
+          console.log(res);
           return <Redirect to="/" />;
         } else {
           alert("Failed to Update Profile");
@@ -69,9 +68,7 @@ class CreateEvent extends React.Component {
     });
   };
 
-  componentDidMount = () => {
-    
-  }
+  componentDidMount = () => {};
 
   render() {
     if (!localStorage.Token) {
@@ -94,7 +91,13 @@ class CreateEvent extends React.Component {
             <div class="dropdown pb-2">
               <label>Theme:</label>
               <br />
-              <select className="from-control text-muted border border-dark rounded" name="theme" value={this.state.theme} onChange={this.handleChange}  style={{ width: "200px", height: "40px" }} >
+              <select
+                className="from-control text-muted border border-dark rounded"
+                name="theme"
+                value={this.state.theme}
+                onChange={this.handleChange}
+                style={{ width: "200px", height: "40px" }}
+              >
                 <option>Game Night</option>
                 <option>Laughter Party</option>
                 <option>Musical Night</option>
@@ -111,30 +114,72 @@ class CreateEvent extends React.Component {
             </div>
             <div className="pb-2">
               <label>Event Location:</label>
-              <input type="text" className="form-control border border-dark" name="location" value={this.state.location} onChange={this.handleChange} required />
+              <input
+                type="text"
+                className="form-control border border-dark"
+                name="location"
+                value={this.state.location}
+                onChange={this.handleChange}
+                required
+              />
             </div>
             <div className="pb-2">
               <label>Exact Address:</label>
-              <input type="text" className="form-control border border-dark" name="exact_location" value={this.state.exact_location} onChange={this.handleChange} required/>
+              <input
+                type="text"
+                className="form-control border border-dark"
+                name="exact_location"
+                value={this.state.exact_location}
+                onChange={this.handleChange}
+                required
+              />
             </div>
             <div className="pb-2">
               <label>Event Timing:</label>
               <div className="text-center">
-                <input type="time" className="form-control border border-dark" name="start_time" value={this.state.start_time} onChange={this.handleChange} required/>
+                <input
+                  type="time"
+                  className="form-control border border-dark"
+                  name="start_time"
+                  value={this.state.start_time}
+                  onChange={this.handleChange}
+                  required
+                />
                 <label>To:</label>
-                <input type="time" className="form-control border border-dark" name="end_timing" value={this.state.end_timing} onChange={this.handleChange} required/>
+                <input
+                  type="time"
+                  className="form-control border border-dark"
+                  name="end_timing"
+                  value={this.state.end_timing}
+                  onChange={this.handleChange}
+                  required
+                />
               </div>
             </div>
             <div className="pb-2">
               <label>Event Date</label>
-              <input type="date" className="form-control border border-dark" name="date" value={this.state.date} onChange={this.handleChange} required />
+              <input
+                type="date"
+                className="form-control border border-dark"
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+                required
+              />
             </div>
             <div>
               <label>Music:</label>
-              <input type="text" className="form-control border border-dark" name="music" value={this.state.music} onChange={this.handleChange} required/>
+              <input
+                type="text"
+                className="form-control border border-dark"
+                name="music"
+                value={this.state.music}
+                onChange={this.handleChange}
+                required
+              />
             </div>
             <div>
-            <label>Cover Image:</label>
+              <label>Cover Image:</label>
               <input
                 type="file"
                 className="form-control border border-dark"
@@ -149,16 +194,36 @@ class CreateEvent extends React.Component {
           <div>
             <div className="pb-2">
               <label>No Of People Inviting:</label>
-              <input type="number" className="form-control border border-dark" name="strength" value={this.state.strength} onChange={this.handleChange} required/>
+              <input
+                type="number"
+                className="form-control border border-dark"
+                name="strength"
+                value={this.state.strength}
+                onChange={this.handleChange}
+                required
+              />
             </div>
             <div className="pb-2">
               <label>Event charges:</label>
-              <input type="number" className="form-control border border-dark"name="charges" value={this.state.charges} onChange={this.handleChange} required/>
+              <input
+                type="number"
+                className="form-control border border-dark"
+                name="charges"
+                value={this.state.charges}
+                onChange={this.handleChange}
+                required
+              />
             </div>
             <div className="pb-2">
               <label>Parking Available:</label>
               <br />
-              <select className="from-control text-muted border border-dark rounded" name="parking" value={this.state.parking} onChange={this.handleChange} style={{ width: "200px", height: "40px" }}>
+              <select
+                className="from-control text-muted border border-dark rounded"
+                name="parking"
+                value={this.state.parking}
+                onChange={this.handleChange}
+                style={{ width: "200px", height: "40px" }}
+              >
                 <option>Yes</option>
                 <option>No</option>
                 <option>OnRoad</option>
@@ -167,7 +232,13 @@ class CreateEvent extends React.Component {
             <div className="pb-2">
               <label>StayOver:</label>
               <br />
-              <select className="from-control text-muted border border-dark rounded" name="stayover" value={this.state.stayover} onChange={this.handleChange}style={{ width: "200px", height: "40px" }}>
+              <select
+                className="from-control text-muted border border-dark rounded"
+                name="stayover"
+                value={this.state.stayover}
+                onChange={this.handleChange}
+                style={{ width: "200px", height: "40px" }}
+              >
                 <option>Yes</option>
                 <option>No</option>
               </select>
@@ -175,7 +246,13 @@ class CreateEvent extends React.Component {
             <div className="pb-2">
               <label>Smoking Allowed:</label>
               <br />
-              <select className="from-control text-muted border border-dark rounded" name="smoking" value={this.state.smoking} onChange={this.handleChange} style={{ width: "200px", height: "40px" }} >
+              <select
+                className="from-control text-muted border border-dark rounded"
+                name="smoking"
+                value={this.state.smoking}
+                onChange={this.handleChange}
+                style={{ width: "200px", height: "40px" }}
+              >
                 <option>Yes</option>
                 <option>No</option>
               </select>
@@ -183,7 +260,13 @@ class CreateEvent extends React.Component {
             <div className="pb-2">
               <label>Beverages:</label>
               <br />
-              <select className="from-control border border-dark rounded text-muted" name="beverages" value={this.state.beverages} onChange={this.handleChange} style={{ width: "200px", height: "40px" }}>
+              <select
+                className="from-control border border-dark rounded text-muted"
+                name="beverages"
+                value={this.state.beverages}
+                onChange={this.handleChange}
+                style={{ width: "200px", height: "40px" }}
+              >
                 <option>BYOB</option>
                 <option>Not Allowed</option>
                 <option>On the House</option>
@@ -192,12 +275,23 @@ class CreateEvent extends React.Component {
             <div>
               <label>Event Description:</label>
               <br />
-              <textarea className="border border-dark" name="details" value={this.state.details} onChange={this.handleChange} style={{ width: "200px" }}/>
+              <textarea
+                className="border border-dark"
+                name="details"
+                value={this.state.details}
+                onChange={this.handleChange}
+                style={{ width: "200px" }}
+              />
             </div>
           </div>
         </div>
         <div className="d-flex justify-content-center py-5">
-          <button className="btn" id="send" style={{ "border-radius": "20px" }} onClick={this.sendData}>
+          <button
+            className="btn"
+            id="send"
+            style={{ "border-radius": "20px" }}
+            onClick={this.sendData}
+          >
             Create Event
           </button>
         </div>

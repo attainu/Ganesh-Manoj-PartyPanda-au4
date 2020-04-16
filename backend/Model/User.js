@@ -36,11 +36,11 @@ const userSchema = new mongoose.Schema(
     profession: {
       type: String,
     },
-    location:{
-      type:String
+    location: {
+      type: String,
     },
-    gender:{
-      type:String
+    gender: {
+      type: String,
     },
     company: { type: String },
   },

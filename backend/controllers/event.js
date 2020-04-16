@@ -14,8 +14,6 @@ EventController.create = async (req, res) => {
   try {
     const { body, query } = req;
 
-    let user = await User.findOne({ _id: query.id });
-
     let event = await Event.create({
       type: body.type,
       theme: body.theme,
@@ -33,7 +31,7 @@ EventController.create = async (req, res) => {
       stayover: body.stayover,
       details: body.details,
       image: body.avatar,
-      user: user,
+      host: query.id,
     });
 
     res.send(event);
@@ -44,7 +42,7 @@ EventController.create = async (req, res) => {
 
 EventController.list = async (req, res) => {
   try {
-    let events = await Event.find({});
+    let events = await Event.find({}).populate("host");
     res.send(events);
   } catch (error) {
     throw error;
@@ -54,7 +52,7 @@ EventController.list = async (req, res) => {
 EventController.one = async (req, res) => {
   try {
     let { query } = req;
-    let event = await Event.findOne({ _id: query.id });
+    let event = await Event.findOne({ _id: query.id }).populate("host");
     res.send(event);
   } catch (error) {
     throw error;
