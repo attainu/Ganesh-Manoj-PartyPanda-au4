@@ -22,18 +22,20 @@ class App extends React.Component {
 
   componentDidMount = async () => {
     const token = localStorage.Token;
+
+    axios.get("http://localhost:3010/events").then((res)=>{
+      this.props.dispatch({ type: "allEvent", payload: res.data });
+    })
+
     if (token) {
       console.log("token is available");
       const user = jwt_decode(token);
-
       await this.props.dispatch({ type: "userData", payload: user.user });
       await this.props.dispatch({ type: "login" });
       let id = this.props.userData._id;
-      Promise.all([axios.get(`http://localhost:3010/one?id=${id}`), axios.get("http://localhost:3010/events")])
-      .then(([res1, res2]) =>{
-        this.props.dispatch({ type: "replace", payload: res1.data });
-        console.log(res2)
-        this.props.dispatch({ type: "allEvent", payload: res2.data });
+      axios.get(`http://localhost:3010/one?id=${id}`)
+      .then((res) =>{
+        this.props.dispatch({ type: "replace", payload: res.data });
       })
     } else {
       console.log("no token available");
