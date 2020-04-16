@@ -7,7 +7,7 @@ import "./../style/allparties.css";
 
 class Allparties extends React.Component {
   render() {
-    let allEvents = this.props.allEvents;
+    let allEvent = this.props.allEvent;
     return (
       <Fragment>
         <div className="d-flex flex-column flex-nowrap justify-content-center container-fluid pb-5 pl-5 pr-5 wrapper ">
@@ -16,51 +16,25 @@ class Allparties extends React.Component {
             <hr />
           </center>
           <div className="d-flex flex-row flex-wrap justify-content-around">
-            <div className="card event mb-5" style={{ width: "35vw" }}>
-              <img className="card-img-top" src={Dome} alt="Card image cap" />
+            {allEvent.map(item =>{
+              return(
+                <div className="card event mb-5" style={{ width: "35vw" }}>
+              <img className="card-img-top" src={item.image} alt="Card image cap" />
               <div className="card-body ">
                 <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-title">Manisha's House Party</h5>
+                  <h5 className="card-title">{item.user.name}'s {item.theme}</h5>
                   <p className="card-text align-self-center pt-3">
                     Couple Party
                   </p>
                 </div>
                 <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-text">Andheri Mumbai</h5>
-                  <p className="card-text">Sat, 14-May | 8.00 pm</p>
+                  <h5 className="card-text">{item.location}</h5>
+              <p className="card-text">{item.date} |  {item.start_time} to {item.end_timing}</p>
                 </div>
               </div>
             </div>
-            <div className="card event mb-5" style={{ width: "35vw" }}>
-              <img className="card-img-top" src={Dome} alt="Card image cap" />
-              <div className="card-body ">
-                <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-title">Manisha's House Party</h5>
-                  <p className="card-text align-self-center pt-3">
-                    Couple Party
-                  </p>
-                </div>
-                <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-text">Andheri Mumbai</h5>
-                  <p className="card-text">Sat, 14-May | 8.00 pm</p>
-                </div>
-              </div>
-            </div>
-            <div className="card event mb-5" style={{ width: "35vw" }}>
-              <img className="card-img-top" src={Dome} alt="Card image cap" />
-              <div className="card-body ">
-                <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-title">Manisha's House Party</h5>
-                  <p className="card-text align-self-center pt-3">
-                    Couple Party
-                  </p>
-                </div>
-                <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-text">Andheri Mumbai</h5>
-                  <p className="card-text">Sat, 14-May | 8.00 pm</p>
-                </div>
-              </div>
-            </div>
+              )
+            })}
           </div>
         </div>
       </Fragment>
@@ -71,6 +45,7 @@ class Allparties extends React.Component {
 const fromStroe = (state) => {
   return {
     show: state.show,
+    allEvent: state.allEvent
   };
 };
 export default connect(fromStroe)(Allparties);

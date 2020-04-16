@@ -33,7 +33,7 @@ const appReducer = (state = inState, action) => {
       return copy;
 
     case "allEvent":
-      copy.allEvent = [...copy.allEvent, action.payload];
+      copy.allEvent =  action.payload;
       return copy;  
     default:
       return copy;
