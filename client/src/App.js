@@ -73,7 +73,9 @@ class App extends React.Component {
 const fromStore = (state) => {
   return {
     userData: state.userData,
-    allEvent: state.allEvent
+    allEvent: state.allEvent,
+    selectedEventId : state.selectedEventId,
+    selectedEventData: state.selectedEventData
   };
 };
 

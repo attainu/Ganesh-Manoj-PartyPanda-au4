@@ -3,7 +3,9 @@ import { createStore } from "redux";
 let inState = {
   userData: [],
   isLogin: false,
-  allEvent: []
+  allEvent: [],
+  selectedEventId:"",
+  selectedEventData:[]
 };
 
 const appReducer = (state = inState, action) => {
@@ -35,6 +37,15 @@ const appReducer = (state = inState, action) => {
     case "allEvent":
       copy.allEvent =  action.payload;
       return copy;  
+    
+    case "eventId":
+      copy.selectedEventId = action.payload;
+      return copy;
+
+    case "eventData":
+      copy.selectedEventData = action.payload;
+      return copy;
+        
     default:
       return copy;
   }

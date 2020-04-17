@@ -1,14 +1,33 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
-
+import {connect} from "react-redux";
+import axios from "axios";
 class EventDetail extends React.Component{
+
+    componentDidMount = () =>{
+        let id = this.props.selectedEventId;
+        axios.get(`http://localhost:3010/event?id=${id}`).then(
+            res => {
+                // console.log(res.data.host.name)
+                this.props.dispatch({type:"eventData", payload: res.data})
+
+            }
+        ).catch(
+            err => console.log(err)
+        )
+    }
+
     render(){
+        if(!this.props.selectedEventId){
+            return <Redirect to="/allevents" />
+        }
         if(!localStorage.Token){
             return <Redirect to="/signin" />
           }
+          let event = this.props.selectedEventData;
         return(
             <div className="container-fluid d-flex bg-light flex-column ">
-                <h1 className="text-center text-dark">Avinash's Outdoor Party</h1>
+                <h1 className="text-center text-dark">{event.type}'s Outdoor Party</h1>
                 {/* content */}
                 <div className="container d-flex flex-column flex-nowrap mt-1 ">
                     <div className="d-flex flex-column">
@@ -100,4 +119,12 @@ class EventDetail extends React.Component{
     }
 }
 
-export default EventDetail;
+const fromStroe = (state) => {
+    return {
+      show: state.show,
+      allEvent: state.allEvent,
+      selectedEventId: state.selectedEventId,
+      selectedEventData: state.selectedEventData
+    };
+  };
+  export default connect(fromStroe)(EventDetail);
