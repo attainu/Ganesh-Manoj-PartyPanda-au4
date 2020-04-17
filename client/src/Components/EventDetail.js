@@ -30,7 +30,7 @@ class EventDetail extends React.Component {
         {host ? (
           <div className="container-fluid d-flex bg-light flex-column ">
             <h1 className="text-center text-dark">
-              {host.name}'s Outdoor Party
+              {host.name}'s {event.theme}
             </h1>
             {/* content */}
             <div className="container d-flex flex-column flex-nowrap mt-1 ">
@@ -45,6 +45,7 @@ class EventDetail extends React.Component {
                       style={{ width: "40px", height: "40px" }}
                     />
                     <p>Parking</p>
+                    <p>{event.parking}</p>
                   </div>
                   <div className="d-flex flex-column justify-content-center">
                     <img
@@ -52,6 +53,7 @@ class EventDetail extends React.Component {
                       style={{ width: "40px", height: "40px" }}
                     />
                     <p>Smoking</p>
+                    <p>{event.smoking}</p>
                   </div>
                   <div className="d-flex flex-column justify-content-center">
                     <img
@@ -59,13 +61,15 @@ class EventDetail extends React.Component {
                       style={{ width: "40px", height: "40px" }}
                     />
                     <p>Stayover</p>
+                    <p>{event.stayover}</p>
                   </div>
                   <div className="d-flex flex-column justify-content-center">
                     <img
                       src="https://img.icons8.com/ios-filled/50/000000/alcoholic-beverage-licensing.png"
                       style={{ width: "40px", height: "40px" }}
                     />
-                    <p>BYOB</p>
+                    <p>Beverages</p>
+                    <p>{event.beverages}</p>
                   </div>
                 </div>
                 <div className="card mt-1 bg-light" style={{ border: "none" }}>
@@ -96,7 +100,7 @@ class EventDetail extends React.Component {
                               style={{ width: "30px", height: "30px" }}
                             />
                             <p className="text-muted pt-1 ml-1">
-                              Meghalaya (Revealed after payment)
+                             {event.location} (Revealed after payment)
                             </p>
                           </div>
                           <div
@@ -107,7 +111,7 @@ class EventDetail extends React.Component {
                               src="https://img.icons8.com/ios-glyphs/30/000000/apple-music.png"
                               style={{ width: "30px", height: "30px" }}
                             />
-                            <p className="text-muted pt-1 ml-1">Nature</p>
+                            <p className="text-muted pt-1 ml-1">{event.music}</p>
                           </div>
                         </div>
                       </div>
@@ -119,10 +123,7 @@ class EventDetail extends React.Component {
                           What to expects?
                         </h3>
                         <p className="text-muted pt-4">
-                          It is a one of a Kind outdoor experiance, and i am
-                          here to look for 3 more like-minded people to join my
-                          group. Full itinerary will be shared on WhatsApp. It's
-                          a 5N/6D plan on caravan.
+                          {event.details}
                         </p>
                       </div>
                     </div>
