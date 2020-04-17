@@ -40,12 +40,12 @@ class EventDetail extends React.Component {
                   style={{ borderRadius: "20px", backgroundColor: "gainsboro" }}
                 >
                   <div className="d-flex flex-column justify-content-center">
-                    <img
+                    <img  className="text-center"
                       src="https://img.icons8.com/ios-filled/50/000000/parking.png"
                       style={{ width: "40px", height: "40px" }}
                     />
-                    <p>Parking</p>
-                    <p>{event.parking}</p>
+                    <p  className="text-center">Parking</p>
+                    <p  className="text-center">{event.parking}</p>
                   </div>
                   <div className="d-flex flex-column justify-content-center">
                     <img
@@ -53,7 +53,7 @@ class EventDetail extends React.Component {
                       style={{ width: "40px", height: "40px" }}
                     />
                     <p>Smoking</p>
-                    <p>{event.smoking}</p>
+                    <p className="text-center">{event.smoking}</p>
                   </div>
                   <div className="d-flex flex-column justify-content-center">
                     <img
@@ -61,7 +61,7 @@ class EventDetail extends React.Component {
                       style={{ width: "40px", height: "40px" }}
                     />
                     <p>Stayover</p>
-                    <p>{event.stayover}</p>
+                    <p  className="text-center">{event.stayover}</p>
                   </div>
                   <div className="d-flex flex-column justify-content-center">
                     <img
@@ -69,7 +69,7 @@ class EventDetail extends React.Component {
                       style={{ width: "40px", height: "40px" }}
                     />
                     <p>Beverages</p>
-                    <p>{event.beverages}</p>
+                    <p  className="text-center">{event.beverages}</p>
                   </div>
                 </div>
                 <div className="card mt-1 bg-light" style={{ border: "none" }}>
@@ -158,13 +158,10 @@ class EventDetail extends React.Component {
                         <h3 className=" pt-1 pb-2 text-dark">Host</h3>
 
                         <h5 className="pl-3" style={{ textAlign: "left" }}>
-                          Ayush Singh
+                          {host.name}
                         </h5>
                         <p className="text-muted text-left pl-3 pt-3">
-                          Ex-IITian, aerospace engineer by profession and avid
-                          traveller and explorer by passion, I'hv founded
-                          KarwaanJourney with the mission of introducing caravan
-                          travel experiance in India.
+                          {host.bio}
                         </p>
                       </div>
                     </div>
@@ -175,10 +172,10 @@ class EventDetail extends React.Component {
                   style={{ fontSize: "20px" }}
                 >
                   <p>
-                    <b>Cost per person: 15000</b>
+                    <b>Cost per person: {event.charges}</b>
                   </p>
                   <p>
-                    <b>Inviting People: 6</b>
+                    <b>Inviting People: {event.strength}</b>
                   </p>
                 </div>
               </div>
