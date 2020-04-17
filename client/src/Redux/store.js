@@ -4,8 +4,9 @@ let inState = {
   userData: [],
   isLogin: false,
   allEvent: [],
-  selectedEventId:"",
-  selectedEventData:[]
+  attending: [],
+  selectedEventId: "",
+  selectedEventData: [],
 };
 
 const appReducer = (state = inState, action) => {
@@ -35,9 +36,9 @@ const appReducer = (state = inState, action) => {
       return copy;
 
     case "allEvent":
-      copy.allEvent =  action.payload;
-      return copy;  
-    
+      copy.allEvent = action.payload;
+      return copy;
+
     case "eventId":
       copy.selectedEventId = action.payload;
       return copy;
@@ -45,7 +46,11 @@ const appReducer = (state = inState, action) => {
     case "eventData":
       copy.selectedEventData = action.payload;
       return copy;
-         
+
+    case "attending":
+      copy.attending = action.payload;
+      return copy;
+
     default:
       return copy;
   }
