@@ -18,7 +18,7 @@ const appReducer = (state = inState, action) => {
 
     case "login":
       copy.isLogin = true;
-      console.log("login", copy.isLogin);
+      // console.log("login", copy.isLogin);
       return copy;
 
     case "loginFalse":
@@ -45,7 +45,7 @@ const appReducer = (state = inState, action) => {
     case "eventData":
       copy.selectedEventData = action.payload;
       return copy;
-        
+         
     default:
       return copy;
   }

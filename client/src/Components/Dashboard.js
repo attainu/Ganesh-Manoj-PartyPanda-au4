@@ -21,13 +21,13 @@ class Dashboard extends React.Component {
       signup = false;
     }
     this.setState({ login: login, signup: signup }, () => {
-      console.log("State", this.state);
+      // console.log("State", this.state);
     });
   }
 
   render() {
     let show = this.props.show;
-    console.log(show);
+    // console.log(show);
     if(!localStorage.Token){
       return <Redirect to="/signin" />
     }
