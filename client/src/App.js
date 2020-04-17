@@ -28,7 +28,7 @@ class App extends React.Component {
     });
 
     if (token) {
-      console.log("token is available");
+      // console.log("token is available");
       const user = jwt_decode(token);
       await this.props.dispatch({ type: "userData", payload: user.user });
       await this.props.dispatch({ type: "login" });

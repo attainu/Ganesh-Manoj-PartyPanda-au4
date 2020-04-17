@@ -33,7 +33,7 @@ LoginController.login = async (req, res) => {
           };
           jwt.sign(payload, secret, { expiresIn: "30m" }, (err, token) => {
             if (token) {
-              console.log(token);
+              // console.log(token);
               res.json({
                 token: token,
               });
