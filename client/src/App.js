@@ -74,8 +74,8 @@ const fromStore = (state) => {
   return {
     userData: state.userData,
     allEvent: state.allEvent,
-    selectedEventId : state.selectedEventId,
-    selectedEventData: state.selectedEventData
+    selectedEventId: state.selectedEventId,
+    selectedEventData: state.selectedEventData,
   };
 };
 
