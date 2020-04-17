@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 class EventDetail extends React.Component {
@@ -13,6 +13,19 @@ class EventDetail extends React.Component {
       })
       .catch((err) => console.log(err));
   };
+
+  handleSend() {
+    let user_id = this.props.userData._id;
+    let party_id = this.props.selectedEventId;
+
+    axios
+      .post(
+        `http://localhost:3010/join?user_id=${user_id}&party_id=${party_id}`
+      )
+      .then((res) => {
+        alert("Requested to join!");
+      });
+  }
 
   render() {
     if (!this.props.selectedEventId) {
@@ -40,12 +53,13 @@ class EventDetail extends React.Component {
                   style={{ borderRadius: "20px", backgroundColor: "gainsboro" }}
                 >
                   <div className="d-flex flex-column justify-content-center">
-                    <img  className="text-center"
+                    <img
+                      className="text-center"
                       src="https://img.icons8.com/ios-filled/50/000000/parking.png"
                       style={{ width: "40px", height: "40px" }}
                     />
-                    <p  className="text-center">Parking</p>
-                    <p  className="text-center">{event.parking}</p>
+                    <p className="text-center">Parking</p>
+                    <p className="text-center">{event.parking}</p>
                   </div>
                   <div className="d-flex flex-column justify-content-center">
                     <img
@@ -61,7 +75,7 @@ class EventDetail extends React.Component {
                       style={{ width: "40px", height: "40px" }}
                     />
                     <p>Stayover</p>
-                    <p  className="text-center">{event.stayover}</p>
+                    <p className="text-center">{event.stayover}</p>
                   </div>
                   <div className="d-flex flex-column justify-content-center">
                     <img
@@ -69,7 +83,7 @@ class EventDetail extends React.Component {
                       style={{ width: "40px", height: "40px" }}
                     />
                     <p>Beverages</p>
-                    <p  className="text-center">{event.beverages}</p>
+                    <p className="text-center">{event.beverages}</p>
                   </div>
                 </div>
                 <div className="card mt-1 bg-light" style={{ border: "none" }}>
@@ -100,7 +114,7 @@ class EventDetail extends React.Component {
                               style={{ width: "30px", height: "30px" }}
                             />
                             <p className="text-muted pt-1 ml-1">
-                             {event.location} (Revealed after payment)
+                              {event.location} (Revealed after payment)
                             </p>
                           </div>
                           <div
@@ -111,7 +125,9 @@ class EventDetail extends React.Component {
                               src="https://img.icons8.com/ios-glyphs/30/000000/apple-music.png"
                               style={{ width: "30px", height: "30px" }}
                             />
-                            <p className="text-muted pt-1 ml-1">{event.music}</p>
+                            <p className="text-muted pt-1 ml-1">
+                              {event.music}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -122,9 +138,7 @@ class EventDetail extends React.Component {
                         <h3 className=" pt-1 pb-2 text-dark">
                           What to expects?
                         </h3>
-                        <p className="text-muted pt-4">
-                          {event.details}
-                        </p>
+                        <p className="text-muted pt-4">{event.details}</p>
                       </div>
                     </div>
                     <div className="d-flex flex-row flex-wrap justify-content-around mt-1">
@@ -185,6 +199,9 @@ class EventDetail extends React.Component {
               <button
                 className="btn btn-secondary"
                 style={{ borderRadius: "20px" }}
+                onClick={() => {
+                  this.handleSend();
+                }}
               >
                 Join Event
               </button>
@@ -201,6 +218,7 @@ class EventDetail extends React.Component {
 const fromStroe = (state) => {
   return {
     show: state.show,
+    userData: state.userData,
     allEvent: state.allEvent,
     selectedEventId: state.selectedEventId,
     selectedEventData: state.selectedEventData,
