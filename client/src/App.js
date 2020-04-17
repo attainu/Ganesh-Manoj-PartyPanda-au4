@@ -13,19 +13,19 @@ import "./style/app.css";
 import EventDetail from "./Components/EventDetail";
 import MyEventDetail from "./Components/MyEventDetail";
 import ProfileUpdate from "./Components/ProfileUpdate";
+import GuestList from "./Components/GuestList";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import Signin from "./Components/Signin";
 import { connect } from "react-redux";
 
 class App extends React.Component {
-
   componentDidMount = async () => {
     const token = localStorage.Token;
 
-    axios.get("http://localhost:3010/events").then((res)=>{
+    axios.get("http://localhost:3010/events").then((res) => {
       this.props.dispatch({ type: "allEvent", payload: res.data });
-    })
+    });
 
     if (token) {
       console.log("token is available");
@@ -33,10 +33,9 @@ class App extends React.Component {
       await this.props.dispatch({ type: "userData", payload: user.user });
       await this.props.dispatch({ type: "login" });
       let id = this.props.userData._id;
-      axios.get(`http://localhost:3010/one?id=${id}`)
-      .then((res) =>{
+      axios.get(`http://localhost:3010/one?id=${id}`).then((res) => {
         this.props.dispatch({ type: "replace", payload: res.data });
-      })
+      });
     } else {
       console.log("no token available");
     }
@@ -59,6 +58,7 @@ class App extends React.Component {
               <Route exact path="/event-detail" component={EventDetail} />
               <Route exact path="/myevent-detail" component={MyEventDetail} />
               <Route exact path="/profile-update" component={ProfileUpdate} />
+              <Route exact path="/guest" component={GuestList} />
             </Router>
           </div>
           <div id="footer">
