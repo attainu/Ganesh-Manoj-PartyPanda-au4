@@ -34,6 +34,7 @@ class EventDetail extends React.Component {
     if (!localStorage.Token) {
       return <Redirect to="/signin" />;
     }
+
     let event = this.props.selectedEventData;
     let host = event.host;
     if (host) console.log("Event", host.name);

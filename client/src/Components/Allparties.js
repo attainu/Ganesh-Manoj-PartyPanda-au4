@@ -1,9 +1,8 @@
 import React, { Fragment } from "react";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Dome from "./../images/dome.jpg";
 import "./../style/allparties.css";
-
 
 class Allparties extends React.Component {
  sendId =(data) =>{
@@ -17,8 +16,8 @@ class Allparties extends React.Component {
     }
  }
   render() {
-    if(this.props.selectedEventId){
-      return <Redirect to="/event-detail" />
+    if (this.props.selectedEventId) {
+      return <Redirect to="/event-detail" />;
     }
     if(this.props.selectedMyEventId){
       return <Redirect to="/myevent-detail" />
@@ -34,24 +33,37 @@ class Allparties extends React.Component {
             <hr />
           </center>
           <div className="d-flex flex-row flex-wrap justify-content-around">
-            {allEvent.map(item =>{
-              return(
-                <div className="card event mb-5" style={{ width: "35vw" }} onClick={() =>this.sendId(item)}>
-              <img className="card-img-top" src={item.image} alt="Card image cap"  style={{"height":"300px","width":"100%"}}/>
-              <div className="card-body ">
-                <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-title">{item.host.name}'s {item.theme}</h5>
-                  <p className="card-text align-self-center pt-3">
-                    {item.type}
-                  </p>
+            {allEvent.map((item) => {
+              return (
+                <div
+                  className="card event mb-5"
+                  style={{ width: "35vw" }}
+                  onClick={() => this.sendId(item)}
+                >
+                  <img
+                    className="card-img-top"
+                    src={item.image}
+                    alt="Card image cap"
+                    style={{ height: "300px", width: "100%" }}
+                  />
+                  <div className="card-body ">
+                    <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
+                      <h5 className="card-title">
+                        {item.host.name}'s {item.type}
+                      </h5>
+                      <p className="card-text align-self-center pt-3">
+                        {item.theme}
+                      </p>
+                    </div>
+                    <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
+                      <h5 className="card-text">{item.location}</h5>
+                      <p className="card-text">
+                        {item.date} | {item.start_time} to {item.end_timing}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                  <h5 className="card-text">{item.location}</h5>
-              <p className="card-text">{item.date} |  {item.start_time} to {item.end_timing}</p>
-                </div>
-              </div>
-            </div>
-              )
+              );
             })}
           </div>
         </div>

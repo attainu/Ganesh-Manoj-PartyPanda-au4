@@ -44,6 +44,10 @@ const appReducer = (state = inState, action) => {
       copy.selectedEventId = action.payload;
       return copy;
 
+    case "back":
+      copy.selectedEventId = "";
+      return copy;
+
     case "eventData":
       copy.selectedEventData = action.payload;
       return copy;

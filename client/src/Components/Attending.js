@@ -20,15 +20,22 @@ class Attending extends React.Component {
     await this.props.dispatch({ type: "attending", payload: result });
   }
 
-  sendId = (id) => {
+  sendId = async (id) => {
     console.log(id);
-    this.props.dispatch({ type: "eventId", payload: id });
+    await this.props.dispatch({ type: "eventId", payload: id });
+    if (this.props.selectedEventId) {
+      return <Redirect to="/event-detail" />;
+    }
   };
 
   render() {
     if (this.props.selectedEventId) {
       return <Redirect to="/event-detail" />;
     }
+    window.onhashchange = function () {
+      this.props.dispatch({ type: "back" });
+    };
+
     return (
       <Fragment>
         {console.log(this.props.attending)}
