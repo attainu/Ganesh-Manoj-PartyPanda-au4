@@ -50,6 +50,7 @@ class Attending extends React.Component {
                     className="card-img-top"
                     src={elem.party.image}
                     alt="Card image cap"
+                    style={{"height":"300px","width":"100%"}}
                   />
                   <div className="card-body ">
                     <div className="d-flex flex-row justify-content-between flex-wrap pb-2">

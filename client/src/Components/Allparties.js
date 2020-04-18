@@ -8,7 +8,7 @@ import "./../style/allparties.css";
 class Allparties extends React.Component {
  sendId =(data) =>{
    let id = data._id;
-   console.log(id);
+  //  console.log(id);
   this.props.dispatch({type:"eventId", payload: id})
  }
   render() {
