@@ -8,14 +8,24 @@ import "./../style/allparties.css";
 class Allparties extends React.Component {
  sendId =(data) =>{
    let id = data._id;
-  //  console.log(id);
-  this.props.dispatch({type:"eventId", payload: id})
+   let user = this.props.userData;
+  //  console.log(user);
+    if(data.host._id === user._id){
+      this.props.dispatch({type:"myeventId", payload: id})
+    }else{
+      this.props.dispatch({type:"eventId", payload: id})
+    }
  }
   render() {
     if(this.props.selectedEventId){
       return <Redirect to="/event-detail" />
     }
+    if(this.props.selectedMyEventId){
+      return <Redirect to="/myevent-detail" />
+    }
+
     let allEvent = this.props.allEvent;
+
     return (
       <Fragment>
         <div className="d-flex flex-column flex-nowrap justify-content-center container-fluid pb-5 pl-5 pr-5 wrapper ">
@@ -54,7 +64,10 @@ const fromStroe = (state) => {
   return {
     show: state.show,
     allEvent: state.allEvent,
-    selectedEventId: state.selectedEventId
+    selectedEventId: state.selectedEventId,
+    selectedEventData: state.selectedEventData,
+    userData: state.userData,
+    selectedMyEventId: state.selectedMyEventId
   };
 };
 export default connect(fromStroe)(Allparties);
