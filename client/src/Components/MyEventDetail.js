@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
+import GuestList from "./../Components/GuestList";
 
 class MyEventDetail extends React.Component {
   componentDidMount = () => {
@@ -25,6 +26,9 @@ class MyEventDetail extends React.Component {
       .delete(`http://localhost:3010/event?id=${id}`)
       .then((res) => {
         console.log(res.data);
+        this.props.dispatch({ type: "removeMyEventId" }, () => {
+          return window.location.reload;
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -40,7 +44,7 @@ class MyEventDetail extends React.Component {
     let event = this.props.selectedEventData;
 
     return (
-      <div className="container-fluid d-flex bg-light flex-column ">
+      <div className="container-fluid d-flex bg-light flex-column pb-5">
         <h1 className="text-center text-dark">My {event.type}</h1>
         {/* content */}
         <div className="container d-flex flex-column flex-nowrap mt-1 ">
@@ -181,10 +185,22 @@ class MyEventDetail extends React.Component {
           >
             Edit Event
           </button>
-          <button className="btn btn-danger" style={{ borderRadius: "20px" }}>
+          <button
+            className="btn btn-danger"
+            style={{ borderRadius: "20px" }}
+            onClick={() => {
+              this.handleDelete();
+            }}
+          >
             Delete Event
           </button>
         </div>
+
+        <center className=" pt-4 ">
+          <h4 className="pages">Guest List</h4>
+          <hr />
+        </center>
+        <GuestList />
       </div>
     );
   }

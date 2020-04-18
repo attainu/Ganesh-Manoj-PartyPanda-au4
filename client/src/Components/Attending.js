@@ -1,23 +1,20 @@
 import React, { Fragment } from "react";
-
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
-import Dome from "./../images/dome.jpg";
 import "./../style/allparties.css";
+import dome from "./../images/dome.jpg";
 import axios from "axios";
 
 class Attending extends React.Component {
-  async componentDidMount() {
+  async componentWillMount() {
     let res = await axios.get("http://localhost:3010/join");
 
     let result = await res.data.map((elem, index) => {
-      if (this.props.userData._id === elem.user._id) {
-        return elem;
-      }
+      if (this.props.userData._id === elem.user._id) return elem;
     });
-
-    await this.props.dispatch({ type: "attending", payload: result });
+    if (result) {
+      await this.props.dispatch({ type: "attending", payload: result });
+    }
   }
 
   sendId = async (id) => {
@@ -57,8 +54,9 @@ class Attending extends React.Component {
                     className="card-img-top"
                     src={elem.party.image}
                     alt="Card image cap"
-                    style={{"height":"300px","width":"100%"}}
+                    style={{ height: "300px", width: "100%" }}
                   />
+
                   <div className="card-body ">
                     <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
                       <h5 className="card-title">
