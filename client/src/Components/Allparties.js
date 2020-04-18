@@ -39,10 +39,10 @@ class Allparties extends React.Component {
                   <div className="card-body ">
                     <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
                       <h5 className="card-title">
-                        {item.host.name}'s {item.theme}
+                        {item.host.name}'s {item.type}
                       </h5>
                       <p className="card-text align-self-center pt-3">
-                        {item.type}
+                        {item.theme}
                       </p>
                     </div>
                     <div className="d-flex flex-row justify-content-between flex-wrap pb-2">

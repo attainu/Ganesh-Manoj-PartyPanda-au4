@@ -2,14 +2,6 @@ const Event = require("../Model/Event");
 const User = require("./../Model/User");
 const EventController = {};
 
-let cloudinary = require("cloudinary").v2;
-
-cloudinary.config({
-  cloud_name: "attainu-wanderlust",
-  api_key: "285695111156914",
-  api_secret: "6GsNv5XlGNm-oAXTiyAFa_yg5Ak",
-});
-
 EventController.create = async (req, res) => {
   try {
     const { body, query } = req;
@@ -63,10 +55,6 @@ EventController.update = async (req, res) => {
   try {
     let { body, query } = req;
 
-    let image = req.file.path;
-    let uploadedImg = await cloudinary.uploader.upload(image);
-    console.log("Img", uploadedImg);
-
     let event = await Event.findOneAndUpdate(
       { _id: query.id },
       {
@@ -85,7 +73,7 @@ EventController.update = async (req, res) => {
         parking: body.parking,
         stayover: body.stayover,
         details: body.details,
-        image: uploadedImg,
+        image: body.avatar,
       },
       { new: true }
     );

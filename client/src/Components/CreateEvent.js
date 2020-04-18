@@ -304,6 +304,21 @@ class CreateEvent extends React.Component {
             id="send"
             style={{ "border-radius": "20px" }}
             onClick={this.sendData}
+            disabled={
+              !this.state.theme |
+              !this.state.music |
+              !this.state.location |
+              !this.state.exact_location |
+              !this.state.date |
+              !this.state.start_time |
+              !this.state.end_timing |
+              !this.state.strength |
+              !this.state.charges |
+              this.state.details |
+              this.state.avatar
+                ? true
+                : false
+            }
           >
             Create Event
           </button>
