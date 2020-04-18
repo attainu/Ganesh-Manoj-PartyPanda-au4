@@ -1,12 +1,15 @@
 import React, { Fragment } from "react";
 
 import { connect } from "react-redux";
-
+import {Redirect} from "react-router-dom";
 import Dome from "./../images/dome.jpg";
 import "./../style/allparties.css";
 
 class Myparty extends React.Component {
   
+  sendId = (id) =>{
+    this.props.dispatch({type:"myeventId", payload: id})
+  }
   render() {
       let events = this.props.allEvent;
       let user = this.props.userData;
@@ -16,11 +19,13 @@ class Myparty extends React.Component {
             if(event.host._id == user._id){
               myEvent.push(event);
             }else{
-              console.log("not matched")
+              // console.log("not matched")
             }
           }
         );
-        console.log(myEvent)
+        if(this.props.selectedMyEventId){
+          return <Redirect to="/myevent-detail" />
+        }
     return (
       <Fragment>
         <div className="d-flex flex-column flex-nowrap justify-content-center container-fluid pb-5 pl-5 pr-5 wrapper ">
@@ -31,7 +36,7 @@ class Myparty extends React.Component {
           <div className="d-flex flex-row flex-wrap justify-content-around">
             {myEvent.map( event =>{
               return (
-                <div className="card event mb-5" style={{ width: "35vw" }}>
+                <div className="card event mb-5" style={{ width: "35vw" }} onClick={()=> this.sendId(event._id)}>
                 <img className="card-img-top" src={event.image} alt="Card image cap" style={{"height":"300px","width":"100%"}} />
                 <div className="card-body ">
                   <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
@@ -61,7 +66,7 @@ const fromStroe = (state) => {
     show: state.show,
     allEvent: state.allEvent,
     userData: state.userData,
-    myEvent: state.myEvent
+    selectedMyEventId : state.selectedMyEventId
   };
 };
 export default connect(fromStroe)(Myparty);

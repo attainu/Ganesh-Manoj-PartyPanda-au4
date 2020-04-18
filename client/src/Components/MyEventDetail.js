@@ -1,14 +1,35 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
+import axios from "axios";
+import {connect} from "react-redux";
 
 class MyEventDetail extends React.Component{
+
+    componentDidMount = () => {
+        let id = this.props.selectedMyEventId;
+        axios
+          .get(`http://localhost:3010/event?id=${id}`)
+          .then((res) => {
+             console.log(res.data.host)
+            this.props.dispatch({ type: "eventData", payload: res.data });
+          })
+          .catch((err) => console.log(err));
+      }; 
+
     render(){
         if(!localStorage.Token){
             return <Redirect to="/signin" />
           }
+
+          if (!this.props.selectedMyEventId) {
+            return <Redirect to="/dashboard" />;
+          }  
+
+          let event = this.props.selectedEventData;
+          
         return(
             <div className="container-fluid d-flex bg-light flex-column ">
-                <h1 className="text-center text-dark">My Event Detail</h1>
+                <h1 className="text-center text-dark">My {event.type}</h1>
                 {/* content */}
                 <div className="container d-flex flex-column flex-nowrap mt-1 ">
                     <div className="d-flex flex-column">
@@ -16,18 +37,22 @@ class MyEventDetail extends React.Component{
                             <div className="d-flex flex-column justify-content-center">
                                 <img  src="https://img.icons8.com/ios-filled/50/000000/parking.png" style={{"width":"40px","height":"40px"}}/>
                                 <p >Parking</p>
+                                <p>{event.parking}</p>
                             </div>
                             <div className="d-flex flex-column justify-content-center">
                                 <img src="https://img.icons8.com/ios-filled/50/000000/smoking.png" style={{"width":"40px","height":"40px"}}/>
                                 <p>Smoking</p>
+                                <p>{event.smoking}</p>
                             </div>
                             <div className="d-flex flex-column justify-content-center">
                                 <img src="https://img.icons8.com/android/24/000000/home.png" style={{"width":"40px","height":"40px"}}/>
                                 <p>Stayover</p>
+                                <p>{event.stayover}</p>
                             </div>
                             <div className="d-flex flex-column justify-content-center">
                                 <img src="https://img.icons8.com/ios-filled/50/000000/alcoholic-beverage-licensing.png" style={{"width":"40px","height":"40px"}}/>
                                 <p>BYOB</p>
+                                <p>{event.beverages}</p>
                             </div>
                         </div>
                         <div className="card mt-1 bg-light" style={{"border":"none"}}>
@@ -39,24 +64,21 @@ class MyEventDetail extends React.Component{
                                         <div className="d-flex flex-column">
                                             <div className="d-flex flex-row py-0" >
                                                 <img src="https://img.icons8.com/material-sharp/24/000000/planner.png" style={{"width":"30px","height":"30px"}}/>
-                                                <p className="text-muted  ml-1">Mon, 27-Apr at 11:0 AM - 2:0 PM</p>
+                                                <p className="text-muted  ml-1">{event.date} at {event.start_time} AM - {event.end_timing}</p>
                                             </div>
                                             <div className="d-flex flex-row py-0" style={{"float":"left"}}>
                                                 <img src="https://img.icons8.com/material-rounded/24/000000/location-marker.png" style={{"width":"30px","height":"30px"}}/>
-                                                <p className="text-muted pt-1 ml-1">Meghalaya (Revealed after payment)</p>
+                                                <p className="text-muted pt-1 ml-1">{event.location} ({event.exact_location})</p>
                                             </div>
                                             <div className="d-flex flex-row py-0" style={{"float":"left"}}>
                                                 <img src="https://img.icons8.com/ios-glyphs/30/000000/apple-music.png" style={{"width":"30px","height":"30px"}}/>
-                                                <p className="text-muted pt-1 ml-1">Nature</p>
+                                                <p className="text-muted pt-1 ml-1">{event.music}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="d-flex flex-column col-md-5 shadow border border-white bg-white mt-1 py-2 px-2" style={{"borderRadius":"35px"}}>
                                         <h3 className=" pt-1 pb-2 text-dark">What to expects?</h3>
-                                        <p className="text-muted pt-4">It is a one of a Kind outdoor experiance, and 
-                                            i am here to look for 3 more like-minded people to join my group.
-                                            Full itinerary will be shared on WhatsApp.
-                                            It's a 5N/6D plan on caravan.
+                                        <p className="text-muted pt-4">{event.details}
                                         </p>
                                     </div>
                                 </div>
@@ -77,8 +99,8 @@ class MyEventDetail extends React.Component{
                             </div>
                         </div>
                         <div className="d-flex flex-row flex-wrap justify-content-around" style={{"fontSize":"20px"}}>
-                            <p><b>Cost per person: 15000</b></p>
-                            <p><b>Inviting People: 6</b></p>
+                            <p><b>Cost per person: {event.charges}</b></p>
+                            <p><b>Inviting People: {event.strength}</b></p>
                         </div>
                     </div>
                 </div>
@@ -92,4 +114,13 @@ class MyEventDetail extends React.Component{
     }
 }
 
-export default MyEventDetail;
+const fromStroe = (state) => {
+    return {
+      show: state.show,
+      allEvent: state.allEvent,
+      userData: state.userData,
+      selectedMyEventId : state.selectedMyEventId,
+      selectedEventData: state.selectedEventData
+    };
+  };
+  export default connect(fromStroe)(MyEventDetail);
