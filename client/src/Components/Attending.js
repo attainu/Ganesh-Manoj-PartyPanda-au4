@@ -11,14 +11,22 @@ class Attending extends React.Component {
   }
 
   async componentDidMount() {
-    let res = await axios.get("http://localhost:3010/join");
-
-    let result = await res.data.map((elem, index) => {
-      if (this.props.userData._id === elem.user._id) return elem;
-    });
-    if (result) {
-      await this.props.dispatch({ type: "attending", payload: result });
-    }
+     await axios.get("http://localhost:3010/join").then(
+       (res) =>{
+         let result = [];
+          res.data.map( (elem, index) => {
+          if (this.props.userData._id === elem.user._id){
+                result.push(elem);
+          }else{
+            // console.log("not matched", elem)
+          }
+        });
+        console.log(result);
+        this.props.dispatch({ type: "attending", payload: result });
+       }
+     ).catch(
+       (err) =>{console.log(err)}
+     )
   }
 
   sendId = async (id) => {
@@ -35,13 +43,13 @@ class Attending extends React.Component {
       let link = `/event-detail/${id}`
       return <Redirect to={link} />;
     }
-    window.onhashchange = function () {
-      this.props.dispatch({ type: "back" });
-    };
+    // window.onhashchange = function () {
+    //   this.props.dispatch({ type: "back" });
+    // };
 
     return (
       <Fragment>
-        {console.log(this.props.attending)}
+        {/* {console.log(this.props.attending)} */}
         <div className="d-flex flex-column flex-nowrap justify-content-center container-fluid pb-5 pl-5 pr-5 wrapper ">
           <center className="pb-4 pt-4 ">
             <h4 className="pages">Attending</h4>
