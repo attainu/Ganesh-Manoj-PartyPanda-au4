@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 import GuestList from "./../Components/GuestList";
@@ -196,12 +196,15 @@ class MyEventDetail extends React.Component {
         </div>
         {/* submit button */}
         <div className="d-flex flex-row flex-wrap justify-content-around pb-3">
-          <button
-            className="btn btn-info mr-1"
-            style={{ borderRadius: "20px" }}
-          >
-            Edit Event
-          </button>
+          <Link to="/editevent">
+            {" "}
+            <button
+              className="btn btn-info mr-1"
+              style={{ borderRadius: "20px" }}
+            >
+              Edit Event
+            </button>
+          </Link>
           <button
             className="btn btn-danger"
             style={{ borderRadius: "20px" }}

@@ -9,11 +9,13 @@ import CreateEvent from "./Components/CreateEvent";
 import Dashboard from "./Components/Dashboard";
 import Profile from "./Components/Profile";
 import ProfileCreation from "./Components/ProfileForm";
+import Admin from "./Components/Admin";
 import "./style/app.css";
 import EventDetail from "./Components/EventDetail";
 import MyEventDetail from "./Components/MyEventDetail";
 import ProfileUpdate from "./Components/ProfileUpdate";
 import GuestList from "./Components/GuestList";
+import EditEvent from "./Components/EditEvent";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import Signin from "./Components/Signin";
@@ -49,14 +51,20 @@ class App extends React.Component {
             <Router>
               <Navbar />
               <Route exact path="/" component={Home} />
+              <Route exact path="/admin" component={Admin} />
               <Route exact path="/allevents" component={Allparties} />
+              <Route exact path="/editevent" component={EditEvent} />
               <Route exact path="/signin" component={Signin} />
               <Route exact path="/create-event" component={CreateEvent} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/create-profile" component={ProfileCreation} />
               <Route exact path="/event-detail/:id" component={EventDetail} />
-              <Route exact path="/myevent-detail/:id" component={MyEventDetail} />
+              <Route
+                exact
+                path="/myevent-detail/:id"
+                component={MyEventDetail}
+              />
               <Route exact path="/profile-update" component={ProfileUpdate} />
               <Route exact path="/guest" component={GuestList} />
             </Router>

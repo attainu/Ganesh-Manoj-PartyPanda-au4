@@ -8,11 +8,14 @@ import Soccer from "../images/soccer.png";
 import Motor from "../images/motorcycle.png";
 import Trekking from "../images/trekking.png";
 import "./../style/home.css";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Home extends React.Component {
   render() {
+    // if (this.props.userData._id === "5e9c672e4e5fe535bc2750e8") {
+    //   return <Redirect to="/admin" />;
+    // }
     console.log(this.props.show);
     return (
       <Fragment>

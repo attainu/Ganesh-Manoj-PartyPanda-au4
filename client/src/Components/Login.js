@@ -146,6 +146,7 @@ const fromStroe = (state) => {
   return {
     show: state.show,
     isLogin: state.isLogin,
+    usereData: state.userData,
   };
 };
 export default connect(fromStroe)(Login);
