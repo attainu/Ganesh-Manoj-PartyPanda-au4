@@ -24,22 +24,6 @@ class GuestList extends React.Component {
       });
   }
 
-  async componentDidMount() {
-    let event = this.props.selectedMyEventId;
-    console.log("eve", event);
-    let res = await axios.get("http://localhost:3010/join");
-
-    let result = res.data.filter((elem, index) => {
-      if (event === elem.party._id) {
-        return elem;
-      }
-    });
-
-    if (result) {
-      await this.props.dispatch({ type: "Guests", payload: result });
-    }
-  }
-
   render() {
     return (
       <Fragment>
@@ -52,8 +36,8 @@ class GuestList extends React.Component {
               <div
                 className={
                   elem.status === true
-                    ? "card d-flex flex-row flex-wrap border border-success"
-                    : "card d-flex flex-row flex-wrap border border-danger"
+                    ? "card d-flex flex-row flex-wrap border border-success mb-5"
+                    : "card d-flex flex-row flex-wrap border border-danger mb-5"
                 }
                 style={{ width: "90%", margin: "auto" }}
               >
@@ -124,7 +108,7 @@ class GuestList extends React.Component {
 }
 
 const fromStroe = (state) => {
-  return { selectedMyEventId: state.selectedMyEventId, guests: state.guests };
+  return { guests: state.guests };
 };
 
 export default connect(fromStroe)(GuestList);
