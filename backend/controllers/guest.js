@@ -32,7 +32,7 @@ GuestController.list = async (req, res) => {
         if (!err) {
           res.json(data);
         } else {
-          console.log("err err err", err);
+          res.send("err err err", err);
         }
       });
   } catch (error) {

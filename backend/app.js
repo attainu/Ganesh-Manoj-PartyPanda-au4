@@ -82,6 +82,8 @@ app.delete("/event", controller.EventController.delete);
 app.post("/join", controller.GuestController.add);
 app.put("/join", controller.GuestController.update);
 app.get("/join", controller.GuestController.list);
+// app.delete("/join", controller.GuestController.delete);
+
 //
 // app.post("/login", async (req, res) => {
 //   try {

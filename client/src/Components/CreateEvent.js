@@ -39,7 +39,7 @@ class CreateEvent extends React.Component {
         if (res) {
           alert("Event Created");
           console.log(res);
-          return <Redirect to="/" />;
+          return <Redirect to="/allevents" />;
         } else {
           alert("Failed to Update Profile");
         }

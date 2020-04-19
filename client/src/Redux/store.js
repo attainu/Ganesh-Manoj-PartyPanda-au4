@@ -7,7 +7,8 @@ let inState = {
   attending: [],
   selectedEventId: "",
   selectedEventData: [],
-  selectedMyEventId:""
+  selectedMyEventId: "",
+  guests: [],
 };
 
 const appReducer = (state = inState, action) => {
@@ -59,6 +60,15 @@ const appReducer = (state = inState, action) => {
     case "myeventId":
       copy.selectedMyEventId = action.payload;
       return copy;
+
+    case "removeMyEventId":
+      copy.selectedMyEventId = "";
+      return copy;
+
+    case "Guests":
+      copy.guests = action.payload;
+      return copy;
+
     default:
       return copy;
   }
