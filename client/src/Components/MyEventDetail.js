@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import GuestList from "./../Components/GuestList";
 
 class MyEventDetail extends React.Component {
-  componentDidMount = () => {
+  componentWillMount = async () => {
     let id = this.props.match.params.id;
     axios
       .get(`http://localhost:3010/event?id=${id}`)
@@ -14,6 +14,17 @@ class MyEventDetail extends React.Component {
         this.props.dispatch({ type: "eventData", payload: res.data });
       })
       .catch((err) => console.log(err));
+
+    let res = await axios.get("http://localhost:3010/join");
+
+    let result = await res.data.filter((elem, index) => {
+      if (id === elem.party._id) {
+        return elem;
+      }
+    });
+    console.log("Res", result);
+
+    await this.props.dispatch({ type: "Guests", payload: result });
   };
 
   handleEdit() {
@@ -21,7 +32,7 @@ class MyEventDetail extends React.Component {
   }
 
   handleDelete() {
-    let id = this.props.selectedMyEventId;
+    let id = this.props.match.params.id;
     axios
       .delete(`http://localhost:3010/event?id=${id}`)
       .then((res) => {
@@ -36,6 +47,7 @@ class MyEventDetail extends React.Component {
     if (!localStorage.Token) {
       return <Redirect to="/signin" />;
     }
+    console.log("Guest", this.props.guests);
 
     // if (!this.props.selectedMyEventId) {
     //   return <Redirect to="/dashboard" />;
@@ -55,7 +67,8 @@ class MyEventDetail extends React.Component {
             >
               <div className="d-flex flex-column justify-content-center">
                 <img
-                  src="https://img.icons8.com/ios-filled/50/000000/parking.png" alt=""
+                  src="https://img.icons8.com/ios-filled/50/000000/parking.png"
+                  alt=""
                   style={{ width: "40px", height: "40px" }}
                 />
                 <p>Parking</p>
@@ -63,7 +76,8 @@ class MyEventDetail extends React.Component {
               </div>
               <div className="d-flex flex-column justify-content-center">
                 <img
-                  src="https://img.icons8.com/ios-filled/50/000000/smoking.png" alt=""
+                  src="https://img.icons8.com/ios-filled/50/000000/smoking.png"
+                  alt=""
                   style={{ width: "40px", height: "40px" }}
                 />
                 <p>Smoking</p>
@@ -71,7 +85,8 @@ class MyEventDetail extends React.Component {
               </div>
               <div className="d-flex flex-column justify-content-center">
                 <img
-                  src="https://img.icons8.com/android/24/000000/home.png" alt=""
+                  src="https://img.icons8.com/android/24/000000/home.png"
+                  alt=""
                   style={{ width: "40px", height: "40px" }}
                 />
                 <p>Stayover</p>
@@ -79,7 +94,8 @@ class MyEventDetail extends React.Component {
               </div>
               <div className="d-flex flex-column justify-content-center">
                 <img
-                  src="https://img.icons8.com/ios-filled/50/000000/alcoholic-beverage-licensing.png" alt=""
+                  src="https://img.icons8.com/ios-filled/50/000000/alcoholic-beverage-licensing.png"
+                  alt=""
                   style={{ width: "40px", height: "40px" }}
                 />
                 <p>BYOB</p>
@@ -98,7 +114,8 @@ class MyEventDetail extends React.Component {
                     <div className="d-flex flex-column">
                       <div className="d-flex flex-row py-0">
                         <img
-                          src="https://img.icons8.com/material-sharp/24/000000/planner.png" alt=""
+                          src="https://img.icons8.com/material-sharp/24/000000/planner.png"
+                          alt=""
                           style={{ width: "30px", height: "30px" }}
                         />
                         <p className="text-muted  ml-1">
@@ -212,6 +229,7 @@ const fromStroe = (state) => {
     allEvent: state.allEvent,
     userData: state.userData,
     selectedEventData: state.selectedEventData,
+    guests: state.guests,
   };
 };
 export default connect(fromStroe)(MyEventDetail);
