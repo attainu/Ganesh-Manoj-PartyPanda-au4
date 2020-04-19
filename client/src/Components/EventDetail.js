@@ -8,7 +8,6 @@ class EventDetail extends React.Component {
     axios
       .get(`http://localhost:3010/event?id=${id}`)
       .then((res) => {
-        
         this.props.dispatch({ type: "eventData", payload: res.data });
       })
       .catch((err) => console.log(err));
@@ -16,7 +15,7 @@ class EventDetail extends React.Component {
 
   handleSend() {
     let user_id = this.props.userData._id;
-    let party_id = this.props.selectedEventId;
+    let party_id = this.props.match.params.id;
 
     axios
       .post(
@@ -28,7 +27,7 @@ class EventDetail extends React.Component {
   }
 
   render() {
-    console.log( this.props.match.params.id)
+    console.log(this.props.match.params.id);
     // if (!this.props.selectedEventId) {
     //   return <Redirect to="/allevents" />;
     // }
