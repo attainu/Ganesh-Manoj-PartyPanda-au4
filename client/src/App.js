@@ -55,8 +55,8 @@ class App extends React.Component {
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/create-profile" component={ProfileCreation} />
-              <Route exact path="/event-detail" component={EventDetail} />
-              <Route exact path="/myevent-detail" component={MyEventDetail} />
+              <Route exact path="/event-detail/:id" component={EventDetail} />
+              <Route exact path="/myevent-detail/:id" component={MyEventDetail} />
               <Route exact path="/profile-update" component={ProfileUpdate} />
               <Route exact path="/guest" component={GuestList} />
             </Router>
@@ -74,7 +74,6 @@ const fromStore = (state) => {
   return {
     userData: state.userData,
     allEvent: state.allEvent,
-    selectedEventId: state.selectedEventId,
     selectedEventData: state.selectedEventData,
   };
 };

@@ -2,12 +2,14 @@ import React, { Fragment } from "react";
 
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
-import Dome from "./../images/dome.jpg";
 import "./../style/allparties.css";
 import axios from "axios";
 
 class Attending extends React.Component {
+  state={
+    id: ""
+  }
+
   async componentDidMount() {
     let res = await axios.get("http://localhost:3010/join");
 
@@ -22,15 +24,17 @@ class Attending extends React.Component {
 
   sendId = async (id) => {
     console.log(id);
-    await this.props.dispatch({ type: "eventId", payload: id });
-    if (this.props.selectedEventId) {
-      return <Redirect to="/event-detail" />;
-    }
+    this.setState({
+      id: id
+    })
+    
   };
 
   render() {
-    if (this.props.selectedEventId) {
-      return <Redirect to="/event-detail" />;
+    if (this.state.id) {
+      let id = this.state.id;
+      let link = `/event-detail/${id}`
+      return <Redirect to={link} />;
     }
     window.onhashchange = function () {
       this.props.dispatch({ type: "back" });
@@ -90,7 +94,6 @@ const fromStroe = (state) => {
   return {
     userData: state.userData,
     attending: state.attending,
-    selectedEventId: state.selectedEventId,
   };
 };
 export default connect(fromStroe)(Attending);

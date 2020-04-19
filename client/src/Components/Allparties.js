@@ -1,27 +1,45 @@
 import React, { Fragment } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Dome from "./../images/dome.jpg";
 import "./../style/allparties.css";
 
 class Allparties extends React.Component {
- sendId =(data) =>{
-   let id = data._id;
-   let user = this.props.userData;
-  //  console.log(user);
+  state = {
+    id: "",
+    user: false,
+     host: false
+  }
+ sendId = async(data) =>{
+   let id = await data._id;
+   this.setState({
+     id: id
+   })
+    let user = this.props.userData;
     if(data.host._id === user._id){
-      this.props.dispatch({type:"myeventId", payload: id})
+      this.setState({
+        host: true
+      })
     }else{
-      this.props.dispatch({type:"eventId", payload: id})
+      this.setState({
+        user: true
+      })
     }
  }
   render() {
-    if (this.props.selectedEventId) {
-      return <Redirect to="/event-detail" />;
+    if (this.state.user) {
+      let id = this.state.id;
+      let link = `/event-detail/${id}`
+      return <Redirect to={link} />;
     }
-    if(this.props.selectedMyEventId){
-      return <Redirect to="/myevent-detail" />
+
+    if (this.state.host) {
+      let id = this.state.id;
+      let link = `/myevent-detail/${id}`
+      return <Redirect to={link} />;
     }
+    // if(this.props.selectedMyEventId){
+    //   return <Redirect to="/myevent-detail" />
+    // }
 
     let allEvent = this.props.allEvent;
 
@@ -43,7 +61,7 @@ class Allparties extends React.Component {
                   <img
                     className="card-img-top"
                     src={item.image}
-                    alt="Card image cap"
+                    alt=""
                     style={{ height: "300px", width: "100%" }}
                   />
                   <div className="card-body ">
@@ -78,8 +96,7 @@ const fromStroe = (state) => {
     allEvent: state.allEvent,
     selectedEventId: state.selectedEventId,
     selectedEventData: state.selectedEventData,
-    userData: state.userData,
-    selectedMyEventId: state.selectedMyEventId
+    userData: state.userData
   };
 };
 export default connect(fromStroe)(Allparties);

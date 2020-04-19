@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 class MyEventDetail extends React.Component {
   componentDidMount = () => {
-    let id = this.props.selectedMyEventId;
+    let id = this.props.match.params.id;
     axios
       .get(`http://localhost:3010/event?id=${id}`)
       .then((res) => {
@@ -33,9 +33,9 @@ class MyEventDetail extends React.Component {
       return <Redirect to="/signin" />;
     }
 
-    if (!this.props.selectedMyEventId) {
-      return <Redirect to="/dashboard" />;
-    }
+    // if (!this.props.selectedMyEventId) {
+    //   return <Redirect to="/dashboard" />;
+    // }
 
     let event = this.props.selectedEventData;
 
@@ -51,7 +51,7 @@ class MyEventDetail extends React.Component {
             >
               <div className="d-flex flex-column justify-content-center">
                 <img
-                  src="https://img.icons8.com/ios-filled/50/000000/parking.png"
+                  src="https://img.icons8.com/ios-filled/50/000000/parking.png" alt=""
                   style={{ width: "40px", height: "40px" }}
                 />
                 <p>Parking</p>
@@ -59,7 +59,7 @@ class MyEventDetail extends React.Component {
               </div>
               <div className="d-flex flex-column justify-content-center">
                 <img
-                  src="https://img.icons8.com/ios-filled/50/000000/smoking.png"
+                  src="https://img.icons8.com/ios-filled/50/000000/smoking.png" alt=""
                   style={{ width: "40px", height: "40px" }}
                 />
                 <p>Smoking</p>
@@ -67,7 +67,7 @@ class MyEventDetail extends React.Component {
               </div>
               <div className="d-flex flex-column justify-content-center">
                 <img
-                  src="https://img.icons8.com/android/24/000000/home.png"
+                  src="https://img.icons8.com/android/24/000000/home.png" alt=""
                   style={{ width: "40px", height: "40px" }}
                 />
                 <p>Stayover</p>
@@ -75,7 +75,7 @@ class MyEventDetail extends React.Component {
               </div>
               <div className="d-flex flex-column justify-content-center">
                 <img
-                  src="https://img.icons8.com/ios-filled/50/000000/alcoholic-beverage-licensing.png"
+                  src="https://img.icons8.com/ios-filled/50/000000/alcoholic-beverage-licensing.png" alt=""
                   style={{ width: "40px", height: "40px" }}
                 />
                 <p>BYOB</p>
@@ -94,7 +94,7 @@ class MyEventDetail extends React.Component {
                     <div className="d-flex flex-column">
                       <div className="d-flex flex-row py-0">
                         <img
-                          src="https://img.icons8.com/material-sharp/24/000000/planner.png"
+                          src="https://img.icons8.com/material-sharp/24/000000/planner.png" alt=""
                           style={{ width: "30px", height: "30px" }}
                         />
                         <p className="text-muted  ml-1">
@@ -195,7 +195,6 @@ const fromStroe = (state) => {
     show: state.show,
     allEvent: state.allEvent,
     userData: state.userData,
-    selectedMyEventId: state.selectedMyEventId,
     selectedEventData: state.selectedEventData,
   };
 };

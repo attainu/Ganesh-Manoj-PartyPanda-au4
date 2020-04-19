@@ -2,13 +2,17 @@ import React, { Fragment } from "react";
 
 import { connect } from "react-redux";
 import {Redirect} from "react-router-dom";
-import Dome from "./../images/dome.jpg";
 import "./../style/allparties.css";
 
 class Myparty extends React.Component {
+  state ={
+    id:""
+  }
   
   sendId = (id) =>{
-    this.props.dispatch({type:"myeventId", payload: id})
+    this.setState({
+      id: id
+    })
   }
   render() {
       let events = this.props.allEvent;
@@ -23,8 +27,10 @@ class Myparty extends React.Component {
             }
           }
         );
-        if(this.props.selectedMyEventId){
-          return <Redirect to="/myevent-detail" />
+        if (this.state.id) {
+          let id = this.state.id;
+          let link = `/myevent-detail/${id}`
+          return <Redirect to={link} />;
         }
     return (
       <Fragment>
@@ -66,7 +72,6 @@ const fromStroe = (state) => {
     show: state.show,
     allEvent: state.allEvent,
     userData: state.userData,
-    selectedMyEventId : state.selectedMyEventId
   };
 };
 export default connect(fromStroe)(Myparty);

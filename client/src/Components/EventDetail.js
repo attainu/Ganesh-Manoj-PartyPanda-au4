@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import axios from "axios";
 class EventDetail extends React.Component {
   componentDidMount = () => {
-    let id = this.props.selectedEventId;
+    let id = this.props.match.params.id;
     axios
       .get(`http://localhost:3010/event?id=${id}`)
       .then((res) => {
-        // console.log(res.data.host.name)
+        
         this.props.dispatch({ type: "eventData", payload: res.data });
       })
       .catch((err) => console.log(err));
@@ -28,9 +28,10 @@ class EventDetail extends React.Component {
   }
 
   render() {
-    if (!this.props.selectedEventId) {
-      return <Redirect to="/allevents" />;
-    }
+    console.log( this.props.match.params.id)
+    // if (!this.props.selectedEventId) {
+    //   return <Redirect to="/allevents" />;
+    // }
     if (!localStorage.Token) {
       return <Redirect to="/signin" />;
     }
@@ -221,7 +222,6 @@ const fromStroe = (state) => {
     show: state.show,
     userData: state.userData,
     allEvent: state.allEvent,
-    selectedEventId: state.selectedEventId,
     selectedEventData: state.selectedEventData,
   };
 };
