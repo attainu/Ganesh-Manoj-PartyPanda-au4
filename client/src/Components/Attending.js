@@ -11,9 +11,9 @@ class Attending extends React.Component {
   }
 
   async componentDidMount() {
-     await axios.get("http://localhost:3010/join").then(
-       (res) =>{
-         let result = [];
+    await axios.get("http://localhost:3010/join").then(
+      (res) =>{
+        let result = [];
           res.data.map( (elem, index) => {
           if (this.props.userData._id === elem.user._id){
                 result.push(elem);
@@ -23,10 +23,10 @@ class Attending extends React.Component {
         });
         console.log(result);
         this.props.dispatch({ type: "attending", payload: result });
-       }
-     ).catch(
-       (err) =>{console.log(err)}
-     )
+      }
+    ).catch(
+      (err) =>{console.log(err)}
+    )
   }
 
   sendId = async (id) => {

@@ -35,9 +35,22 @@ class App extends React.Component {
       await this.props.dispatch({ type: "userData", payload: user.user });
       await this.props.dispatch({ type: "login" });
       let id = this.props.userData._id;
-      axios.get(`http://localhost:3010/one?id=${id}`).then((res) => {
-        this.props.dispatch({ type: "replace", payload: res.data });
-      });
+      
+      Promise.all([axios.get(`http://localhost:3010/one?id=${id}`), axios.get("http://localhost:3010/join")]).then(
+        ([res1, res2]) =>{
+          this.props.dispatch({ type: "replace", payload: res1.data });
+          let result = [];
+          res2.data.map( (elem, index) => {
+            if (this.props.userData._id === elem.user._id){
+                  result.push(elem);
+            }else{
+              // console.log("not matched", elem)
+            }
+          });
+          console.log(result);
+          this.props.dispatch({ type: "attending", payload: result });
+        }
+      )
     } else {
       console.log("no token available");
     }
