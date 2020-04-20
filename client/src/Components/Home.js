@@ -13,8 +13,10 @@ import { connect } from "react-redux";
 
 class Home extends React.Component {
   render() {
-    // if (this.props.userData._id === "5e9c672e4e5fe535bc2750e8") {
-    //   return <Redirect to="/admin" />;
+    // if (localStorage.Token) {
+    //   if (this.props.userData.mobile === 987654) {
+    //     return <Redirect to="/admin" />;
+    //   }
     // }
     console.log(this.props.show);
     return (
@@ -312,6 +314,7 @@ class Home extends React.Component {
 const fromStroe = (state) => {
   return {
     show: state.show,
+    userData: state.userData,
   };
 };
 export default connect(fromStroe)(Home);
