@@ -39,6 +39,16 @@ class EventDetail extends React.Component {
     let host = event.host;
     if (host) console.log("Event", host.name);
 
+    let result = [];
+    this.props.attending.map(elem =>{
+      if(elem.party._id === this.props.match.params.id){
+        console.log("matched", elem);
+        result.push(elem);
+      }else{
+        // console.log("not matched", elem);
+      }
+      console.log(result);
+    })
     return (
       <Fragment>
         {host ? (
@@ -197,15 +207,7 @@ class EventDetail extends React.Component {
             </div>
             {/* submit button */}
             <div className="d-flex justify-content-center pt-2 pb-3">
-              <button
-                className="btn btn-secondary"
-                style={{ borderRadius: "20px" }}
-                onClick={() => {
-                  this.handleSend();
-                }}
-              >
-                Join Event
-              </button>
+              {result[0] ?  <button className="btn btn-warning" style={{ borderRadius: "20px" }}>Status : Already requested to join! </button> : <button className="btn btn-secondary" style={{ borderRadius: "20px" }} onClick={() => {this.handleSend(); }}>Join Event</button>}
             </div>
           </div>
         ) : (
@@ -222,6 +224,7 @@ const fromStroe = (state) => {
     userData: state.userData,
     allEvent: state.allEvent,
     selectedEventData: state.selectedEventData,
+    attending: state.attending
   };
 };
 export default connect(fromStroe)(EventDetail);
