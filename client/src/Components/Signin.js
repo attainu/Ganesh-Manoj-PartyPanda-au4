@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 import { connect } from "react-redux";
+import {Redirect } from "react-router-dom";
 import "./../style/signin.css";
 
 class Signin extends React.Component {
@@ -25,8 +26,22 @@ class Signin extends React.Component {
   }
 
   render() {
+    // if (localStorage.Token) {
+    //   if (this.props.userData.mobile === 9953776615) {
+    //     return <Redirect to="/admin" />;
+    //   } else {
+    //     return <Redirect to="/" />;
+    //   }
+    // }
+    if (localStorage.Token) {
+      if(this.props.userData.mobile == 9953776615){
+        return <Redirect to="/admin" />;
+      }
+    }
+    // if (local
+    console.log(this.props.userData);
     let show = this.props.show;
-    console.log(show);
+    // console.log(show);
     return (
       <Fragment>
         <div className="card sig">
@@ -71,6 +86,8 @@ class Signin extends React.Component {
 }
 
 const fromStroe = (state) => {
-  return state;
+  return {
+    userData: state.userData
+  }
 };
 export default connect(fromStroe)(Signin);

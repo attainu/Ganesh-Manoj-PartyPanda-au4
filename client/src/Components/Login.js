@@ -57,16 +57,11 @@ class Login extends React.Component {
   };
 
   render() {
+    
     if (this.props.isLogin) {
-      if (this.props.userData.mobile === 98765) {
-        return <Redirect to="/admin" />;
-      } else {
         return <Redirect to="/" />;
-      }
     }
-    // if (localStorage.Token) {
-
-    // }
+    
     return (
       <Fragment>
         <div className="text-center">

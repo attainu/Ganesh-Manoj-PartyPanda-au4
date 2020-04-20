@@ -26,9 +26,9 @@ class Admin extends React.Component {
     }
   };
   render() {
-    // if (!localStorage.Token || this.props.userData.mobile !== 98765) {
-    //   return <Redirect to="/signin" />;
-    // }
+    if (!localStorage.Token || this.props.userData.mobile !== 9953776615) {
+      return <Redirect to="/signin" />;
+    }
 
     if (this.state.user) {
       let id = this.state.id;
