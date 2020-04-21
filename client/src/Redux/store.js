@@ -9,6 +9,8 @@ let inState = {
   selectedEventData: [],
   selectedMyEventId: "",
   guests: [],
+  status: false,
+  id: "",
 };
 
 const appReducer = (state = inState, action) => {
@@ -17,6 +19,14 @@ const appReducer = (state = inState, action) => {
   switch (action.type) {
     case "userData":
       copy.userData = action.payload;
+      return copy;
+
+    case "id":
+      copy.id = action.id;
+      return copy;
+
+    case "status":
+      copy.status = true;
       return copy;
 
     case "login":

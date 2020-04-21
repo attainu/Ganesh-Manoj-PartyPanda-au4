@@ -10,6 +10,7 @@ import Dashboard from "./Components/Dashboard";
 import Profile from "./Components/Profile";
 import ProfileCreation from "./Components/ProfileForm";
 import Admin from "./Components/Admin";
+import Verify from "./Components/Verify";
 import "./style/app.css";
 import EventDetail from "./Components/EventDetail";
 import MyEventDetail from "./Components/MyEventDetail";
@@ -35,22 +36,23 @@ class App extends React.Component {
       await this.props.dispatch({ type: "userData", payload: user.user });
       await this.props.dispatch({ type: "login" });
       let id = this.props.userData._id;
-      
-      Promise.all([axios.get(`http://localhost:3010/one?id=${id}`), axios.get("http://localhost:3010/join")]).then(
-        ([res1, res2]) =>{
-          this.props.dispatch({ type: "replace", payload: res1.data });
-          let result = [];
-          res2.data.map( (elem, index) => {
-            if (this.props.userData._id === elem.user._id){
-                  result.push(elem);
-            }else{
-              // console.log("not matched", elem)
-            }
-          });
-          console.log(result);
-          this.props.dispatch({ type: "attending", payload: result });
-        }
-      )
+
+      Promise.all([
+        axios.get(`http://localhost:3010/one?id=${id}`),
+        axios.get("http://localhost:3010/join"),
+      ]).then(([res1, res2]) => {
+        this.props.dispatch({ type: "replace", payload: res1.data });
+        let result = [];
+        res2.data.map((elem, index) => {
+          if (this.props.userData._id === elem.user._id) {
+            result.push(elem);
+          } else {
+            // console.log("not matched", elem)
+          }
+        });
+        console.log(result);
+        this.props.dispatch({ type: "attending", payload: result });
+      });
     } else {
       console.log("no token available");
     }
@@ -64,6 +66,7 @@ class App extends React.Component {
             <Router>
               <Navbar />
               <Route exact path="/" component={Home} />
+              <Route exact path="/verify" component={Verify} />
               <Route exact path="/admin" component={Admin} />
               <Route exact path="/allevents" component={Allparties} />
               <Route exact path="/editevent" component={EditEvent} />

@@ -75,4 +75,26 @@ ProfileController.updateAll = async (req, res) => {
   }
 };
 
+ProfileController.updatePass = async (req, res) => {
+  try {
+    let { params, body } = req;
+    const hashed = await bcrypt.hash(body.password, 10);
+
+    await User.findOneAndUpdate(
+      { mobile: params.mobile },
+      {
+        password: hashed,
+      },
+      { new: true },
+      (error, response) => {
+        if (error) {
+          throw error;
+        }
+        res.send("Password Updated");
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
 module.exports = ProfileController;
