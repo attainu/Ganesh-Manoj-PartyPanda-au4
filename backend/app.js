@@ -74,6 +74,9 @@ app.get("/events", controller.EventController.list);
 // Get one event;
 app.get("/event", controller.EventController.one);
 
+//update status of event
+app.put("/update-status", controller.EventController.status);
+
 // update event
 app.put("/event", controller.EventController.update);
 

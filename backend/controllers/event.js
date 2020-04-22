@@ -41,6 +41,28 @@ EventController.list = async (req, res) => {
   }
 };
 
+EventController.status = async (req, res) => {
+  try {
+    let { query } = req;
+
+    await Event.findOneAndUpdate(
+      { _id: query.id },
+      { status: query.status },
+      { new: true }
+    )
+      .then((res) => {
+        console.log("updated", event);
+        res.send("Updated");
+      })
+      .catch((error) => {
+        console.log(error);
+        res.send("Failed to updated status");
+      });
+  } catch (error) {
+    throw error;
+  }
+};
+
 EventController.one = async (req, res) => {
   try {
     let { query } = req;
