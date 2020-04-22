@@ -3,6 +3,7 @@ const app = express();
 const db = require("./database");
 const multer = require("multer");
 const cors = require("cors");
+const messagebird = require("messagebird")("3uME3agK875dtxnjIw7ar5AhT");
 
 //multer config
 var filestorage = multer.diskStorage({
@@ -54,6 +55,7 @@ app.post("/profile", controller.ProfileController.add);
 //to update aal the fileds in profile
 app.post("/update-profile", controller.ProfileController.updateAll);
 
+app.put("/update-password/:mobile", controller.ProfileController.updatePass);
 //Avatar
 //update
 app.post(
@@ -84,7 +86,51 @@ app.put("/join", controller.GuestController.update);
 app.get("/join", controller.GuestController.list);
 // app.delete("/join", controller.GuestController.delete);
 
-//
+//Forget password
+
+app.post("/step1", async (req, res) => {
+  try {
+    let mobile = req.body.forget;
+    console.log("Mobile", mobile);
+
+    let user = await User.findOne({ mobile: mobile });
+
+    if (!user) return res.send("Mobile Number Not found");
+
+    messagebird.verify.create(
+      user.mobile,
+      {
+        template: "This is a test message %token",
+      },
+      function (error, success) {
+        if (error) {
+          console.log("Failed to send otp", error);
+          res.send("Failed to send otp");
+        } else {
+          console.log("Success", success);
+          res.send(success);
+        }
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+});
+
+app.post("/step2", (req, res) => {
+  let id = req.body.id;
+  let token = req.body.token;
+
+  messagebird.verify.verify(id, token, function (error, success) {
+    if (error) {
+      console.log("Verification failed", error);
+      res.send(error);
+    } else {
+      res.send("Verified");
+    }
+  });
+});
+
 // app.post("/login", async (req, res) => {
 //   try {
 //     const { body } = req;

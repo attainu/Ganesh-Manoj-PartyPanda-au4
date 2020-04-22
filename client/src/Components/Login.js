@@ -11,7 +11,30 @@ class Login extends React.Component {
     jack: false,
     mobile: "",
     password: "",
+    forget: "",
   };
+
+  handleForget() {
+    if (this.state.forget.length < 9)
+      return alert("Enter a valid Mobile number");
+    let body = {
+      mobile: this.state.forget,
+    };
+
+    axios
+      .post("http://localhost:3010/step1", this.state)
+      .then((res) => {
+        console.log("Res", res);
+        if (res.data.id) {
+          this.props.dispatch({ type: "id", payload: res.data.id });
+        } else {
+          alert("Failed to send OTP");
+        }
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 
   handleShow() {
     this.setState({
@@ -70,11 +93,10 @@ class Login extends React.Component {
   };
 
   render() {
-    
     if (this.props.isLogin) {
-        return <Redirect to="/" />;
+      return <Redirect to="/" />;
     }
-    
+
     return (
       <Fragment>
         <div className="text-center">
@@ -144,15 +166,26 @@ class Login extends React.Component {
                 <input
                   className="form-control "
                   type="number"
-                  id="mobile"
+                  id="forget"
+                  name="forget"
                   placeholder="Mobile"
+                  value={this.state.forget}
+                  onChange={this.handleChange}
                 />
                 <br />
               </div>
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <button id="send">Submit</button>
+            <button
+              id="send"
+              disabled={!this.state.forget}
+              onClick={() => {
+                this.handleForget();
+              }}
+            >
+              Submit
+            </button>
           </Modal.Footer>
         </Modal>
       </Fragment>
@@ -164,6 +197,7 @@ const fromStroe = (state) => {
     show: state.show,
     isLogin: state.isLogin,
     usereData: state.userData,
+    id: state.id,
   };
 };
 export default connect(fromStroe)(Login);
