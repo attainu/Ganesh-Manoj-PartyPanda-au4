@@ -37,11 +37,17 @@ sendId = async(data) =>{
       let link = `/myevent-detail/${id}`
       return <Redirect to={link} />;
     }
-    // if(this.props.selectedMyEventId){
-    //   return <Redirect to="/myevent-detail" />
-    // }
 
-    let allEvent = this.props.allEvent;
+    let result = [];
+    this.props.allEvent.filter(event =>{
+      if(event.status){
+        console.log("status true");
+        result.push(event);
+      }else{
+        console.log("status false");
+      }
+    })
+    
 
     return (
       <Fragment>
@@ -51,7 +57,7 @@ sendId = async(data) =>{
             <hr />
           </center>
           <div className="d-flex flex-row flex-wrap justify-content-around">
-            {allEvent.map((item) => {
+            {result.map((item) => {
               return (
                 <div
                   className="card event mb-5"
