@@ -6,13 +6,13 @@ import axios from "axios";
 
 class Verify extends React.Component {
   state = {
-    id: this.props.id,
-    token: "",
+    mobile: this.props.mobile,
+    code: "",
   };
 
   handelChange(e) {
     this.setState({
-      token: e.target.value,
+      code: e.target.value,
     });
   }
 
@@ -20,9 +20,9 @@ class Verify extends React.Component {
     axios
       .post(`http://localhost:3010/step2`, this.state)
       .then(async (res) => {
-        console.log("Verified", res);
-        if (res.data === "Verified") {
-          await this.props.dispatch({ type: "status" });
+        console.log("approved", res);
+        if (JSON.stringify(res.data) == "{}") {
+          await this.props.dispatch({ type: "status", payload: "approved" });
           alert("User Verified");
         } else {
           alert("Wrong Otp");
@@ -34,15 +34,16 @@ class Verify extends React.Component {
   }
 
   render() {
-    if (this.props.status) return <Redirect to="/result" />;
+    if (!this.props.mobile) return <Redirect to="/signin" />;
+    if (this.props.status === "approved") return <Redirect to="/reset" />;
     return (
       <Fragment>
         <label>Otp</label>
 
         <input
           type="number"
-          value={this.state.token}
-          name="token"
+          value={this.state.code}
+          name="code"
           onChange={(e) => {
             this.handelChange(e);
           }}
@@ -52,7 +53,7 @@ class Verify extends React.Component {
           onClick={() => {
             this.handleSend();
           }}
-          disabled={!this.state.token ? true : false}
+          disabled={!this.state.code ? true : false}
         >
           Verify
         </button>
@@ -63,8 +64,8 @@ class Verify extends React.Component {
 
 const fromStore = (state) => {
   return {
-    id: state.id,
     status: state.status,
+    mobile: state.mobile,
   };
 };
 

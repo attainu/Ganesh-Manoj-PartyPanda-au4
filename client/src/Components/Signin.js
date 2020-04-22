@@ -33,7 +33,7 @@ class Signin extends React.Component {
     //     return <Redirect to="/" />;
     //   }
     // }
-    if (this.props.id) return <Redirect to="/verify" />;
+    if (this.props.status === "pending") return <Redirect to="/verify" />;
 
     if (localStorage.Token) {
       if (this.props.userData.mobile == 9953776615) {
@@ -90,7 +90,7 @@ class Signin extends React.Component {
 const fromStroe = (state) => {
   return {
     userData: state.userData,
-    id: state.id,
+    status: state.status,
   };
 };
 export default connect(fromStroe)(Signin);

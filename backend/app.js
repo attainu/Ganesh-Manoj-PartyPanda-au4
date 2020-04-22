@@ -3,7 +3,9 @@ const app = express();
 const db = require("./database");
 const multer = require("multer");
 const cors = require("cors");
-const messagebird = require("messagebird")("3uME3agK875dtxnjIw7ar5AhT");
+const config = require("./config");
+const client = require("twilio")(config.accountSID, config.authToken);
+// const messagebird = require("messagebird")("ff5lhjVdGGYIuSkIBLrlESrzB");
 
 //multer config
 var filestorage = multer.diskStorage({
@@ -55,7 +57,7 @@ app.post("/profile", controller.ProfileController.add);
 //to update aal the fileds in profile
 app.post("/update-profile", controller.ProfileController.updateAll);
 
-app.put("/update-password/:mobile", controller.ProfileController.updatePass);
+app.put("/update-password", controller.ProfileController.updatePass);
 //Avatar
 //update
 app.post(
@@ -97,41 +99,38 @@ app.post("/step1", async (req, res) => {
     console.log("Mobile", mobile);
 
     let user = await User.findOne({ mobile: mobile });
-
+    console.log("User", user);
     if (!user) return res.send("Mobile Number Not found");
 
-    messagebird.verify.create(
-      user.mobile,
-      {
-        template: "This is a test message %token",
-      },
-      function (error, success) {
-        if (error) {
-          console.log("Failed to send otp", error);
-          res.send("Failed to send otp");
-        } else {
-          console.log("Success", success);
-          res.send(success);
-        }
-      }
-    );
+    client.verify
+      .services(config.serviceID)
+      .verifications.create({ to: `+91${mobile}`, channel: "sms" })
+      .then((res) => {
+        console.log("step1", res);
+        res.send(res.status);
+      })
+      .catch((error) => {
+        res.send(error);
+      });
   } catch (error) {
     throw error;
   }
 });
 
 app.post("/step2", (req, res) => {
-  let id = req.body.id;
-  let token = req.body.token;
+  let mobile = req.body.mobile;
+  let code = req.body.code;
 
-  messagebird.verify.verify(id, token, function (error, success) {
-    if (error) {
-      console.log("Verification failed", error);
+  client.verify
+    .services(config.serviceID)
+    .verificationChecks.create({ to: `+91${mobile}`, code: code })
+    .then((res) => {
+      console.log("Step2", res);
+      res.send(res.status);
+    })
+    .catch((error) => {
       res.send(error);
-    } else {
-      res.send("Verified");
-    }
-  });
+    });
 });
 
 // app.post("/login", async (req, res) => {

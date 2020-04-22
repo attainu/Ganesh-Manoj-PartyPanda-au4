@@ -11,6 +11,7 @@ import Profile from "./Components/Profile";
 import ProfileCreation from "./Components/ProfileForm";
 import Admin from "./Components/Admin";
 import Verify from "./Components/Verify";
+import Reset from "./Components/Reset";
 import "./style/app.css";
 import EventDetail from "./Components/EventDetail";
 import MyEventDetail from "./Components/MyEventDetail";
@@ -45,7 +46,7 @@ class App extends React.Component {
         let result = [];
         res2.data.map((elem, index) => {
           if (this.props.userData._id === elem.user._id) {
-            result.push(elem);
+            return result.push(elem);
           } else {
             // console.log("not matched", elem)
           }
@@ -66,6 +67,7 @@ class App extends React.Component {
             <Router>
               <Navbar />
               <Route exact path="/" component={Home} />
+              <Route path="/reset" component={Reset} />
               <Route exact path="/verify" component={Verify} />
               <Route exact path="/admin" component={Admin} />
               <Route exact path="/allevents" component={Allparties} />

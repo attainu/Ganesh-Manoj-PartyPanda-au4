@@ -3,8 +3,8 @@ import { Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 class Login extends React.Component {
   state = {
@@ -17,16 +17,18 @@ class Login extends React.Component {
   handleForget() {
     if (this.state.forget.length < 9)
       return alert("Enter a valid Mobile number");
-    let body = {
-      mobile: this.state.forget,
-    };
 
     axios
       .post("http://localhost:3010/step1", this.state)
-      .then((res) => {
+      .then(async (res) => {
         console.log("Res", res);
-        if (res.data.id) {
-          this.props.dispatch({ type: "id", payload: res.data.id });
+        console.log(typeof res.data);
+        if (JSON.stringify(res.data) == "{}") {
+          await this.props.dispatch({
+            type: "forget",
+            payload: this.state.forget,
+          });
+          await this.props.dispatch({ type: "status", payload: "pending" });
         } else {
           alert("Failed to send OTP");
         }
@@ -65,26 +67,17 @@ class Login extends React.Component {
       .then(async (res) => {
         const MySwal = withReactContent(Swal);
         if (res.data.token) {
-          
           const { token } = res.data;
           localStorage.setItem("Token", token);
           // const user = jwt_decode(token);
           // this.props.dispatch({type:"userData", payload: user})
-          
-          await MySwal.fire(
-            'You have successfully Logged In',
-            '',
-            'success'
-          );
+
+          await MySwal.fire("You have successfully Logged In", "", "success");
           window.location.reload();
           // if (this.props.isLogin) return <Redirect to="/" />;
           // window.location.replace("http://localhost:3000/");
         } else {
-          MySwal.fire(
-            "Mobile no or password incorrect!",
-            '',
-            "warning"
-          );
+          MySwal.fire("Mobile no or password incorrect!", "", "warning");
         }
       })
       .catch(function (error) {
@@ -197,7 +190,7 @@ const fromStroe = (state) => {
     show: state.show,
     isLogin: state.isLogin,
     usereData: state.userData,
-    id: state.id,
+    status: state.status,
   };
 };
 export default connect(fromStroe)(Login);

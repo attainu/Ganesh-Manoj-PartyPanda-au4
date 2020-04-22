@@ -77,11 +77,11 @@ ProfileController.updateAll = async (req, res) => {
 
 ProfileController.updatePass = async (req, res) => {
   try {
-    let { params, body } = req;
+    let { body } = req;
     const hashed = await bcrypt.hash(body.password, 10);
 
     await User.findOneAndUpdate(
-      { mobile: params.mobile },
+      { mobile: body.mobile },
       {
         password: hashed,
       },
