@@ -3,6 +3,8 @@ import { Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 
 class Login extends React.Component {
   state = {
@@ -38,17 +40,28 @@ class Login extends React.Component {
     axios
       .post("http://localhost:3010/login", userData)
       .then(async (res) => {
+        const MySwal = withReactContent(Swal);
         if (res.data.token) {
+          
           const { token } = res.data;
           localStorage.setItem("Token", token);
           // const user = jwt_decode(token);
           // this.props.dispatch({type:"userData", payload: user})
-          await window.location.reload();
-          alert("successfully Login");
+          
+          await MySwal.fire(
+            'You have successfully Logged In',
+            '',
+            'success'
+          );
+          window.location.reload();
           // if (this.props.isLogin) return <Redirect to="/" />;
           // window.location.replace("http://localhost:3000/");
         } else {
-          alert("Password or Mobile No incorrect");
+          MySwal.fire(
+            "Mobile no or password incorrect!",
+            '',
+            "warning"
+          );
         }
       })
       .catch(function (error) {

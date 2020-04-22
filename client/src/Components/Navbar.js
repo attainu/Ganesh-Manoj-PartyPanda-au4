@@ -4,7 +4,7 @@ import { Link, Route } from "react-router-dom";
 import "./../style/navbar.css";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
-import UserImg from "../images/red.jpg";
+// import UserImg from "../images/red.jpg";
 
 class Navbar extends React.Component {
   userLogout = (e) => {

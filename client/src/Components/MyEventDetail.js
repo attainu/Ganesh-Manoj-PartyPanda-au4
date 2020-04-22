@@ -10,7 +10,7 @@ class MyEventDetail extends React.Component {
     axios
       .get(`http://localhost:3010/event?id=${id}`)
       .then((res) => {
-        console.log(res.data.host);
+        // console.log(res.data.host);
         this.props.dispatch({ type: "eventData", payload: res.data });
       })
       .catch((err) => console.log(err));
@@ -36,18 +36,20 @@ class MyEventDetail extends React.Component {
     axios
       .delete(`http://localhost:3010/event?id=${id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.props.dispatch({ type: "removeMyEventId" }, () => {
           return window.location.reload;
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => 
+      console.log(err)
+      );
   }
   render() {
     if (!localStorage.Token) {
       return <Redirect to="/signin" />;
     }
-    console.log("Guest", this.props.guests);
+    // console.log("Guest", this.props.guests);
 
     // if (!this.props.selectedMyEventId) {
     //   return <Redirect to="/dashboard" />;

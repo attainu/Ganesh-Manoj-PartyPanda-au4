@@ -2,6 +2,8 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 class EditEvent extends React.Component {
   state = {
@@ -31,16 +33,16 @@ class EditEvent extends React.Component {
 
   sendData = () => {
     let id = this.props.selectedEventData._id;
-
+    let MySwal = withReactContent(Swal);
     axios
       .put(`http://localhost:3010/event?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          alert("Event Updated");
+          MySwal.fire("Event Updated","","success");
           console.log(res);
           return <Redirect to="/allevents" />;
         } else {
-          alert("Failed to Update Profile");
+          MySwal.fire("Failed to Update Profile","", "warning");
         }
       })
       .catch(function (error) {

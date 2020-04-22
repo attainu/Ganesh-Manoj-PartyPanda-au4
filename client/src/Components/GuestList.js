@@ -1,26 +1,38 @@
 import { connect } from "react-redux";
 import React, { Fragment } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 class GuestList extends React.Component {
   handleAccept(id) {
+    let MySwal = withReactContent(Swal);
     axios
       .put(`http://localhost:3010/join?id=${id}&status=true`)
       .then((res) => {
-        alert("Status Updated");
+        MySwal.fire("Status Updated",
+        "",
+        "success");
       })
       .catch((error) => {
-        alert("Falied to update", error);
+        MySwal.fire("Status failed to Update!",
+        error,
+        "warning");;
       });
   }
   handleReject(id) {
+    let MySwal = withReactContent(Swal);
     axios
       .put(`http://localhost:3010/join?id=${id}&status=false`)
       .then((res) => {
-        alert("Status Updated");
+        MySwal.fire("Status Updated",
+        "",
+        "success");
       })
       .catch((error) => {
-        alert("Falied to update", error);
+        MySwal.fire("Status failed to Update!",
+        error,
+        "warning");;
       });
   }
 

@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 class ProfileForm extends React.Component {
   state = {
@@ -20,16 +22,17 @@ class ProfileForm extends React.Component {
 
   sendData = () => {
     let id = this.props.userData._id;
+    let MySwal = withReactContent(Swal);
 
     axios
       .post(`http://localhost:3010/profile?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          alert("Profile updated");
+          MySwal.fire("Profile updated", "", "success");
 
           return <Redirect to="/" />;
         } else {
-          alert("Failed to Update Profile");
+          MySwal.fire("Failed to Update Profile", "", "warning");
         }
       })
       .catch(function (error) {

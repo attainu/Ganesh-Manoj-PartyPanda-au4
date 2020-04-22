@@ -2,6 +2,9 @@ import React, { Fragment } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 class EventDetail extends React.Component {
   componentDidMount = () => {
     let id = this.props.match.params.id;
@@ -16,18 +19,21 @@ class EventDetail extends React.Component {
   handleSend() {
     let user_id = this.props.userData._id;
     let party_id = this.props.match.params.id;
+    let MySwal = withReactContent(Swal);
 
     axios
       .post(
         `http://localhost:3010/join?user_id=${user_id}&party_id=${party_id}`
       )
       .then((res) => {
-        alert("Requested to join!");
+        MySwal.fire("Requested to join!",
+        "",
+        "success");
       });
   }
 
   render() {
-    console.log(this.props.match.params.id);
+    // console.log(this.props.match.params.id);
     // if (!this.props.selectedEventId) {
     //   return <Redirect to="/allevents" />;
     // }
@@ -37,17 +43,17 @@ class EventDetail extends React.Component {
 
     let event = this.props.selectedEventData;
     let host = event.host;
-    if (host) console.log("Event", host.name);
+    // if (host) console.log("Event", host.name);
 
     let result = [];
     this.props.attending.map(elem =>{
       if(elem.party._id === this.props.match.params.id){
-        console.log("matched", elem);
+        // console.log("matched", elem);
         result.push(elem);
       }else{
         // console.log("not matched", elem);
       }
-      console.log(result);
+      // console.log(result);
     })
     return (
       <Fragment>

@@ -7,13 +7,13 @@ class Allparties extends React.Component {
   state = {
     id: "",
     user: false,
-     host: false
+    host: false
   }
- sendId = async(data) =>{
-   let id = await data._id;
-   this.setState({
-     id: id
-   })
+sendId = async(data) =>{
+  let id = await data._id;
+  this.setState({
+    id: id
+  })
     let user = this.props.userData;
     if(data.host._id === user._id){
       this.setState({
@@ -24,7 +24,7 @@ class Allparties extends React.Component {
         user: true
       })
     }
- }
+}
   render() {
     if (this.state.user) {
       let id = this.state.id;

@@ -18,7 +18,7 @@ class Home extends React.Component {
     //     return <Redirect to="/admin" />;
     //   }
     // }
-    console.log(this.props.show);
+    // console.log(this.props.show);
     return (
       <Fragment>
         <div className="wrapper">

@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
-
+import Swal from "sweetalert2";
+import withreactContent from "sweetalert2-react-content";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import withReactContent from "sweetalert2-react-content";
 
 class ProfileUpdate extends React.Component {
   state = {
@@ -22,19 +24,20 @@ class ProfileUpdate extends React.Component {
   };
 
   sendData = () => {
+    let MySwal = withReactContent(Swal);
     if (this.state.password !== this.state.cnfpassword)
-      return alert("Password and Confirm password doesn't match");
+      return MySwal.fire("Password and Confirm password doesn't match", "", "warning");
     let id = this.props.userData._id;
 
     axios
       .post(`http://localhost:3010/update-profile?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          alert("Profile updated");
+          MySwal.fire("Profile updated", "", "success");
 
           return <Redirect to="/" />;
         } else {
-          alert("Failed to Update Profile");
+          MySwal.fire("Failed to Update Profile", "", "warning");
         }
       })
       .catch(function (error) {

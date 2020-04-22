@@ -18,7 +18,7 @@ class Myparty extends React.Component {
       let events = this.props.allEvent;
       let user = this.props.userData;
       let myEvent = [];
-       events.filter(event => 
+      events.filter(event => 
           {
             if(event.host._id == user._id){
               myEvent.push(event);

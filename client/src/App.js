@@ -47,12 +47,12 @@ class App extends React.Component {
               // console.log("not matched", elem)
             }
           });
-          console.log(result);
+          // console.log(result);
           this.props.dispatch({ type: "attending", payload: result });
         }
       )
     } else {
-      console.log("no token available");
+      // console.log("no token available");
     }
   };
 
