@@ -49,14 +49,14 @@ class Attending extends React.Component {
 
     return (
       <Fragment>
-        {/* {console.log(this.props.attending)} */}
+        {console.log(this.props.attending)}
         <div className="d-flex flex-column flex-nowrap justify-content-center container-fluid pb-5 pl-5 pr-5 wrapper ">
           <center className="pb-4 pt-4 ">
             <h4 className="pages">Attending</h4>
             <hr />
           </center>
           <div className="d-flex flex-row flex-wrap justify-content-around">
-            {this.props.attending.map((elem, index) => {
+            {!this.props.attending[0] ? <h2 className="text-secondary">You haven't join any event!</h2> : this.props.attending.map((elem, index) => {
               return (
                 <div
                   key={index}

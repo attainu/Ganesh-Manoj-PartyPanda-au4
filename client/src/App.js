@@ -18,6 +18,7 @@ import MyEventDetail from "./Components/MyEventDetail";
 import ProfileUpdate from "./Components/ProfileUpdate";
 import GuestList from "./Components/GuestList";
 import EditEvent from "./Components/EditEvent";
+import AdminEventDetail from "./Components/AdminEventDetail";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import Signin from "./Components/Signin";
@@ -78,6 +79,7 @@ class App extends React.Component {
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/create-profile" component={ProfileCreation} />
               <Route exact path="/event-detail/:id" component={EventDetail} />
+              <Route exact path="/admin/event-detail/:id" component={AdminEventDetail} />
               <Route
                 exact
                 path="/myevent-detail/:id"

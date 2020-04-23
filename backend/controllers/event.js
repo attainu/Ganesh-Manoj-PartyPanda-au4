@@ -50,8 +50,8 @@ EventController.status = async (req, res) => {
       { status: query.status },
       { new: true }
     )
-      .then((res) => {
-        console.log("updated", event);
+      .then((response) => {
+        // console.log("updated", Event);
         res.send("Updated");
       })
       .catch((error) => {

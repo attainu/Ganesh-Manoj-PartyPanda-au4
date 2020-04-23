@@ -32,7 +32,7 @@ class Admin extends React.Component {
 
     if (this.state.user) {
       let id = this.state.id;
-      let link = `/event-detail/${id}`;
+      let link = `/admin/event-detail/${id}`;
       return <Redirect to={link} />;
     }
 
