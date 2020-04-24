@@ -91,6 +91,10 @@ app.put("/join", controller.GuestController.update);
 app.get("/join", controller.GuestController.list);
 // app.delete("/join", controller.GuestController.delete);
 
+//Feedback
+app.post("/feedback", controller.FeedbackController.add);
+app.get("/feedback", controller.FeedbackController.list);
+
 //Forget password
 
 app.post("/step1", async (req, res) => {

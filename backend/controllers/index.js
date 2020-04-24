@@ -6,4 +6,5 @@ module.exports = {
   LoginController: require("./login"),
   GuestController: require("./guest"),
   UploadController: require("./uploader"),
+  FeedbackController: require("./feedback"),
 };
