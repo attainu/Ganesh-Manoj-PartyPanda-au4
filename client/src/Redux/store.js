@@ -12,6 +12,14 @@ let inState = {
   status: "",
 
   mobile: "",
+
+  ftheme: "",
+  ftype: "",
+  fcharges: "",
+  fparking: "",
+  fstay: "",
+  fsmoking: "",
+  fbeverages: "",
 };
 
 const appReducer = (state = inState, action) => {
@@ -81,6 +89,34 @@ const appReducer = (state = inState, action) => {
 
     case "Guests":
       copy.guests = action.payload;
+      return copy;
+
+    case "ftheme":
+      copy.ftheme = action.payload;
+      return copy;
+
+    case "ftype":
+      copy.ftype = action.payload;
+      return copy;
+
+    case "fcharges":
+      copy.fcharges = action.payload;
+      return copy;
+
+    case "fparking":
+      copy.fparking = action.payload;
+      return copy;
+
+    case "fstay":
+      copy.fstay = action.payload;
+      return copy;
+
+    case "fsmoking":
+      copy.fsmoking = action.payload;
+      return copy;
+
+    case "fbeverages":
+      copy.fbeverages = action.payload;
       return copy;
 
     default:

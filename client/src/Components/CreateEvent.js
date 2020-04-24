@@ -39,11 +39,11 @@ class CreateEvent extends React.Component {
       .post(`http://localhost:3010/create-event?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          MySwal.fire("Event Created","", "success");
+          MySwal.fire("Event Created", "", "success");
           console.log(res);
           return <Redirect to="/allevents" />;
         } else {
-          MySwal.fire("Failed to Update Profile","","error");
+          MySwal.fire("Failed to Update Profile", "", "error");
         }
       })
       .catch(function (error) {
@@ -134,6 +134,7 @@ class CreateEvent extends React.Component {
                 type="text"
                 className="form-control border border-dark"
                 name="location"
+                placeholder="Andheri Mumbai"
                 value={this.state.location}
                 onChange={this.handleChange}
                 required
@@ -145,6 +146,7 @@ class CreateEvent extends React.Component {
                 type="text"
                 className="form-control border border-dark"
                 name="exact_location"
+                placeholder="Room no:786, 1st floor"
                 value={this.state.exact_location}
                 onChange={this.handleChange}
                 required
@@ -188,6 +190,7 @@ class CreateEvent extends React.Component {
                 type="text"
                 className="form-control border border-dark"
                 name="music"
+                placeholder="Bolloywood"
                 value={this.state.music}
                 onChange={this.handleChange}
                 required
@@ -213,6 +216,7 @@ class CreateEvent extends React.Component {
                 type="number"
                 className="form-control border border-dark"
                 name="strength"
+                placeholder="5"
                 value={this.state.strength}
                 onChange={this.handleChange}
                 required
@@ -224,6 +228,7 @@ class CreateEvent extends React.Component {
                 type="number"
                 className="form-control border border-dark"
                 name="charges"
+                placeholder="150"
                 value={this.state.charges}
                 onChange={this.handleChange}
                 required
