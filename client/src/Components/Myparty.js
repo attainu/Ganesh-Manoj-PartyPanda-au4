@@ -1,40 +1,41 @@
 import React, { Fragment } from "react";
 
 import { connect } from "react-redux";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./../style/allparties.css";
 
 class Myparty extends React.Component {
-  state ={
-    id:""
-  }
-  
-  sendId = (id) =>{
+  state = {
+    id: "",
+  };
+
+  sendId = (id) => {
     this.setState({
-      id: id
-    })
-  }
+      id: id,
+    });
+  };
   render() {
-      let events = this.props.allEvent;
-      let user = this.props.userData;
-      let myEvent = [];
-      events.filter(event => 
-          {
-            if(event.host._id == user._id){
-              myEvent.push(event);
-            }else{
-              // console.log("not matched")
-            }
-          }
-        );
-        if (this.state.id) {
-          let id = this.state.id;
-          let link = `/myevent-detail/${id}`
-          return <Redirect to={link} />;
-        }
+    let events = this.props.allEvent;
+    let user = this.props.userData;
+    let myEvent = [];
+    events.filter((event) => {
+      if (event.host._id == user._id) {
+        myEvent.push(event);
+      } else {
+        // console.log("not matched")
+      }
+    });
+    if (this.state.id) {
+      let id = this.state.id;
+      let link = `/myevent-detail/${id}`;
+      return <Redirect to={link} />;
+    }
     return (
       <Fragment>
-        <div className="d-flex flex-column flex-nowrap justify-content-center container-fluid pb-5 pl-5 pr-5 wrapper ">
+        <div
+          className="d-flex flex-column flex-nowrap container-fluid pb-5 pl-5 pr-5 wrapper "
+          style={{ minHeight: "70vh" }}
+        >
           <center className="pb-4 pt-4 ">
             <h4 className="pages">My Party</h4>
             <hr />

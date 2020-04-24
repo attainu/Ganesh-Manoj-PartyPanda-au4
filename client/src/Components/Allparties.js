@@ -269,7 +269,7 @@ class Allparties extends React.Component {
       <Fragment>
         <div
           className="d-flex flex-column flex-nowrap  container-fluid pb-5 pl-5 pr-5 wrapper "
-          style={{ height: "100vh" }}
+          style={{ minHeight: "100vh" }}
         >
           <center className="pb-4 pt-4 ">
             <h4 className="pages">All Parties</h4>
