@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import {connect} from "react-redux";
+import { Redirect} from "react-router-dom";
 
 class Feedback extends Component {
 
@@ -14,6 +15,9 @@ class Feedback extends Component {
         )
     }
     render() {
+        if (!localStorage.Token || this.props.userData.mobile !== 9953776615) {
+            return <Redirect to="/signin" />;
+        }
         return (
             <div className="container-fluid d-flex justify-content-center  bg-light ">
                 <div className="d-flex flex-column">
@@ -38,7 +42,8 @@ class Feedback extends Component {
 
 const fromStore = (state) =>{
     return {
-        feedback : state.feedback
+        feedback : state.feedback,
+        userData : state.userData
     }
 }
 export default connect(fromStore)(Feedback);

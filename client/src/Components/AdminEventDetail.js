@@ -54,6 +54,9 @@ remove = () =>  {
 }
 
 render() {
+  if (!localStorage.Token || this.props.userData.mobile !== 9953776615) {
+    return <Redirect to="/signin" />;
+  }
     let event = this.props.selectedEventData;
     let host = event.host;
 
