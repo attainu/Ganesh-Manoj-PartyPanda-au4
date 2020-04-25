@@ -58,11 +58,20 @@ class Navbar extends React.Component {
                   {this.props.isLogin ? (
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic">
-                        <img
-                          src={this.props.userData.image}
-                          className="rounded-circle mr-2"
-                          style={{ height: "35px", width: "35px" }}
-                        />
+                        {this.props.userData.image ? (
+                          <img
+                            src={this.props.userData.image}
+                            className="rounded-circle mr-2"
+                            style={{ height: "35px", width: "35px" }}
+                          />
+                        ) : (
+                          <img
+                            src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                            className="rounded-circle mr-2"
+                            style={{ height: "35px", width: "35px" }}
+                          />
+                        )}
+
                         <span className="pr-1">
                           {this.props.userData.name
                             ? this.props.userData.name
