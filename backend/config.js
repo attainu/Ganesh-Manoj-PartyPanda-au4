@@ -3,3 +3,5 @@ module.exports = {
   accountSID: "ACf4322ed1358a61cf0db7eb92a9d21e28",
   authToken: "f1bc51f3b25f8803a30af99704c10918",
 };
+
+// mongodb+srv://root:<password>@cluster0-vmkir.mongodb.net/test?retryWrites=true&w=majority

@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import config from "./../config";
 
 class Signup extends React.Component {
   state = {
@@ -25,22 +26,14 @@ class Signup extends React.Component {
     };
     const MySwal = withReactContent(Swal);
     if (this.state.password !== this.state.confirmPassword) {
-      MySwal.fire(
-        "Password and Confirm password is not same",
-        "",
-        "error"
-        );
+      MySwal.fire("Password and Confirm password is not same", "", "error");
     } else {
       axios
-        .post("http://localhost:3010/signup", signupData)
+        .post(`${config.url}/signup`, signupData)
         .then((response) => {
           e.preventDefault();
-          MySwal.fire(
-            response.data,
-            "",
-            "warning"
-            );
-            
+          MySwal.fire(response.data, "", "warning");
+
           this.setState({
             mobile: "",
             password: "",
