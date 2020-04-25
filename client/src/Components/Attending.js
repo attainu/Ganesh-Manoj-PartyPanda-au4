@@ -92,8 +92,12 @@ class Attending extends React.Component {
                       <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
                         <h5 className="card-text">{elem.party.location}</h5>
                         <p className="card-text">
-                          {elem.party.date} | {elem.party.start_time} to{" "}
-                          {elem.party.end_time}
+                          {new Intl.DateTimeFormat("en-GB", {
+                            month: "2-digit",
+                            day: "2-digit",
+                            year: "numeric",
+                          }).format(new Date(elem.party.date))}{" "}
+                          | {elem.party.start_time} to {elem.party.end_time}
                         </p>
                       </div>
                     </div>
