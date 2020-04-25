@@ -29,7 +29,7 @@ class Signup extends React.Component {
       MySwal.fire("Password and Confirm password is not same", "", "error");
     } else {
       axios
-        .post(`${config.url}/signup`, signupData)
+        .post(`http://localhost:3010/signup`, signupData)
         .then((response) => {
           e.preventDefault();
           MySwal.fire(response.data, "", "warning");

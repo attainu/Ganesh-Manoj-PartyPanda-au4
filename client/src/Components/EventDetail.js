@@ -26,9 +26,7 @@ class EventDetail extends React.Component {
         `http://localhost:3010/join?user_id=${user_id}&party_id=${party_id}`
       )
       .then((res) => {
-        MySwal.fire("Requested to join!",
-        "",
-        "success");
+        MySwal.fire("Requested to join!", "", "success");
       });
   }
 
@@ -46,15 +44,15 @@ class EventDetail extends React.Component {
     // if (host) console.log("Event", host.name);
 
     let result = [];
-    this.props.attending.map(elem =>{
-      if(elem.party._id === this.props.match.params.id){
+    this.props.attending.map((elem) => {
+      if (elem.party._id === this.props.match.params.id) {
         // console.log("matched", elem);
         result.push(elem);
-      }else{
+      } else {
         // console.log("not matched", elem);
       }
       // console.log(result);
-    })
+    });
     return (
       <Fragment>
         {host ? (
@@ -183,17 +181,39 @@ class EventDetail extends React.Component {
                         </div>
                       </div>
                       <div
-                        className="d-flex flex-column shadow col-md-5 border border-white bg-white mt-1 py-2 px-2"
+                        className="card d-flex flex-column shadow col-md-5 border border-white bg-white mt-1 py-2 px-2"
                         style={{ borderRadius: "35px" }}
                       >
                         <h3 className=" pt-1 pb-2 text-dark">Host</h3>
-
-                        <h5 className="pl-3" style={{ textAlign: "left" }}>
-                          {host.name}
-                        </h5>
-                        <p className="text-muted text-left pl-3 pt-3">
-                          {host.bio}
-                        </p>
+                        <div className="card d-flex flex-row flex-wrap border-white justify-content-center">
+                          <img
+                            class="card-img-top mt-4 ml-1"
+                            // style={{
+                            //   marginLeft: "2.3rem",
+                            //   height: "10rem",
+                            //   width: "10rem",
+                            //   borderRadius: "50%",
+                            // }}
+                            src={host.image}
+                            alt="Card image cap"
+                            style={{
+                              height: "8rem",
+                              width: "8rem",
+                              borderRadius: "50%",
+                            }}
+                          />
+                          <div className="card-body p-3 d-flex flex-column ">
+                            <h4 className="card-title text-dark">
+                              {host.name}
+                            </h4>
+                            <div className="d-flex flex-column flex-wrap card-text">
+                              {host.profession} | {host.company} |
+                              {host.interest} | {host.gender}
+                            </div>
+                            <h5>Bio</h5>
+                            <div>{host.bio}</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -213,7 +233,24 @@ class EventDetail extends React.Component {
             </div>
             {/* submit button */}
             <div className="d-flex justify-content-center pt-2 pb-3">
-              {result[0] ?  <button className="btn btn-warning" style={{ borderRadius: "20px" }}>Status : Already requested to join! </button> : <button className="btn btn-secondary" style={{ borderRadius: "20px" }} onClick={() => {this.handleSend(); }}>Join Event</button>}
+              {result[0] ? (
+                <button
+                  className="btn btn-warning"
+                  style={{ borderRadius: "20px" }}
+                >
+                  Status : Already requested to join!{" "}
+                </button>
+              ) : (
+                <button
+                  className="btn btn-secondary"
+                  style={{ borderRadius: "20px" }}
+                  onClick={() => {
+                    this.handleSend();
+                  }}
+                >
+                  Join Event
+                </button>
+              )}
             </div>
           </div>
         ) : (
@@ -230,7 +267,7 @@ const fromStroe = (state) => {
     userData: state.userData,
     allEvent: state.allEvent,
     selectedEventData: state.selectedEventData,
-    attending: state.attending
+    attending: state.attending,
   };
 };
 export default connect(fromStroe)(EventDetail);
