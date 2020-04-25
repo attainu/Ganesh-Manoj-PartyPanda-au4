@@ -23,7 +23,8 @@ class Login extends React.Component {
       .then(async (res) => {
         console.log("Res", res);
         console.log(typeof res.data);
-        if (JSON.stringify(res.data) == "{}") {
+        console.log(JSON.stringify(res.data) === "{}");
+        if (JSON.stringify(res.data) === "{}") {
           await this.props.dispatch({
             type: "forget",
             payload: this.state.forget,

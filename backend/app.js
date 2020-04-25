@@ -104,8 +104,9 @@ app.post("/step1", async (req, res) => {
 
     let user = await User.findOne({ mobile: mobile });
     console.log("User", user);
-    if (!user) return res.send("Mobile Number Not found");
-
+    if (!user) {
+      return res.send("Mobile Number Not found");
+    }
     client.verify
       .services(config.serviceID)
       .verifications.create({ to: `+91${mobile}`, channel: "sms" })

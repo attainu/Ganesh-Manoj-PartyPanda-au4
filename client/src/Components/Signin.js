@@ -36,7 +36,10 @@ class Signin extends React.Component {
     if (this.props.status === "pending") return <Redirect to="/verify" />;
 
     if (localStorage.Token) {
-      if (this.props.userData.mobile == 9953776615) {
+      if (
+        this.props.userData.mobile == 9953776615 ||
+        this.props.userData.mobile == 8652362607
+      ) {
         return <Redirect to="/admin" />;
       }
     }
