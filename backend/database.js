@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
-const mongo_url = "mongodb://localhost/partypanda";
-//mongodb+srv://root:partypanda@cluster0-vmkir.mongodb.net/partypanda?retryWrites=true&w=majority
+const mongo_url =
+  "mongodb://localhost/partypanda";
+
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
