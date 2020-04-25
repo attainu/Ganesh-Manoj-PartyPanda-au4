@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./../style/allparties.css";
+import moment from "moment";
 
 class Allparties extends React.Component {
   state = {
@@ -435,7 +436,12 @@ class Allparties extends React.Component {
                       <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
                         <h5 className="card-text">{item.location}</h5>
                         <p className="card-text">
-                          {item.date} | {item.start_time} to {item.end_timing}
+                          {new Intl.DateTimeFormat("en-GB", {
+                            month: "2-digit",
+                            day: "2-digit",
+                            year: "numeric",
+                          }).format(new Date(item.date))}
+                          | {item.start_time} to {item.end_timing}
                         </p>
                       </div>
                     </div>

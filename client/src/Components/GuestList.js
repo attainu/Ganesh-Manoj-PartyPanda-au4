@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import React, { Fragment } from "react";
 import axios from "axios";
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 class GuestList extends React.Component {
   handleAccept(id) {
@@ -10,14 +10,10 @@ class GuestList extends React.Component {
     axios
       .put(`http://localhost:3010/join?id=${id}&status=true`)
       .then((res) => {
-        MySwal.fire("Status Updated",
-        "",
-        "success");
+        MySwal.fire("Status Updated", "", "success");
       })
       .catch((error) => {
-        MySwal.fire("Status failed to Update!",
-        error,
-        "warning");;
+        MySwal.fire("Status failed to Update!", error, "warning");
       });
   }
   handleReject(id) {
@@ -25,14 +21,10 @@ class GuestList extends React.Component {
     axios
       .put(`http://localhost:3010/join?id=${id}&status=false`)
       .then((res) => {
-        MySwal.fire("Status Updated",
-        "",
-        "success");
+        MySwal.fire("Status Updated", "", "success");
       })
       .catch((error) => {
-        MySwal.fire("Status failed to Update!",
-        error,
-        "warning");;
+        MySwal.fire("Status failed to Update!", error, "warning");
       });
   }
 
@@ -77,9 +69,14 @@ class GuestList extends React.Component {
                       {elem.user.name}
                     </h3>
                     <p className="card-text">
-                      {elem.user.profession} | {elem.user.company} |{" "}
-                      {elem.user.interest} | 20 years | {elem.user.gender} |
-                      {elem.user.mobile}
+                      {elem.user.profession} | {elem.user.company} |
+                      {elem.user.interest} |{" "}
+                      {new Intl.DateTimeFormat("en-GB", {
+                        month: "2-digit",
+                        day: "2-digit",
+                        year: "numeric",
+                      }).format(new Date(elem.user.dob))}
+                      |{elem.user.gender} |{elem.user.mobile}
                     </p>
                   </div>
                   <div className="d-flex flex-column">
