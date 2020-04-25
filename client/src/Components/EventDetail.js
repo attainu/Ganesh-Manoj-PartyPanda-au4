@@ -164,20 +164,47 @@ class EventDetail extends React.Component {
                         <h3 className="text-dark">Event Ediquettes</h3>
                         <hr />
                         <div className="d-flex flex-column">
-                          <div className="text-muted text-left">
-                            <p className="py-0">1. Sport Camraderie</p>
-                            <p className="py-0">
-                              2. Dont expect spot on bike or in car unless
-                              specified
-                            </p>
-                            <p className="py-0">
-                              3. If needed, detailed itinerary will be shared in
-                              WhatsApp group to confirmed people.
-                            </p>
-                            <p className="py-0">
-                              4. Take a kickAss SS and Tag @partyherd_on IG
-                            </p>
-                          </div>
+                          {event.type === "Online Party" ? (
+                            <div className="text-muted text-left">
+                              <p className="py-0">1. Be on time.</p>
+                              <p className="py-0">
+                                2. Dont go in & out of the call, it's not live.
+                              </p>
+                              <p className="py-0">
+                                3. You can't join back if you leave the call.
+                                The spot will be alloted to someone else.
+                              </p>
+                              <p className="py-0">
+                                4. Take a kickAss SS and Tag @partypanda on IG
+                              </p>
+                            </div>
+                          ) : event.type === "Outdoor Party" ? (
+                            <div className="text-muted text-left">
+                              <p className="py-0">1. Sport Camraderie</p>
+                              <p className="py-0">
+                                2. Dont expect spot on bike or in car unless
+                                specified
+                              </p>
+                              <p className="py-0">
+                                3. If needed, detailed itinerary will be shared
+                                in WhatsApp group to confirmed people.
+                              </p>
+                              <p className="py-0">
+                                4. Take a kickAss SS and Tag @partyherd_on IG
+                              </p>
+                            </div>
+                          ) : (
+                            <div className="text-muted text-left">
+                              <p className="py-0">1. Spot your Host.</p>
+                              <p className="py-0">
+                                2. Bring the vibe and Respect the house.
+                              </p>
+                              <p className="py-0">3. Dont be a party pooper.</p>
+                              <p className="py-0">
+                                4. Take a kickAss SS and Tag @partypand on IG
+                              </p>
+                            </div>
+                          )}
                         </div>
                       </div>
                       <div
