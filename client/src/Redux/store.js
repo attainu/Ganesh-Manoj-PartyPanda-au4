@@ -20,6 +20,8 @@ let inState = {
   fstay: "",
   fsmoking: "",
   fbeverages: "",
+
+  feedback: []
 };
 
 const appReducer = (state = inState, action) => {
@@ -119,6 +121,9 @@ const appReducer = (state = inState, action) => {
       copy.fbeverages = action.payload;
       return copy;
 
+    case "feedback":
+      copy.feedback = action.payload;
+      return copy; 
     default:
       return copy;
   }
