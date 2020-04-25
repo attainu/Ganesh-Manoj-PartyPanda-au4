@@ -406,39 +406,43 @@ class Allparties extends React.Component {
             </div>
           </div>
 
-          <div className="d-flex flex-row flex-wrap justify-content-around">
-            {result.map((item) => {
-              return (
-                <div
-                  className="card event mb-5"
-                  style={{ width: "35vw" }}
-                  onClick={() => this.sendId(item)}
-                >
-                  <img
-                    className="card-img-top"
-                    src={item.image}
-                    alt=""
-                    style={{ height: "300px", width: "100%" }}
-                  />
-                  <div className="card-body ">
-                    <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                      <h5 className="card-title">
-                        {item.host.name}'s {item.type}
-                      </h5>
-                      <p className="card-text align-self-center pt-3">
-                        {item.theme}
-                      </p>
-                    </div>
-                    <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                      <h5 className="card-text">{item.location}</h5>
-                      <p className="card-text">
-                        {item.date} | {item.start_time} to {item.end_timing}
-                      </p>
+          <div className="d-flex flex-row flex-wrap justify-content-around pt-5 mt-3">
+            {!result[0] ? (
+              <h2 className="text-secondary">Events not available!</h2>
+            ) : (
+              result.map((item) => {
+                return (
+                  <div
+                    className="card event mb-5"
+                    style={{ width: "35vw" }}
+                    onClick={() => this.sendId(item)}
+                  >
+                    <img
+                      className="card-img-top"
+                      src={item.image}
+                      alt=""
+                      style={{ height: "300px", width: "100%" }}
+                    />
+                    <div className="card-body ">
+                      <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
+                        <h5 className="card-title">
+                          {item.host.name}'s {item.type}
+                        </h5>
+                        <p className="card-text align-self-center pt-3">
+                          {item.theme}
+                        </p>
+                      </div>
+                      <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
+                        <h5 className="card-text">{item.location}</h5>
+                        <p className="card-text">
+                          {item.date} | {item.start_time} to {item.end_timing}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </Fragment>

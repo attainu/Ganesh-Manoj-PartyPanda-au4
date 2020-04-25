@@ -41,38 +41,48 @@ class Myparty extends React.Component {
             <hr />
           </center>
           <div className="d-flex flex-row flex-wrap justify-content-around">
-            {myEvent.map((event) => {
-              return (
-                <div
-                  className="card event mb-5"
-                  style={{ width: "35vw" }}
-                  onClick={() => this.sendId(event._id)}
-                >
-                  <img
-                    className="card-img-top"
-                    src={event.image}
-                    alt="Card image cap"
-                    style={{ height: "300px", width: "100%" }}
-                  />
-                  <div className="card-body ">
-                    <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                      <h5 className="card-title">
-                        {event.host.name}'s {event.theme}
-                      </h5>
-                      <p className="card-text align-self-center pt-3">
-                        {event.type}
-                      </p>
-                    </div>
-                    <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
-                      <h5 className="card-text">{event.exact_location}</h5>
-                      <p className="card-text">
-                        {event.date} | {event.start_time} to {event.end_timing}
-                      </p>
+            {!myEvent[0] ? (
+              <center>
+                <h2 className="text-secondary">
+                  You have not hosted any Event.
+                </h2>
+                <h4 className="text-secondary">What are you waiting for?</h4>
+              </center>
+            ) : (
+              myEvent.map((event) => {
+                return (
+                  <div
+                    className="card event mb-5"
+                    style={{ width: "35vw" }}
+                    onClick={() => this.sendId(event._id)}
+                  >
+                    <img
+                      className="card-img-top"
+                      src={event.image}
+                      alt="Card image cap"
+                      style={{ height: "300px", width: "100%" }}
+                    />
+                    <div className="card-body ">
+                      <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
+                        <h5 className="card-title">
+                          {event.host.name}'s {event.theme}
+                        </h5>
+                        <p className="card-text align-self-center pt-3">
+                          {event.type}
+                        </p>
+                      </div>
+                      <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
+                        <h5 className="card-text">{event.exact_location}</h5>
+                        <p className="card-text">
+                          {event.date} | {event.start_time} to{" "}
+                          {event.end_timing}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </Fragment>

@@ -6,133 +6,128 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 class AdminEventDetail extends React.Component {
-    componentDidMount = () => {
+  componentDidMount = () => {
     let id = this.props.match.params.id;
     axios
-        .get(`http://localhost:3010/event?id=${id}`)
-        .then((res) => {
+      .get(`http://localhost:3010/event?id=${id}`)
+      .then((res) => {
         this.props.dispatch({ type: "eventData", payload: res.data });
-        })
-        .catch((err) => console.log(err));
-    };
+      })
+      .catch((err) => console.log(err));
+  };
 
-
-accept = () =>  {
+  accept = () => {
     let id = this.props.match.params.id;
     let status = true;
     let MySwal = withReactContent(Swal);
-    axios.put( `http://localhost:3010/update-status?id=${id}&status=${status}` ).  then(
-    async (res) =>  {
-        MySwal.fire("Event Accepted",
-        "",
-        "success")
-    }).
-    catch(
-        err => {
-            console.log(err)
-        })
+    axios
+      .put(`http://localhost:3010/update-status?id=${id}&status=${status}`)
+      .then(async (res) => {
+        MySwal.fire("Event Accepted", "", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-        window.location.reload();
-}
+    window.location.reload();
+  };
 
-remove = () =>  {
+  remove = () => {
     let id = this.props.match.params.id;
-    console.log(id)
+    console.log(id);
     let MySwal = withReactContent(Swal);
-    axios.delete( `http://localhost:3010/event?id=${id}`).  then(
-    async (res) =>  {
-        MySwal.fire("Event Deleted",
-        "",
-        "success")
-    }).
-    catch(
-        err => {
-            console.log(err)
-        })
+    axios
+      .delete(`http://localhost:3010/event?id=${id}`)
+      .then(async (res) => {
+        MySwal.fire("Event Deleted", "", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-        window.location.replace("/admin");
-}
+    window.location.replace("/admin");
+  };
 
-render() {
-  if (!localStorage.Token || this.props.userData.mobile !== 9953776615) {
-    return <Redirect to="/signin" />;
-  }
+  render() {
+    if (!localStorage.Token && this.props.userData.mobile !== 9953776615) {
+      return <Redirect to="/signin" />;
+    }
     let event = this.props.selectedEventData;
     let host = event.host;
 
     return (
-        <Fragment>
+      <Fragment>
         {host ? (
-            <div className="container-fluid d-flex bg-light flex-column ">
+          <div className="container-fluid d-flex bg-light flex-column ">
             <h1 className="text-center text-dark">
-                {host.name}'s {event.theme}
+              {host.name}'s {event.theme}
             </h1>
             {/* content */}
             <div className="container d-flex flex-column flex-nowrap mt-1 ">
-            <div className="d-flex flex-column">
+              <div className="d-flex flex-column">
                 <div
-                className="d-flex justify-content-around pt-3"
-                style={{ borderRadius: "20px", backgroundColor: "gainsboro" }}
+                  className="d-flex justify-content-around pt-3"
+                  style={{ borderRadius: "20px", backgroundColor: "gainsboro" }}
                 >
-                <div className="d-flex flex-column justify-content-center">
+                  <div className="d-flex flex-column justify-content-center">
                     <img
-                    className="text-center"
-                    src="https://img.icons8.com/ios-filled/50/000000/parking.png"
-                    style={{ width: "40px", height: "40px" }}
+                      className="text-center"
+                      src="https://img.icons8.com/ios-filled/50/000000/parking.png"
+                      style={{ width: "40px", height: "40px" }}
                     />
                     <p className="text-center">Parking</p>
                     <p className="text-center">{event.parking}</p>
-                </div>
-                <div className="d-flex flex-column justify-content-center">
+                  </div>
+                  <div className="d-flex flex-column justify-content-center">
                     <img
-                    src="https://img.icons8.com/ios-filled/50/000000/smoking.png"
-                    style={{ width: "40px", height: "40px" }}
+                      src="https://img.icons8.com/ios-filled/50/000000/smoking.png"
+                      style={{ width: "40px", height: "40px" }}
                     />
                     <p>Smoking</p>
                     <p className="text-center">{event.smoking}</p>
-                </div>
-                <div className="d-flex flex-column justify-content-center">
+                  </div>
+                  <div className="d-flex flex-column justify-content-center">
                     <img
-                    src="https://img.icons8.com/android/24/000000/home.png"
-                    style={{ width: "40px", height: "40px" }}
+                      src="https://img.icons8.com/android/24/000000/home.png"
+                      style={{ width: "40px", height: "40px" }}
                     />
                     <p>Stayover</p>
                     <p className="text-center">{event.stayover}</p>
-                </div>
-                <div className="d-flex flex-column justify-content-center">
+                  </div>
+                  <div className="d-flex flex-column justify-content-center">
                     <img
-                    src="https://img.icons8.com/ios-filled/50/000000/alcoholic-beverage-licensing.png"
-                    style={{ width: "40px", height: "40px" }}
+                      src="https://img.icons8.com/ios-filled/50/000000/alcoholic-beverage-licensing.png"
+                      style={{ width: "40px", height: "40px" }}
                     />
                     <p>Beverages</p>
                     <p className="text-center">{event.beverages}</p>
-                </div>
+                  </div>
                 </div>
                 <div className="card mt-1 bg-light" style={{ border: "none" }}>
-                <div className="card-body">
+                  <div className="card-body">
                     <div className="d-flex flex-row flex-wrap justify-content-around">
-                    <div
+                      <div
                         className="d-flex flex-column  border border-white shadow bg-white col-md-5 mt-1 py-2 px-2"
                         style={{ borderRadius: "35px" }}
-                    >
+                      >
                         <h3 className="text-dark">When & Where</h3>
                         <hr />
                         <div className="d-flex flex-column">
-                        <div className="d-flex flex-row py-0">
+                          <div className="d-flex flex-row py-0">
                             <img
-                            src="https://img.icons8.com/material-sharp/24/000000/planner.png"
-                            style={{ width: "30px", height: "30px" }}
+                              src="https://img.icons8.com/material-sharp/24/000000/planner.png"
+                              style={{ width: "30px", height: "30px" }}
                             />
                             <p className="text-muted  ml-1">
-                            Mon, 27-Apr at 11:0 AM - 2:0 PM
+                              Mon, 27-Apr at 11:0 AM - 2:0 PM
                             </p>
-                        </div>
-                        <div
+                          </div>
+                          <div
                             className="d-flex flex-row py-0"
                             style={{ float: "left" }}
-                        >
+                          >
                             <img
-                            src="https://img.icons8.com/material-rounded/24/000000/location-marker.png"
+                              src="https://img.icons8.com/material-rounded/24/000000/location-marker.png"
                               style={{ width: "30px", height: "30px" }}
                             />
                             <p className="text-muted pt-1 ml-1">
@@ -218,8 +213,27 @@ render() {
             </div>
             {/* submit button */}
             <div className="d-flex justify-content-center pt-2 pb-3">
-            {/* <div><button className="btn btn-success mr-3" onClick={this.accept}>Accept</button> <button className="btn btn-danger ml-3">Remove</button></div> */}
-               {!event.status ?<div><button className="btn btn-success mr-3" onClick={this.accept}>Accept</button> <button className="btn btn-danger ml-3" onClick={this.remove}>Remove</button></div> : <button className="btn btn-warning" style={{ borderRadius: "20px" }}>Accepted</button>}
+              {/* <div><button className="btn btn-success mr-3" onClick={this.accept}>Accept</button> <button className="btn btn-danger ml-3">Remove</button></div> */}
+              {!event.status ? (
+                <div>
+                  <button
+                    className="btn btn-success mr-3"
+                    onClick={this.accept}
+                  >
+                    Accept
+                  </button>{" "}
+                  <button className="btn btn-danger ml-3" onClick={this.remove}>
+                    Remove
+                  </button>
+                </div>
+              ) : (
+                <button
+                  className="btn btn-warning"
+                  style={{ borderRadius: "20px" }}
+                >
+                  Accepted
+                </button>
+              )}
             </div>
           </div>
         ) : (
@@ -236,7 +250,7 @@ const fromStroe = (state) => {
     userData: state.userData,
     allEvent: state.allEvent,
     selectedEventData: state.selectedEventData,
-    attending: state.attending
+    attending: state.attending,
   };
 };
 export default connect(fromStroe)(AdminEventDetail);

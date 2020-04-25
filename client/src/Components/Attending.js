@@ -60,7 +60,10 @@ class Attending extends React.Component {
           </center>
           <div className="d-flex flex-row flex-wrap justify-content-around">
             {!this.props.attending[0] ? (
-              <h2 className="text-secondary">You haven't join any event!</h2>
+              <center>
+                <h2 className="text-secondary">You haven't join any event.</h2>
+                <h4 className="text-secondary">What are you waiting for?</h4>
+              </center>
             ) : (
               this.props.attending.map((elem, index) => {
                 return (

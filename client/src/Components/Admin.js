@@ -26,7 +26,7 @@ class Admin extends React.Component {
     }
   };
   render() {
-    if (!localStorage.Token || this.props.userData.mobile !== 9953776615) {
+    if (!localStorage.Token && this.props.userData.mobile !== 9953776615) {
       return <Redirect to="/signin" />;
     }
 
