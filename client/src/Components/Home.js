@@ -24,6 +24,15 @@ class Home extends React.Component {
         <div className="wrapper">
           <div>
             <img src={Red} alt="" style={{ width: "100%", height: "500px" }} />
+            <div id="caption" className="text-white">
+              <h1>Welcome To Party Panda</h1>
+              <h4>Find likeminded people for recreational activities</h4>
+              <div>
+                <Link to="/allevents"><button id="send">Join Event</button></Link>
+                <Link to="/create-event"><button id="send">Create Event</button></Link>
+              </div>
+            </div>
+
           </div>
           {/* About us container */}
           <div className="container  mt-5">

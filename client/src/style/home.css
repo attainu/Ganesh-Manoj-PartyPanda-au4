@@ -60,3 +60,10 @@
   line-height: 24px;
   font-size: 14px;
 }
+ #caption {
+  position: relative;
+  top: -367px;
+  margin-left: 80px;
+  /* color: rgba(127, 56, 122, 0.92); */
+  
+ }
