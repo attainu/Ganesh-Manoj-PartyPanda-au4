@@ -155,7 +155,7 @@ class MyEventDetail extends React.Component {
                     <p className="text-muted pt-4">{event.details}</p>
                   </div>
                 </div>
-                <div className="d-flex flex-row flex-wrap justify-content-around mt-1">
+                <div className="mt-5 d-flex flex-row flex-wrap justify-content-around mt-1">
                   <div
                     className="d-flex flex-column shadow border border-white bg-white col-md-5 mt-1 py-2 px-2"
                     style={{ borderRadius: "35px" }}
@@ -182,7 +182,7 @@ class MyEventDetail extends React.Component {
               </div>
             </div>
             <div
-              className="d-flex flex-row flex-wrap justify-content-around"
+              className="mt-5 d-flex flex-row flex-wrap justify-content-around"
               style={{ fontSize: "20px" }}
             >
               <p>

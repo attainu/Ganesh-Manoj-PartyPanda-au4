@@ -13,6 +13,16 @@
   text-transform: capitalize;
 }
 
+#joincreate {
+  min-width: 120px;
+  max-height: 36px;
+  border: 1px solid #554f91;
+  background-color: #554f91;
+  color: white;
+  border-radius: 40px;
+  font-weight: 500;
+}
+
 .card-title.about {
   color: #445164;
   padding: 0 0 2px;
@@ -60,10 +70,11 @@
   line-height: 24px;
   font-size: 14px;
 }
- #caption {
+#caption {
   position: relative;
   top: -367px;
   margin-left: 80px;
+  color: #f6f9fae6;
+
   /* color: rgba(127, 56, 122, 0.92); */
-  
- }
+}

@@ -24,15 +24,26 @@ class Home extends React.Component {
         <div className="wrapper">
           <div>
             <img src={Red} alt="" style={{ width: "100%", height: "500px" }} />
-            <div id="caption" className="text-white">
-              <h1>Welcome To Party Panda</h1>
-              <h4>Find likeminded people for recreational activities</h4>
-              <div>
-                <Link to="/allevents"><button id="send">Join Event</button></Link>
-                <Link to="/create-event"><button id="send">Create Event</button></Link>
+            <div id="caption">
+              <h1 style={{ fontSize: "3rem" }} className="mb-3">
+                Welcome To Party Panda
+              </h1>
+              <h4 className="mb-5">
+                Find likeminded people for recreational activities
+              </h4>
+              <div className="mb-4">
+                <Link to="/allevents">
+                  <button id="joincreate" className="mr-3">
+                    Join Event
+                  </button>
+                </Link>
+                <Link to="/create-event">
+                  <button id="joincreate" className="ml-3">
+                    Create Event
+                  </button>
+                </Link>
               </div>
             </div>
-
           </div>
           {/* About us container */}
           <div className="container  mt-5">

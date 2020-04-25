@@ -7,6 +7,19 @@
   padding-bottom: 2.5rem;
 }
 
+.logo:focus {
+  border-color: transparent;
+}
+.logo:active {
+  border-color: transparent;
+}
+.logo:visited {
+  border-color: transparent;
+}
+.logo:hover {
+  border-color: transparent;
+}
+
 #footer {
   position: absolute;
   bottom: 0;

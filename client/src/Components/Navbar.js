@@ -20,7 +20,7 @@ class Navbar extends React.Component {
           // if admin logged in
           <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light py-0">
             <div className=" navbar-brand d-flex justify-content-start ">
-              <Link to="/" className="logo btn">
+              <Link to="/" className="logo ">
                 <img src={Panda} alt="" style={{ width: "65px" }} />
                 PartyPanda
               </Link>
