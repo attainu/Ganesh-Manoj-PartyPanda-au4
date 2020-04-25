@@ -117,7 +117,12 @@ class EventDetail extends React.Component {
                               style={{ width: "30px", height: "30px" }}
                             />
                             <p className="text-muted  ml-1">
-                              Mon, 27-Apr at 11:0 AM - 2:0 PM
+                              {new Intl.DateTimeFormat("en-GB", {
+                                month: "2-digit",
+                                day: "2-digit",
+                                year: "numeric",
+                              }).format(new Date(event.date))}{" "}
+                              at {event.start_time} - {event.end_timing}
                             </p>
                           </div>
                           <div

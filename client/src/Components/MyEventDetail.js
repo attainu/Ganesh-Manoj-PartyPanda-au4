@@ -41,9 +41,7 @@ class MyEventDetail extends React.Component {
           return window.location.reload;
         });
       })
-      .catch((err) => 
-      console.log(err)
-      );
+      .catch((err) => console.log(err));
   }
   render() {
     if (!localStorage.Token) {
@@ -121,7 +119,7 @@ class MyEventDetail extends React.Component {
                           style={{ width: "30px", height: "30px" }}
                         />
                         <p className="text-muted  ml-1">
-                          {event.date} at {event.start_time} AM -{" "}
+                          {event.date} at {event.start_time} -{" "}
                           {event.end_timing}
                         </p>
                       </div>

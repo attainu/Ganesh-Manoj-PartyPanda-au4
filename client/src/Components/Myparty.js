@@ -74,8 +74,12 @@ class Myparty extends React.Component {
                       <div className="d-flex flex-row justify-content-between flex-wrap pb-2">
                         <h5 className="card-text">{event.exact_location}</h5>
                         <p className="card-text">
-                          {event.date} | {event.start_time} to{" "}
-                          {event.end_timing}
+                          {new Intl.DateTimeFormat("en-GB", {
+                            month: "2-digit",
+                            day: "2-digit",
+                            year: "numeric",
+                          }).format(new Date(event.date))}{" "}
+                          | {event.start_time} to {event.end_timing}
                         </p>
                       </div>
                     </div>
