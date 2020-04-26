@@ -28,9 +28,8 @@ class ProfileForm extends React.Component {
       .post(`http://localhost:3010/profile?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          MySwal.fire("Profile updated", "", "success");
-
-          return <Redirect to="/" />;
+          await MySwal.fire("Profile updated", "", "success");
+          window.location.replace('/profile');
         } else {
           MySwal.fire("Failed to Update Profile", "", "warning");
         }

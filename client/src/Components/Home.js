@@ -103,7 +103,7 @@ class Home extends React.Component {
           <div className="container  mt-5" style={{ "border-radius": "35px" }}>
             <h1 className="text-center theme">Party Ideas</h1>
             <div className="row " style={{ padding: "20px" }}>
-              <div className="col-md-4  d-flex justify-content-center">
+              <div className="col-md-4 mt-5 d-flex justify-content-center">
                 <div
                   class="card idea"
                   style={{ width: "20rem", "border-radius": "25px" }}
@@ -123,7 +123,7 @@ class Home extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4  d-flex justify-content-center">
+              <div className="col-md-4 mt-5 d-flex justify-content-center">
                 <div
                   class="card idea"
                   style={{ width: "20rem", "border-radius": "25px" }}
@@ -140,7 +140,7 @@ class Home extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4  d-flex justify-content-center">
+              <div className="col-md-4 mt-5 d-flex justify-content-center">
                 <div
                   class="card idea"
                   style={{ width: "20rem", "border-radius": "25px" }}
@@ -229,7 +229,7 @@ class Home extends React.Component {
           >
             <h1 className="text-center theme">Team</h1>
             <div className="row   text-center mt-5">
-              <div className="col-md-6 d-flex justify-content-center">
+              <div className="col-md-6 mt-5 d-flex justify-content-center">
                 <div
                   class="card"
                   style={{ width: "20rem", "border-radius": "10px" }}
@@ -276,7 +276,7 @@ class Home extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 d-flex justify-content-center">
+              <div className="col-md-6 mt-5 d-flex justify-content-center">
                 <div
                   class="card mem"
                   style={{ width: "20rem", "border-radius": "10px" }}

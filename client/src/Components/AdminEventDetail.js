@@ -23,13 +23,14 @@ class AdminEventDetail extends React.Component {
     axios
       .put(`http://localhost:3010/update-status?id=${id}&status=${status}`)
       .then(async (res) => {
-        MySwal.fire("Event Accepted", "", "success");
+        await MySwal.fire("Event Accepted", "", "success");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
 
-    window.location.reload();
+    
   };
 
   remove = () => {
@@ -39,13 +40,12 @@ class AdminEventDetail extends React.Component {
     axios
       .delete(`http://localhost:3010/event?id=${id}`)
       .then(async (res) => {
-        MySwal.fire("Event Deleted", "", "success");
+        await MySwal.fire("Event Deleted", "", "success");
+        window.location.replace("/admin");
       })
       .catch((err) => {
         console.log(err);
       });
-
-    window.location.replace("/admin");
   };
 
   render() {
@@ -107,7 +107,7 @@ class AdminEventDetail extends React.Component {
                   <div className="card-body">
                     <div className="d-flex flex-row flex-wrap justify-content-around">
                       <div
-                        className="d-flex flex-column  border border-white shadow bg-white col-md-5 mt-1 py-2 px-2"
+                        className="d-flex mt-5 flex-column  border border-white shadow bg-white col-md-5 mt-1 py-2 px-2"
                         style={{ borderRadius: "35px" }}
                       >
                         <h3 className="text-dark">When & Where</h3>
@@ -154,7 +154,7 @@ class AdminEventDetail extends React.Component {
                         </div>
                       </div>
                       <div
-                        className="d-flex flex-column col-md-5 shadow border border-white bg-white mt-1 py-2 px-2"
+                        className="d-flex mt-5 flex-column col-md-5 shadow border border-white bg-white mt-1 py-2 px-2"
                         style={{ borderRadius: "35px" }}
                       >
                         <h3 className=" pt-1 pb-2 text-dark">
@@ -165,7 +165,7 @@ class AdminEventDetail extends React.Component {
                     </div>
                     <div className="d-flex flex-row flex-wrap justify-content-around mt-1">
                       <div
-                        className="d-flex flex-column shadow border border-white bg-white col-md-5 mt-1 py-2 px-2"
+                        className="d-flex mt-5 flex-column shadow border border-white bg-white col-md-5 mt-1 py-2 px-2"
                         style={{ borderRadius: "35px" }}
                       >
                         <h3 className="text-dark">Event Ediquettes</h3>
@@ -188,7 +188,7 @@ class AdminEventDetail extends React.Component {
                         </div>
                       </div>
                       <div
-                        className="d-flex flex-column shadow col-md-5 border border-white bg-white mt-1 py-2 px-2"
+                        className="d-flex mt-5 flex-column shadow col-md-5 border border-white bg-white mt-1 py-2 px-2"
                         style={{ borderRadius: "35px" }}
                       >
                         <h3 className=" pt-1 pb-2 text-dark">Host</h3>

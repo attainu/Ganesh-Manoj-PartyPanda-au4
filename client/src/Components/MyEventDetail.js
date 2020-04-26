@@ -3,6 +3,8 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 import GuestList from "./../Components/GuestList";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 class MyEventDetail extends React.Component {
   componentWillMount = async () => {
@@ -33,13 +35,13 @@ class MyEventDetail extends React.Component {
 
   handleDelete() {
     let id = this.props.match.params.id;
+    let MySwal = withReactContent(Swal);
     axios
       .delete(`http://localhost:3010/event?id=${id}`)
-      .then((res) => {
-        // console.log(res.data);
-        this.props.dispatch({ type: "removeMyEventId" }, () => {
-          return window.location.reload;
-        });
+      .then(async (res) => {
+        await MySwal.fire("Event deleted","","success");
+        window.location.replace("/allevents");
+        this.props.dispatch({ type: "removeMyEventId" });
       })
       .catch((err) => console.log(err));
   }
@@ -106,7 +108,7 @@ class MyEventDetail extends React.Component {
               <div className="card-body">
                 <div className="d-flex flex-row flex-wrap justify-content-around">
                   <div
-                    className="d-flex flex-column  border border-white shadow bg-white col-md-5 mt-1 py-2 px-2"
+                    className="d-flex flex-column mt-5 border border-white shadow bg-white col-md-5 mt-1 py-2 px-2"
                     style={{ borderRadius: "35px" }}
                   >
                     <h3 className="text-dark">When & Where</h3>
@@ -148,7 +150,7 @@ class MyEventDetail extends React.Component {
                     </div>
                   </div>
                   <div
-                    className="d-flex flex-column col-md-5 shadow border border-white bg-white mt-1 py-2 px-2"
+                    className="d-flex mt-5 flex-column col-md-5 shadow border border-white bg-white mt-1 py-2 px-2"
                     style={{ borderRadius: "35px" }}
                   >
                     <h3 className=" pt-1 pb-2 text-dark">What to expects?</h3>

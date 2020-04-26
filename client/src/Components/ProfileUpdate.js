@@ -33,8 +33,8 @@ class ProfileUpdate extends React.Component {
       .post(`http://localhost:3010/update-profile?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          MySwal.fire("Profile updated", "", "success");
-
+          await MySwal.fire("Profile updated", "", "success");
+          window.location.replace("/profile")
           return <Redirect to="/" />;
         } else {
           MySwal.fire("Failed to Update Profile", "", "warning");

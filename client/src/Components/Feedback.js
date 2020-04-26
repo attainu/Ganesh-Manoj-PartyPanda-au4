@@ -21,7 +21,7 @@ class Feedback extends Component {
         return (
             <div className="container-fluid d-flex justify-content-center  bg-light ">
                 <div className="d-flex flex-column">
-                    <h1 className="text-center text-secondary my-5">Feedback</h1>
+                    <h1 className="text-center text-dark my-5">Feedback</h1>
                     {this.props.feedback ? this.props.feedback.map(feedback =>{
                     return(
                         <div class="card mb-5 shadow rounded-lg" style={{"width" : "650px", "border":"none"}}>

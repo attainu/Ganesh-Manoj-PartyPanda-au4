@@ -32,7 +32,7 @@ class CreateEvent extends React.Component {
   };
 
   sendData = () => {
-    window.location.reload();
+    // window.location.reload();
     let id = this.props.userData._id;
     let MySwal = withReactContent(Swal);
     axios
@@ -40,8 +40,6 @@ class CreateEvent extends React.Component {
       .then(async (res) => {
         if (res) {
           MySwal.fire("Event Created", "", "success");
-          console.log(res);
-
           return <Redirect to="/allevents" />;
         } else {
           MySwal.fire("Failed to Update Profile", "", "error");

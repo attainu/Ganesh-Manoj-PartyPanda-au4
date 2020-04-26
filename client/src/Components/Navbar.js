@@ -20,7 +20,7 @@ class Navbar extends React.Component {
           // if admin logged in
           <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light py-0">
             <div className=" navbar-brand d-flex justify-content-start ">
-              <Link to="/" className="logo ">
+              <Link to="/" className="logo text-white " style={{"textDecoration":"none"}}>
                 <img src={Panda} alt="" style={{ width: "65px" }} />
                 PartyPanda
               </Link>
@@ -42,7 +42,7 @@ class Navbar extends React.Component {
             >
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item ">
-                  <Link to="/admin" className="nav-link btn text-white">
+                  <Link to="/admin" className="nav-link btn text-white" >
                     Events
                   </Link>
                 </li>
@@ -100,7 +100,7 @@ class Navbar extends React.Component {
         ) : (
           <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light py-0">
             <div className=" navbar-brand d-flex justify-content-start ">
-              <Link to="/" className="logo btn">
+              <Link to="/" className="logo text-white" style={{"textDecoration":"none"}}>
                 <img src={Panda} alt="" style={{ width: "65px" }} />
                 PartyPanda
               </Link>

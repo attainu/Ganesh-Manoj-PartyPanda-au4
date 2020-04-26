@@ -9,19 +9,22 @@ class GuestList extends React.Component {
     let MySwal = withReactContent(Swal);
     axios
       .put(`http://localhost:3010/join?id=${id}&status=true`)
-      .then((res) => {
-        MySwal.fire("Status Updated", "", "success");
+      .then(async (res) => {
+        await MySwal.fire("Status Updated", "", "success");
+        window.location.reload();
       })
       .catch((error) => {
         MySwal.fire("Status failed to Update!", error, "warning");
+        
       });
   }
   handleReject(id) {
     let MySwal = withReactContent(Swal);
     axios
       .put(`http://localhost:3010/join?id=${id}&status=false`)
-      .then((res) => {
-        MySwal.fire("Status Updated", "", "success");
+      .then(async (res) => {
+        await MySwal.fire("Status Updated", "", "success");
+        window.location.reload();
       })
       .catch((error) => {
         MySwal.fire("Status failed to Update!", error, "warning");
