@@ -4,15 +4,40 @@ import { Link, Route } from "react-router-dom";
 import "./../style/navbar.css";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
+import {Redirect} from "react-router-dom";
 // import UserImg from "../images/red.jpg";
 
 class Navbar extends React.Component {
+state = {
+    isUserData : false
+  }
   userLogout = (e) => {
     localStorage.removeItem("Token");
     this.props.dispatch({ type: "loginFalse" });
     this.props.dispatch({ type: "userDirect" });
   };
 
+  reDir = () =>{
+    if (
+      !this.props.userData.name ||
+      !this.props.userData.image ||
+      !this.props.userData.email ||
+      !this.props.userData.bio ||
+      !this.props.userData.company ||
+      !this.props.userData.dob ||
+      !this.props.userData.interest ||
+      !this.props.userData.gender ||
+      !this.props.userData.location ||
+      !this.props.userData.profession ||
+      !this.props.userData.mobile
+    ) {
+      console.log("userData not available");
+      window.location.replace("/create-profile");
+    }else{
+      console.log("userData  available");
+      window.location.replace("/create-event");
+    }
+  }
   render() {
     return (
       <div>
@@ -132,7 +157,7 @@ class Navbar extends React.Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/create-event" className="nav-link btn text-white">
+                  <Link to="/create-event" className="nav-link btn text-white" onClick={this.reDir}>
                     Create Event
                   </Link>
                 </li>

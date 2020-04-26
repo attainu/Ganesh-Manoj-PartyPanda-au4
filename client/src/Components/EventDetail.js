@@ -39,21 +39,21 @@ class EventDetail extends React.Component {
     if (!localStorage.Token){
       return <Redirect to="/signin" />;
     }
-    if (
-      !this.props.userData.name ||
-      !this.props.userData.image ||
-      !this.props.userData.email ||
-      !this.props.userData.bio ||
-      !this.props.userData.company ||
-      !this.props.userData.dob ||
-      !this.props.userData.interest ||
-      !this.props.userData.gender ||
-      !this.props.userData.location ||
-      !this.props.userData.profession ||
-      !this.props.userData.mobile
-    ) {
-      return <Redirect to="/create-profile" />;
-    }
+    // if (
+    //   !this.props.userData.name ||
+    //   !this.props.userData.image ||
+    //   !this.props.userData.email ||
+    //   !this.props.userData.bio ||
+    //   !this.props.userData.company ||
+    //   !this.props.userData.dob ||
+    //   !this.props.userData.interest ||
+    //   !this.props.userData.gender ||
+    //   !this.props.userData.location ||
+    //   !this.props.userData.profession ||
+    //   !this.props.userData.mobile
+    // ) {
+    //   return <Redirect to="/create-profile" />;
+    // }
 
     let event = this.props.selectedEventData;
     let host = event.host;

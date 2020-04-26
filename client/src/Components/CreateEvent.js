@@ -74,21 +74,21 @@ class CreateEvent extends React.Component {
     if (!localStorage.Token) {
       return <Redirect to="/signin" />;
     }
-    if (
-      !this.props.userData.name ||
-      !this.props.userData.image ||
-      !this.props.userData.email ||
-      !this.props.userData.bio ||
-      !this.props.userData.company ||
-      !this.props.userData.dob ||
-      !this.props.userData.interest ||
-      !this.props.userData.gender ||
-      !this.props.userData.location ||
-      !this.props.userData.profession ||
-      !this.props.userData.mobile
-    ) {
-      return <Redirect to="/create-profile" />;
-    }
+    // if (
+    //   !this.props.userData.name ||
+    //   !this.props.userData.image ||
+    //   !this.props.userData.email ||
+    //   !this.props.userData.bio ||
+    //   !this.props.userData.company ||
+    //   !this.props.userData.dob ||
+    //   !this.props.userData.interest ||
+    //   !this.props.userData.gender ||
+    //   !this.props.userData.location ||
+    //   !this.props.userData.profession ||
+    //   !this.props.userData.mobile
+    // ) {
+    //   return <Redirect to="/create-profile" />;
+    // }
     return (
       <div className="container-fluid d-flex flex-column flex-nowrap bg-light pb-5">
         <center className="pb-4 pt-4 ">

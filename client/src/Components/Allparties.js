@@ -11,7 +11,24 @@ class Allparties extends React.Component {
     host: false,
   };
   sendId = async (data) => {
-    let id = await data._id;
+    if (
+      !this.props.userData.name ||
+      !this.props.userData.image ||
+      !this.props.userData.email ||
+      !this.props.userData.bio ||
+      !this.props.userData.company ||
+      !this.props.userData.dob ||
+      !this.props.userData.interest ||
+      !this.props.userData.gender ||
+      !this.props.userData.location ||
+      !this.props.userData.profession ||
+      !this.props.userData.mobile
+    ) {
+      // <Redirect to="/create-profile" />;
+      console.log("userData not available");
+      window.location.replace("/create-profile");
+    }else{
+      let id = await data._id;
     this.setState({
       id: id,
     });
@@ -25,6 +42,21 @@ class Allparties extends React.Component {
         user: true,
       });
     }
+    }
+    // let id = await data._id;
+    // this.setState({
+    //   id: id,
+    // });
+    // let user = this.props.userData;
+    // if (data.host._id === user._id) {
+    //   this.setState({
+    //     host: true,
+    //   });
+    // } else {
+    //   this.setState({
+    //     user: true,
+    //   });
+    // }
   };
   render() {
     let result = [];
