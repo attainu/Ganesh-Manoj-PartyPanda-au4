@@ -50,9 +50,6 @@ class Allparties extends React.Component {
       return <Redirect to={link} />;
     }
 
-    if (this.props.ftheme === "Theme") {
-      return result;
-    }
     if (this.props.ftheme === "Game Night") {
       let newData = result.filter((elem) => {
         return elem.theme === "Game Night";
@@ -126,9 +123,6 @@ class Allparties extends React.Component {
       });
       result = newData;
     }
-    if (this.props.ftype === "Type") {
-      return result;
-    }
 
     if (this.props.ftype === "House Party") {
       let newData = result.filter((elem) => {
@@ -162,10 +156,6 @@ class Allparties extends React.Component {
       result = newData;
     }
 
-    if (this.props.fcharges === "Charges") {
-      return result;
-    }
-
     if (this.props.fcharges === "0 to 100") {
       let newData = result.filter((elem) => {
         return elem.charges <= 100;
@@ -191,10 +181,6 @@ class Allparties extends React.Component {
       result = newData;
     }
 
-    if (this.props.fparking === "Parking") {
-      return result;
-    }
-
     if (this.props.fparking === "Yes") {
       let newData = result.filter((elem) => {
         return elem.parking === "Yes";
@@ -214,9 +200,6 @@ class Allparties extends React.Component {
       result = newData;
     }
 
-    if (this.props.fstay === "Stay") {
-      return result;
-    }
     if (this.props.fstay === "Yes") {
       let newData = result.filter((elem) => {
         return elem.stayover === "Yes";
@@ -230,9 +213,6 @@ class Allparties extends React.Component {
       result = newData;
     }
 
-    if (this.props.fsmoking === "Stay") {
-      return result;
-    }
     if (this.props.fsmoking === "Yes") {
       let newData = result.filter((elem) => {
         return elem.smoking === "Yes";
@@ -245,9 +225,7 @@ class Allparties extends React.Component {
       });
       result = newData;
     }
-    if (this.props.fbeverages === "Beverages") {
-      return result;
-    }
+
     if (this.props.fbeverages === "BYOB") {
       let newData = result.filter((elem) => {
         return elem.beverages === "BYOB";
@@ -278,7 +256,8 @@ class Allparties extends React.Component {
           </center>
 
           <div className="d-flex flex-row justify-content-around flex-wrap">
-            <div class="dropdown pb-2">
+            <div class="d-flex flex-column dropdown ">
+              <label class="control-label">Theme</label>
               <select
                 className="custom-select"
                 onChange={(event) => {
@@ -289,7 +268,6 @@ class Allparties extends React.Component {
                 }}
                 style={{ width: "200px", height: "40px" }}
               >
-                <option value="Theme">Theme</option>
                 <option value="Game Night">Game Night</option>
                 <option value="Laughter Party">Laughter Party</option>
                 <option value="Musical Night">Musical Night</option>
@@ -304,7 +282,9 @@ class Allparties extends React.Component {
                 <option value="Gataway">Gataway</option>
               </select>
             </div>
-            <div>
+            <div class="d-flex flex-column">
+              <label class="control-label">Type</label>
+
               <select
                 className="custom-select"
                 onChange={(event) => {
@@ -315,7 +295,6 @@ class Allparties extends React.Component {
                 }}
               >
                 <option value="Type">Type</option>
-                <option value="House Party">House Party</option>
                 <option value="Online Party">Online Party</option>
                 <option value="Outdoor Party">Outdoor Party</option>
                 <option value="Pool Party">Pool Party</option>
@@ -323,7 +302,9 @@ class Allparties extends React.Component {
               </select>
             </div>
 
-            <div>
+            <div class="d-flex flex-column">
+              <label class="control-label">Charges</label>
+
               <select
                 className="custom-select"
                 onChange={(event) => {
@@ -333,14 +314,15 @@ class Allparties extends React.Component {
                   });
                 }}
               >
-                <option value="Charges">Charges</option>
                 <option value="0 to 100">0 to 100</option>
                 <option value="100 to 500">100 to 500</option>
                 <option value="500 to 1000">500 to 1000</option>
                 <option value="more than 1000">more than 1000</option>
               </select>
             </div>
-            <div>
+            <div class="d-flex flex-column">
+              <label class="control-label">Parking</label>
+
               <select
                 className="custom-select"
                 onChange={(event) => {
@@ -350,14 +332,15 @@ class Allparties extends React.Component {
                   });
                 }}
               >
-                <option value="Parking">Parking</option>
                 <option value="Yes">Yes</option>
                 <option value="">No</option>
                 <option value="OnRoad">On Road</option>
               </select>
             </div>
 
-            <div>
+            <div class="d-flex flex-column">
+              <label class="control-label">Stay</label>
+
               <select
                 className="custom-select"
                 onChange={(event) => {
@@ -367,13 +350,14 @@ class Allparties extends React.Component {
                   });
                 }}
               >
-                <option value="Stay">Stay</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
             </div>
 
-            <div>
+            <div class="d-flex flex-column">
+              <label class="control-label">Smoking</label>
+
               <select
                 className="custom-select"
                 onChange={(event) => {
@@ -383,13 +367,14 @@ class Allparties extends React.Component {
                   });
                 }}
               >
-                <option value="Smoking">Smoking</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
             </div>
 
-            <div>
+            <div class="d-flex flex-column">
+              <label class="control-label">Beverages</label>
+
               <select
                 className="custom-select"
                 onChange={(event) => {
@@ -399,7 +384,6 @@ class Allparties extends React.Component {
                   });
                 }}
               >
-                <option value="Beverages">Beverages</option>
                 <option value="BYOB">BYOB</option>
                 <option value="Not Allowed">Not Allowed</option>
                 <option value="On the House">On the House</option>
