@@ -38,9 +38,9 @@ class EditEvent extends React.Component {
       .put(`http://localhost:3010/event?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          MySwal.fire("Event Updated","","success");
+          await MySwal.fire("Event Updated","","success");
           console.log(res);
-          return <Redirect to="/allevents" />;
+          window.location.replace("/allevents");
         } else {
           MySwal.fire("Failed to Update Profile","", "warning");
         }

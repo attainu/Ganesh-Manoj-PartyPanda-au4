@@ -27,6 +27,7 @@ class EventDetail extends React.Component {
       )
       .then((res) => {
         MySwal.fire("Requested to join!", "", "success");
+        window.location.reload();
       });
   }
 
@@ -35,7 +36,7 @@ class EventDetail extends React.Component {
     // if (!this.props.selectedEventId) {
     //   return <Redirect to="/allevents" />;
     // }
-    if (!localStorage.Token) {
+    if (!localStorage.Token){
       return <Redirect to="/signin" />;
     }
     if (
@@ -68,6 +69,7 @@ class EventDetail extends React.Component {
       }
       // console.log(result);
     });
+    console.log("guest status", this.props.attending.status);
     return (
       <Fragment>
         {host ? (
@@ -282,7 +284,7 @@ class EventDetail extends React.Component {
             <div className="d-flex justify-content-center pt-2 pb-3">
               {result[0] ? (
                 <button
-                  className="btn btn-warning"
+                  className={result[0].status? "btn btn-success" :"btn btn-warning"}
                   style={{ borderRadius: "20px" }}
                 >
                   Status : Already requested to join!{" "}
