@@ -1,0 +1,80 @@
+.wrapper {
+  background-color: #f6f9fa;
+}
+
+.card-title {
+  color: #637d86;
+  padding: 0 0 2px;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+  text-transform: capitalize;
+}
+
+#joincreate {
+  min-width: 120px;
+  max-height: 36px;
+  border: 1px solid #554f91;
+  background-color: #554f91;
+  color: white;
+  border-radius: 40px;
+  font-weight: 500;
+}
+
+.card-title.about {
+  color: #445164;
+  padding: 0 0 2px;
+  font-weight: 500;
+  font-size: 2.5rem;
+  text-transform: capitalize;
+  text-align: center;
+  letter-spacing: -0.2px;
+  line-height: 54px;
+  margin-bottom: 10px;
+}
+.mem {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.event {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.event:hover {
+  border: 2px solid rgba(127, 56, 122, 0.92);
+}
+
+.card.idea {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.theme {
+  text-align: center;
+  padding-top: 80px;
+  letter-spacing: -0.2px;
+  line-height: 54px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  font-size: 2.6rem;
+  color: #545e6f;
+  font-weight: 500;
+}
+
+.card-body {
+  -webkit-box-align: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.25rem 1.25rem 0.5rem;
+}
+.card-text {
+  color: rgba(84, 94, 111, 0.8);
+  line-height: 24px;
+  font-size: 14px;
+}
+#caption {
+  position: relative;
+  top: -367px;
+  margin-left: 80px;
+  color: #f6f9fae6;
+
+  /* color: rgba(127, 56, 122, 0.92); */
+}

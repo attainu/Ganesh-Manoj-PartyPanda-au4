@@ -1,0 +1,16 @@
+.propimg {
+  border-radius: 50%;
+  width: 12rem;
+  height: 12rem;
+  position: relative;
+  top: -105px;
+}
+.prop1 {
+  margin-top: -10rem;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.propname {
+  margin-top: -60px;
+}

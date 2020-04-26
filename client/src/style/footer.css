@@ -1,0 +1,29 @@
+.card-footer {
+  background: linear-gradient(
+    140deg,
+    rgba(127, 56, 122, 0.92) 0,
+    rgba(64, 96, 148, 0.92)
+  );
+
+  width: 100%;
+  color: white;
+}
+
+.form-control {
+  margin-bottom: 5px;
+}
+
+#footer-img {
+  width: 300px;
+}
+
+#footer-center {
+  float: center;
+  text-align: center;
+}
+
+.fa {
+  font-size: 40px;
+  width: 50px;
+  margin-top: 30px;
+}

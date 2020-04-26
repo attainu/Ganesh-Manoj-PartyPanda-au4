@@ -1,0 +1,28 @@
+#container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#wrapper {
+  padding-bottom: 2.5rem;
+}
+
+.logo:focus {
+  border-color: transparent;
+}
+.logo:active {
+  border-color: transparent;
+}
+.logo:visited {
+  border-color: transparent;
+}
+.logo:hover {
+  border-color: transparent;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
