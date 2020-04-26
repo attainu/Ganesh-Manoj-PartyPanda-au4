@@ -39,8 +39,8 @@ class CreateEvent extends React.Component {
       .post(`http://localhost:3010/create-event?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
-          MySwal.fire("Event Created", "", "success");
-          return <Redirect to="/allevents" />;
+          await MySwal.fire("Event Created", "", "success");
+          window.location.replace("/allevent");
         } else {
           MySwal.fire("Failed to Update Profile", "", "error");
         }

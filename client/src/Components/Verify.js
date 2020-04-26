@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 
 class Verify extends React.Component {
@@ -17,15 +19,16 @@ class Verify extends React.Component {
   }
 
   handleSend() {
+    let MySwal = withReactContent(Swal);
     axios
       .post(`http://localhost:3010/step2`, this.state)
       .then(async (res) => {
         console.log("approved", res);
         if (JSON.stringify(res.data) == "{}") {
           await this.props.dispatch({ type: "status", payload: "approved" });
-          alert("User Verified");
+          MySwal.fire("User Verified", "", "success" );
         } else {
-          alert("Wrong Otp");
+          MySwal.fire("Wrong Otp","", "error");
         }
       })
       .catch((error) => {

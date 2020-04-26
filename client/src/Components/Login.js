@@ -15,8 +15,10 @@ class Login extends React.Component {
   };
 
   handleForget() {
-    if (this.state.forget.length < 9)
-      return alert("Enter a valid Mobile number");
+    let MySwal = withReactContent(Swal);
+    if (this.state.forget.length < 9){
+      MySwal.fire("Enter a valid Mobile number", "", "warning");
+    }
 
     axios
       .post("http://localhost:3010/step1", this.state)

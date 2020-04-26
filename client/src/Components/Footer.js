@@ -3,6 +3,8 @@ import "./../style/footer.css";
 import Animal from "./../images/animal.png";
 import { connect } from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 class Footer extends React.Component {
   state = {
@@ -19,13 +21,14 @@ class Footer extends React.Component {
   };
 
   handleSend() {
+    let MySwal = withReactContent(Swal);
     axios
       .post("http://localhost:3010/feedback", this.state)
       .then((res) => {
         if (res.data._id) {
-          return alert("Feedback Sent");
+          MySwal.fire("Feedback Sent", "", "success");
         } else {
-          return alert("Failed to sent Feedback");
+          MySwal.fire("Failed to sent Feedback", "", "error");
         }
       })
       .catch((err) => {

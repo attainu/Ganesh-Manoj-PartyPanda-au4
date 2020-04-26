@@ -26,7 +26,7 @@ class Reset extends React.Component {
         .put("http://localhost:3010/update-password", signupData)
         .then((response) => {
           e.preventDefault();
-          MySwal.fire(response.data, "", "warning");
+          MySwal.fire(response.data, "", "success");
           this.setState({
             mobile: "",
             password: "",
