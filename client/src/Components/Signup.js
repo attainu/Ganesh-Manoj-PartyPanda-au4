@@ -20,19 +20,39 @@ class Signup extends React.Component {
 
   userData = (e) => {
     e.preventDefault();
+    const MySwal = withReactContent(Swal);
+
+    if (this.state.mobile.length <= 9 || this.state.mobile.length >= 11) {
+      console.log("Hit");
+      return MySwal.fire(
+        "Please enter a valid 10 digit mobile number",
+        "",
+        "error"
+      );
+    }
+    if (this.state.password.length < 5 || this.state.password.length > 10) {
+      return MySwal.fire(
+        "Min password length 5 Max password length 10",
+        "",
+        "error"
+      );
+    }
     const signupData = {
       mobile: this.state.mobile,
       password: this.state.password,
     };
-    const MySwal = withReactContent(Swal);
     if (this.state.password !== this.state.confirmPassword) {
-      MySwal.fire("Password and Confirm password is not same", "", "error");
+      return MySwal.fire(
+        "Password and Confirm password is not same",
+        "",
+        "error"
+      );
     } else {
       axios
         .post(`http://localhost:3010/signup`, signupData)
         .then((response) => {
           e.preventDefault();
-          MySwal.fire(response.data, "", "warning");
+          MySwal.fire(response.data, "", "success");
 
           this.setState({
             mobile: "",
