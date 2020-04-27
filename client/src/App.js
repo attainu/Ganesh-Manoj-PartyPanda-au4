@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from "./Components/Home";
+import Default from "./Components/Default";
 import Navbar from "./Components/Navbar";
 import Allparties from "./Components/Allparties";
 import Footer from "./Components/Footer";
@@ -68,6 +69,7 @@ class App extends React.Component {
           <div id="wrapper">
             <Router>
               <Navbar />
+              <Route path="/*" component={Default} />
               <Route exact path="/" component={Home} />
               <Route path="/reset" component={Reset} />
               <Route exact path="/verify" component={Verify} />
@@ -80,8 +82,16 @@ class App extends React.Component {
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/create-profile" component={ProfileCreation} />
               <Route exact path="/event-detail/:id" component={EventDetail} />
-              <Route exact path="/admin/event-detail/:id" component={AdminEventDetail} />
-              <Route exact  path="/myevent-detail/:id"  component={MyEventDetail}  />
+              <Route
+                exact
+                path="/admin/event-detail/:id"
+                component={AdminEventDetail}
+              />
+              <Route
+                exact
+                path="/myevent-detail/:id"
+                component={MyEventDetail}
+              />
               <Route exact path="/profile-update" component={ProfileUpdate} />
               <Route exact path="/guest" component={GuestList} />
               <Route exact path="/admin/feedback" component={Feedback} />
