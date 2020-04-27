@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./Components/Home";
 import Default from "./Components/Default";
@@ -69,6 +69,7 @@ class App extends React.Component {
           <div id="wrapper">
             <Router>
               <Navbar />
+              <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/reset" component={Reset} />
               <Route exact path="/verify" component={Verify} />
@@ -94,6 +95,8 @@ class App extends React.Component {
               <Route exact path="/profile-update" component={ProfileUpdate} />
               <Route exact path="/guest" component={GuestList} />
               <Route exact path="/admin/feedback" component={Feedback} />
+              <Route  component={Default} />
+              </Switch>
             </Router>
           </div>
           <div id="footer">
