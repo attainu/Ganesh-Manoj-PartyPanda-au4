@@ -140,7 +140,7 @@ app.post("/step2", (req, res) => {
 });
 
 // Server Static assets if in production
-if (process.env.PORT === "production") {
+if (process.env.NODE_ENV === "production") {
   // Set a static folder
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
