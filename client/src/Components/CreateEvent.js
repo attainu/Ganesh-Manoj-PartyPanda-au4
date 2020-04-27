@@ -8,11 +8,11 @@ import withReactContent from "sweetalert2-react-content";
 class CreateEvent extends React.Component {
   state = {
     type: "House Party",
-    theme: "",
+    theme: "Game Night",
     music: "",
     location: "",
     exact_location: "",
-    date: null,
+    date: "",
     start_time: "",
     end_timing: "",
     strength: "",
@@ -22,7 +22,7 @@ class CreateEvent extends React.Component {
     parking: "Yes",
     stayover: "Yes",
     details: "",
-    avatar: null,
+    avatar: "",
   };
 
   handleChange = (e) => {
@@ -32,9 +32,15 @@ class CreateEvent extends React.Component {
   };
 
   sendData = () => {
-    // window.location.reload();
-    let id = this.props.userData._id;
     let MySwal = withReactContent(Swal);
+    // window.location.reload();
+    let current = new Date();
+    let temp = new Date(this.state.date);
+    if (current >= temp) {
+      return MySwal.fire("Please Enter a future date", "", "error");
+    }
+    let id = this.props.userData._id;
+
     axios
       .post(`http://localhost:3010/create-event?id=${id}`, this.state)
       .then(async (res) => {
@@ -332,8 +338,8 @@ class CreateEvent extends React.Component {
               !this.state.end_timing |
               !this.state.strength |
               !this.state.charges |
-              this.state.details |
-              this.state.avatar
+              !this.state.details |
+              !this.state.avatar
                 ? true
                 : false
             }

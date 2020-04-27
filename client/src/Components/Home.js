@@ -70,13 +70,13 @@ class Home extends React.Component {
                   />
                 </div>
                 <div class="col-md-8">
-                  <div class="card-body text-center">
+                  <div class="card-body text-center d-flex flex-column flex-nowrap">
                     <h1 class="card-title about ">About Us</h1>
                     <p
                       class="card-text  "
                       style={{
-                        "padding-left": "70px",
-                        "padding-right": "70px",
+                        "padding-left": "10px",
+                        "padding-right": "10px",
                       }}
                     >
                       PartyPanda gives you the real socializing experience
