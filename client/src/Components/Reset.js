@@ -23,7 +23,7 @@ class Reset extends React.Component {
       MySwal.fire("Password and Confirm password is not same", "", "error");
     } else {
       axios
-        .put("http://localhost:3010/update-password", signupData)
+        .put("/update-password", signupData)
         .then((response) => {
           e.preventDefault();
           MySwal.fire(response.data, "", "success");

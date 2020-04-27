@@ -49,7 +49,7 @@ class Signup extends React.Component {
       );
     } else {
       axios
-        .post(`http://localhost:3010/signup`, signupData)
+        .post(`/signup`, signupData)
         .then((response) => {
           e.preventDefault();
           MySwal.fire(response.data, "", "success");

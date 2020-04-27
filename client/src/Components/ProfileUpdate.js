@@ -26,15 +26,19 @@ class ProfileUpdate extends React.Component {
   sendData = () => {
     let MySwal = withReactContent(Swal);
     if (this.state.password !== this.state.cnfpassword)
-      return MySwal.fire("Password and Confirm password doesn't match", "", "warning");
+      return MySwal.fire(
+        "Password and Confirm password doesn't match",
+        "",
+        "warning"
+      );
     let id = this.props.userData._id;
 
     axios
-      .post(`http://localhost:3010/update-profile?id=${id}`, this.state)
+      .post(`/update-profile?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
           await MySwal.fire("Profile updated", "", "success");
-          window.location.replace("/profile")
+          window.location.replace("/profile");
           return <Redirect to="/" />;
         } else {
           MySwal.fire("Failed to Update Profile", "", "warning");
@@ -58,7 +62,7 @@ class ProfileUpdate extends React.Component {
 
     fd.append("avatar", image, image.name);
     await axios
-      .post("http://localhost:3010/uploader", fd)
+      .post("/uploader", fd)
       .then(async (res) => {
         avatar = res.data;
       })

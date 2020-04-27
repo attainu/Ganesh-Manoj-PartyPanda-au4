@@ -21,14 +21,14 @@ class Verify extends React.Component {
   handleSend() {
     let MySwal = withReactContent(Swal);
     axios
-      .post(`http://localhost:3010/step2`, this.state)
+      .post(`/step2`, this.state)
       .then(async (res) => {
         console.log("approved", res);
         if (JSON.stringify(res.data) == "{}") {
           await this.props.dispatch({ type: "status", payload: "approved" });
-          MySwal.fire("User Verified", "", "success" );
+          MySwal.fire("User Verified", "", "success");
         } else {
-          MySwal.fire("Wrong Otp","", "error");
+          MySwal.fire("Wrong Otp", "", "error");
         }
       })
       .catch((error) => {

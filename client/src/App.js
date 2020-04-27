@@ -30,7 +30,7 @@ class App extends React.Component {
   componentDidMount = async () => {
     const token = localStorage.Token;
 
-    axios.get("http://localhost:3010/events").then((res) => {
+    axios.get("/events").then((res) => {
       this.props.dispatch({ type: "allEvent", payload: res.data });
     });
 
@@ -41,22 +41,21 @@ class App extends React.Component {
       await this.props.dispatch({ type: "login" });
       let id = this.props.userData._id;
 
-      Promise.all([
-        axios.get(`http://localhost:3010/one?id=${id}`),
-        axios.get("http://localhost:3010/join"),
-      ]).then(([res1, res2]) => {
-        this.props.dispatch({ type: "replace", payload: res1.data });
-        let result = [];
-        res2.data.map((elem, index) => {
-          if (this.props.userData._id === elem.user._id) {
-            return result.push(elem);
-          } else {
-            // console.log("not matched", elem)
-          }
-        });
-        console.log(result);
-        this.props.dispatch({ type: "attending", payload: result });
-      });
+      Promise.all([axios.get(`/one?id=${id}`), axios.get("/join")]).then(
+        ([res1, res2]) => {
+          this.props.dispatch({ type: "replace", payload: res1.data });
+          let result = [];
+          res2.data.map((elem, index) => {
+            if (this.props.userData._id === elem.user._id) {
+              return result.push(elem);
+            } else {
+              // console.log("not matched", elem)
+            }
+          });
+          console.log(result);
+          this.props.dispatch({ type: "attending", payload: result });
+        }
+      );
     } else {
       // console.log("no token available");
     }
