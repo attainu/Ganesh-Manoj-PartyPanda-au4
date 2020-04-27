@@ -21,7 +21,7 @@ class Login extends React.Component {
     }
 
     axios
-      .post("http://localhost:3010/step1", this.state)
+      .post("/step1", this.state)
       .then(async (res) => {
         console.log("Res", res);
         console.log(typeof res.data);

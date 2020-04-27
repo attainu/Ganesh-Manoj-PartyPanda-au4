@@ -10,14 +10,14 @@ class MyEventDetail extends React.Component {
   componentWillMount = async () => {
     let id = this.props.match.params.id;
     axios
-      .get(`http://localhost:3010/event?id=${id}`)
+      .get(`/event?id=${id}`)
       .then((res) => {
         // console.log(res.data.host);
         this.props.dispatch({ type: "eventData", payload: res.data });
       })
       .catch((err) => console.log(err));
 
-    let res = await axios.get("http://localhost:3010/join");
+    let res = await axios.get("/join");
 
     let result = await res.data.filter((elem, index) => {
       if (id === elem.party._id) {
@@ -37,9 +37,9 @@ class MyEventDetail extends React.Component {
     let id = this.props.match.params.id;
     let MySwal = withReactContent(Swal);
     axios
-      .delete(`http://localhost:3010/event?id=${id}`)
+      .delete(`/event?id=${id}`)
       .then(async (res) => {
-        await MySwal.fire("Event deleted","","success");
+        await MySwal.fire("Event deleted", "", "success");
         window.location.replace("/allevents");
         this.props.dispatch({ type: "removeMyEventId" });
       })
