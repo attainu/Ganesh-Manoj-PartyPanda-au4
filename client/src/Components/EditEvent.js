@@ -35,7 +35,7 @@ class EditEvent extends React.Component {
     let id = this.props.selectedEventData._id;
     let MySwal = withReactContent(Swal);
     axios
-      .put(`http://localhost:3010/event?id=${id}`, this.state)
+      .put(`/event?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
           await MySwal.fire("Event Updated","","success");
@@ -57,7 +57,7 @@ class EditEvent extends React.Component {
 
     fd.append("avatar", image, image.name);
     await axios
-      .post("http://localhost:3010/uploader", fd)
+      .post("/uploader", fd)
       .then(async (res) => {
         avatar = res.data;
       })

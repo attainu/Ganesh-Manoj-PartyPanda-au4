@@ -9,7 +9,7 @@ class AdminEventDetail extends React.Component {
   componentDidMount = () => {
     let id = this.props.match.params.id;
     axios
-      .get(`http://localhost:3010/event?id=${id}`)
+      .get(`/event?id=${id}`)
       .then((res) => {
         this.props.dispatch({ type: "eventData", payload: res.data });
       })
@@ -21,7 +21,7 @@ class AdminEventDetail extends React.Component {
     let status = true;
     let MySwal = withReactContent(Swal);
     axios
-      .put(`http://localhost:3010/update-status?id=${id}&status=${status}`)
+      .put(`/update-status?id=${id}&status=${status}`)
       .then(async (res) => {
         await MySwal.fire("Event Accepted", "", "success");
         window.location.reload();
@@ -38,7 +38,7 @@ class AdminEventDetail extends React.Component {
     console.log(id);
     let MySwal = withReactContent(Swal);
     axios
-      .delete(`http://localhost:3010/event?id=${id}`)
+      .delete(`/event?id=${id}`)
       .then(async (res) => {
         await MySwal.fire("Event Deleted", "", "success");
         window.location.replace("/admin");

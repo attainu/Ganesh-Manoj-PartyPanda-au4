@@ -9,7 +9,7 @@ class EventDetail extends React.Component {
   componentDidMount = () => {
     let id = this.props.match.params.id;
     axios
-      .get(`http://localhost:3010/event?id=${id}`)
+      .get(`/event?id=${id}`)
       .then((res) => {
         this.props.dispatch({ type: "eventData", payload: res.data });
       })
@@ -23,7 +23,7 @@ class EventDetail extends React.Component {
 
     axios
       .post(
-        `http://localhost:3010/join?user_id=${user_id}&party_id=${party_id}`
+        `/join?user_id=${user_id}&party_id=${party_id}`
       )
       .then((res) => {
         MySwal.fire("Requested to join!", "", "success");

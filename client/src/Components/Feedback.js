@@ -6,7 +6,7 @@ import { Redirect} from "react-router-dom";
 class Feedback extends Component {
 
     componentDidMount = () =>{
-        axios.get("http://localhost:3010/feedback").then(
+        axios.get("/feedback").then(
             res =>{
                 this.props.dispatch({ type:"feedback" , payload:res.data}) 
             }
