@@ -1,11 +1,11 @@
 const http = require("http");
 const app = require("./app");
 const db = require("./Model/index.js");
-const port = process.env.NODE_ENV || 3010;
+const port = process.env.PORT || 3010;
 
 let server = http.createServer(app);
 // Server Static assets if in production
-if (process.env.PORT === "production") {
+if (port === "production") {
   // Set a static folder
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
