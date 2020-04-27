@@ -10,7 +10,8 @@ import Trekking from "../images/trekking.png";
 import "./../style/home.css";
 import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
-
+import Ganesh from "../images/ganesh.jpg";
+import Manoj from "../images/manoj.jpg";
 class Home extends React.Component {
   render() {
     // if (localStorage.Token) {
@@ -235,7 +236,7 @@ class Home extends React.Component {
                   style={{ width: "20rem", "border-radius": "10px" }}
                 >
                   <img
-                    src={Red}
+                    src={Manoj}
                     class="card-img-top"
                     alt=""
                     style={{
@@ -282,7 +283,7 @@ class Home extends React.Component {
                   style={{ width: "20rem", "border-radius": "10px" }}
                 >
                   <img
-                    src={Shirt}
+                    src={Ganesh}
                     class="card-img-top"
                     alt=""
                     style={{
