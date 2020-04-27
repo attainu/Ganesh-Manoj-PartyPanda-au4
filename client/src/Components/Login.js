@@ -16,7 +16,7 @@ class Login extends React.Component {
 
   handleForget() {
     let MySwal = withReactContent(Swal);
-    if (this.state.forget.length < 9){
+    if (this.state.forget.length < 9) {
       MySwal.fire("Enter a valid Mobile number", "", "warning");
     }
 
@@ -66,7 +66,7 @@ class Login extends React.Component {
     };
 
     axios
-      .post("http://localhost:3010/login", userData)
+      .post("/login", userData)
       .then(async (res) => {
         const MySwal = withReactContent(Swal);
         if (res.data.token) {

@@ -4,6 +4,7 @@ const db = require("./database");
 const multer = require("multer");
 const cors = require("cors");
 const config = require("./config");
+const path = require("path");
 const client = require("twilio")(config.accountSID, config.authToken);
 // const messagebird = require("messagebird")("ff5lhjVdGGYIuSkIBLrlESrzB");
 
@@ -138,6 +139,14 @@ app.post("/step2", (req, res) => {
     });
 });
 
+// Server Static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Set a static folder
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 // app.post("/login", async (req, res) => {
 //   try {
 //     const { body } = req;
