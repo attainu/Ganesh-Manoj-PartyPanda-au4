@@ -139,15 +139,6 @@ app.post("/step2", (req, res) => {
     });
 });
 
-// Server Static assets if in production
-if (process.env.PORT === "production") {
-  // Set a static folder
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  });
-}
-
 // app.post("/login", async (req, res) => {
 //   try {
 //     const { body } = req;
