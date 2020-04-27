@@ -69,7 +69,6 @@ class App extends React.Component {
           <div id="wrapper">
             <Router>
               <Navbar />
-              <Route path="/*" component={Default} />
               <Route exact path="/" component={Home} />
               <Route path="/reset" component={Reset} />
               <Route exact path="/verify" component={Verify} />
