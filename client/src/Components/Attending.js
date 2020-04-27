@@ -12,7 +12,7 @@ class Attending extends React.Component {
 
   async componentDidMount() {
     await axios
-      .get("http://localhost:3010/join")
+      .get("/join")
       .then((res) => {
         let result = [];
         res.data.map((elem, index) => {

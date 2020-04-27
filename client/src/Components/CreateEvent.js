@@ -42,7 +42,7 @@ class CreateEvent extends React.Component {
     let id = this.props.userData._id;
 
     axios
-      .post(`http://localhost:3010/create-event?id=${id}`, this.state)
+      .post(`/create-event?id=${id}`, this.state)
       .then(async (res) => {
         if (res) {
           await MySwal.fire("Event Created", "", "success");
@@ -63,7 +63,7 @@ class CreateEvent extends React.Component {
 
     fd.append("avatar", image, image.name);
     await axios
-      .post("http://localhost:3010/uploader", fd)
+      .post("/uploader", fd)
       .then(async (res) => {
         avatar = res.data;
       })

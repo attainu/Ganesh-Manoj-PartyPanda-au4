@@ -23,7 +23,7 @@ class Footer extends React.Component {
   handleSend() {
     let MySwal = withReactContent(Swal);
     axios
-      .post("http://localhost:3010/feedback", this.state)
+      .post("/feedback", this.state)
       .then((res) => {
         if (res.data._id) {
           MySwal.fire("Feedback Sent", "", "success");

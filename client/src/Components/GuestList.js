@@ -8,7 +8,7 @@ class GuestList extends React.Component {
   handleAccept(id) {
     let MySwal = withReactContent(Swal);
     axios
-      .put(`http://localhost:3010/join?id=${id}&status=true`)
+      .put(`/join?id=${id}&status=true`)
       .then(async (res) => {
         await MySwal.fire("Status Updated", "", "success");
         window.location.reload();
@@ -21,7 +21,7 @@ class GuestList extends React.Component {
   handleReject(id) {
     let MySwal = withReactContent(Swal);
     axios
-      .put(`http://localhost:3010/join?id=${id}&status=false`)
+      .put(`/join?id=${id}&status=false`)
       .then(async (res) => {
         await MySwal.fire("Status Updated", "", "success");
         window.location.reload();
