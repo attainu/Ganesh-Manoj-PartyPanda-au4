@@ -4,20 +4,20 @@ import { Link, Route } from "react-router-dom";
 import "./../style/navbar.css";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 // import UserImg from "../images/red.jpg";
 
 class Navbar extends React.Component {
-state = {
-    isUserData : false
-  }
+  state = {
+    isUserData: false,
+  };
   userLogout = (e) => {
     localStorage.removeItem("Token");
     this.props.dispatch({ type: "loginFalse" });
     this.props.dispatch({ type: "userDirect" });
   };
 
-  reDir = () =>{
+  reDir = () => {
     if (
       !this.props.userData.name ||
       !this.props.userData.image ||
@@ -33,11 +33,34 @@ state = {
     ) {
       console.log("userData not available");
       window.location.replace("/create-profile");
-    }else{
+    } else {
       console.log("userData  available");
       window.location.replace("/create-event");
     }
-  }
+  };
+
+  reDirProfile = () => {
+    if (
+      !this.props.userData.name ||
+      !this.props.userData.image ||
+      !this.props.userData.email ||
+      !this.props.userData.bio ||
+      !this.props.userData.company ||
+      !this.props.userData.dob ||
+      !this.props.userData.interest ||
+      !this.props.userData.gender ||
+      !this.props.userData.location ||
+      !this.props.userData.profession ||
+      !this.props.userData.mobile
+    ) {
+      console.log("userData not available");
+      window.location.replace("/create-profile");
+    } else {
+      console.log("userData  available");
+      window.location.replace("/profile");
+    }
+  };
+
   render() {
     return (
       <div>
@@ -45,7 +68,11 @@ state = {
           // if admin logged in
           <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light py-0">
             <div className=" navbar-brand d-flex justify-content-start ">
-              <Link to="/" className="logo text-white " style={{"textDecoration":"none"}}>
+              <Link
+                to="/"
+                className="logo text-white "
+                style={{ textDecoration: "none" }}
+              >
                 <img src={Panda} alt="" style={{ width: "65px" }} />
                 PartyPanda
               </Link>
@@ -67,7 +94,7 @@ state = {
             >
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item ">
-                  <Link to="/admin" className="nav-link btn text-white" >
+                  <Link to="/admin" className="nav-link btn text-white">
                     Events
                   </Link>
                 </li>
@@ -104,7 +131,7 @@ state = {
                         </span>
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="text-center px-0">
-                        <Link to="/profile">
+                        <Link to="/profile" onClick={this.reDirProfile}>
                           <option className="text-dark">Profile</option>
                         </Link>
                         <Dropdown.Item onClick={this.userLogout}>
@@ -125,7 +152,11 @@ state = {
         ) : (
           <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light py-0">
             <div className=" navbar-brand d-flex justify-content-start ">
-              <Link to="/" className="logo text-white" style={{"textDecoration":"none"}}>
+              <Link
+                to="/"
+                className="logo text-white"
+                style={{ textDecoration: "none" }}
+              >
                 <img src={Panda} alt="" style={{ width: "65px" }} />
                 PartyPanda
               </Link>
@@ -157,7 +188,11 @@ state = {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/create-event" className="nav-link btn text-white" onClick={this.reDir}>
+                  <Link
+                    to="/create-event"
+                    className="nav-link btn text-white"
+                    onClick={this.reDir}
+                  >
                     Create Event
                   </Link>
                 </li>
@@ -165,11 +200,19 @@ state = {
                   {this.props.isLogin ? (
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic">
-                        <img
-                          src={this.props.userData.image}
-                          className="rounded-circle mr-2"
-                          style={{ height: "35px", width: "35px" }}
-                        />
+                        {this.props.userData.image ? (
+                          <img
+                            src={this.props.userData.image}
+                            className="rounded-circle mr-2"
+                            style={{ height: "35px", width: "35px" }}
+                          />
+                        ) : (
+                          <img
+                            src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                            className="rounded-circle mr-2"
+                            style={{ height: "35px", width: "35px" }}
+                          />
+                        )}
                         <span className="pr-1">
                           {this.props.userData.name
                             ? this.props.userData.name
@@ -177,9 +220,13 @@ state = {
                         </span>
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="text-center px-0">
-                        <Link to="/profile">
-                          <option className="text-dark">Profile</option>
-                        </Link>
+                        <Dropdown.Item
+                          className="text-dark"
+                          onClick={this.reDirProfile}
+                        >
+                          Profile
+                        </Dropdown.Item>
+
                         <Dropdown.Item onClick={this.userLogout}>
                           Logout
                         </Dropdown.Item>
