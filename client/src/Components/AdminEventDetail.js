@@ -212,12 +212,14 @@ class AdminEventDetail extends React.Component {
                             <h4 className="card-title text-dark">
                               {host.name}
                             </h4>
-                            <div className="d-flex flex-column flex-wrap card-text">
+                            <div className="d-flex flex-row flex-wrap card-text">
                               {host.profession} | {host.company} |
                               {host.interest} | {host.gender}
                             </div>
                             <h5>Bio</h5>
-                            <div>{host.bio}</div>
+                            <div className="d-flex flex-row flex-wrap card-text">
+                              {host.bio}
+                            </div>
                           </div>
                         </div>
                       </div>

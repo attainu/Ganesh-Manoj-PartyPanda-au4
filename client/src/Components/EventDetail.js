@@ -21,14 +21,10 @@ class EventDetail extends React.Component {
     let party_id = this.props.match.params.id;
     let MySwal = withReactContent(Swal);
 
-    axios
-      .post(
-        `/join?user_id=${user_id}&party_id=${party_id}`
-      )
-      .then((res) => {
-        MySwal.fire("Requested to join!", "", "success");
-        window.location.reload();
-      });
+    axios.post(`/join?user_id=${user_id}&party_id=${party_id}`).then((res) => {
+      MySwal.fire("Requested to join!", "", "success");
+      window.location.reload();
+    });
   }
 
   render() {
@@ -36,7 +32,7 @@ class EventDetail extends React.Component {
     // if (!this.props.selectedEventId) {
     //   return <Redirect to="/allevents" />;
     // }
-    if (!localStorage.Token){
+    if (!localStorage.Token) {
       return <Redirect to="/signin" />;
     }
     // if (
@@ -255,12 +251,14 @@ class EventDetail extends React.Component {
                             <h4 className="card-title text-dark">
                               {host.name}
                             </h4>
-                            <div className="d-flex flex-column flex-wrap card-text">
+                            <div className="d-flex flex-row flex-wrap card-text">
                               {host.profession} | {host.company} |
                               {host.interest} | {host.gender}
                             </div>
                             <h5>Bio</h5>
-                            <div>{host.bio}</div>
+                            <div className="d-flex flex-row flex-wrap card-text">
+                              {host.bio}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -284,7 +282,9 @@ class EventDetail extends React.Component {
             <div className="d-flex justify-content-center pt-2 pb-3">
               {result[0] ? (
                 <button
-                  className={result[0].status? "btn btn-success" :"btn btn-warning"}
+                  className={
+                    result[0].status ? "btn btn-success" : "btn btn-warning"
+                  }
                   style={{ borderRadius: "20px" }}
                 >
                   Status : Already requested to join!{" "}
