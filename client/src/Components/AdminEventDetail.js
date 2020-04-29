@@ -29,8 +29,6 @@ class AdminEventDetail extends React.Component {
       .catch((err) => {
         console.log(err);
       });
-
-    
   };
 
   remove = () => {
@@ -193,12 +191,35 @@ class AdminEventDetail extends React.Component {
                       >
                         <h3 className=" pt-1 pb-2 text-dark">Host</h3>
 
-                        <h5 className="pl-3" style={{ textAlign: "left" }}>
-                          {host.name}
-                        </h5>
-                        <p className="text-muted text-left pl-3 pt-3">
-                          {host.bio}
-                        </p>
+                        <div className="card d-flex flex-row flex-wrap border-white justify-content-center">
+                          <img
+                            class="card-img-top mt-4 ml-1"
+                            // style={{
+                            //   marginLeft: "2.3rem",
+                            //   height: "10rem",
+                            //   width: "10rem",
+                            //   borderRadius: "50%",
+                            // }}
+                            src={host.image}
+                            alt="Card image cap"
+                            style={{
+                              height: "8rem",
+                              width: "8rem",
+                              borderRadius: "50%",
+                            }}
+                          />
+                          <div className="card-body p-3 d-flex flex-column ">
+                            <h4 className="card-title text-dark">
+                              {host.name}
+                            </h4>
+                            <div className="d-flex flex-column flex-wrap card-text">
+                              {host.profession} | {host.company} |
+                              {host.interest} | {host.gender}
+                            </div>
+                            <h5>Bio</h5>
+                            <div>{host.bio}</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
