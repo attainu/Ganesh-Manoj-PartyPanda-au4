@@ -46,7 +46,7 @@ class CreateEvent extends React.Component {
       .then(async (res) => {
         if (res) {
           await MySwal.fire("Event Created", "", "success");
-          window.location.replace("/allevent");
+          window.location.replace("/allevents");
         } else {
           MySwal.fire("Failed to Update Profile", "", "error");
         }
