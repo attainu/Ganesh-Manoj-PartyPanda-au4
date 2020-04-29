@@ -36,14 +36,27 @@ class MyEventDetail extends React.Component {
   handleDelete() {
     let id = this.props.match.params.id;
     let MySwal = withReactContent(Swal);
-    axios
-      .delete(`/event?id=${id}`)
-      .then(async (res) => {
-        await MySwal.fire("Event deleted", "", "success");
-        window.location.replace("/allevents");
-        this.props.dispatch({ type: "removeMyEventId" });
-      })
-      .catch((err) => console.log(err));
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.value) {
+        axios
+          .delete(`/event?id=${id}`)
+          .then(async (res) => {
+            await MySwal.fire("Event deleted", "", "success");
+            window.location.replace("/allevents");
+            this.props.dispatch({ type: "removeMyEventId" });
+          })
+          .catch((err) => console.log(err));
+      }
+    });
   }
   render() {
     if (!localStorage.Token) {
