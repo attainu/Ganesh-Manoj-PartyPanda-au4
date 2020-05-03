@@ -47,10 +47,10 @@ class Reset extends React.Component {
 
     return (
       <Fragment>
-        <div className="text-center">
+        <div className="text-center pt-5 mt-5">
           <div id="signup ">
             <input
-              className="form-control "
+              className="form-control w-25 mx-auto"
               type="password"
               id="password"
               placeholder="Password"
@@ -63,7 +63,7 @@ class Reset extends React.Component {
             />
             <br />
             <input
-              className="form-control "
+              className="form-control w-25 mx-auto"
               type="password"
               id="confirm"
               name="confirmPassword"

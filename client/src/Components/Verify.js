@@ -41,25 +41,31 @@ class Verify extends React.Component {
     if (this.props.status === "approved") return <Redirect to="/reset" />;
     return (
       <Fragment>
-        <label>Otp</label>
+        <div className="mx-auto my-auto text-center pt-5 mt-5">
+          <label>Otp</label>
 
-        <input
-          type="number"
-          value={this.state.code}
-          name="code"
-          onChange={(e) => {
-            this.handelChange(e);
-          }}
-        />
+          <input
+            className=" form-control w-25 mx-auto"
+            type="number"
+            value={this.state.code}
+            name="code"
+            onChange={(e) => {
+              this.handelChange(e);
+            }}
+          />
+          <br />
 
-        <button
-          onClick={() => {
-            this.handleSend();
-          }}
-          disabled={!this.state.code ? true : false}
-        >
-          Verify
-        </button>
+          <button
+            id="send"
+            className="mx-auto"
+            onClick={() => {
+              this.handleSend();
+            }}
+            disabled={!this.state.code ? true : false}
+          >
+            Verify
+          </button>
+        </div>
       </Fragment>
     );
   }
