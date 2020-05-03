@@ -33,7 +33,7 @@ class Login extends React.Component {
           });
           await this.props.dispatch({ type: "status", payload: "pending" });
         } else {
-          alert("Failed to send OTP");
+          MySwal.fire("Failed to send OTP", "", "error");
         }
       })
       .catch((error) => {
